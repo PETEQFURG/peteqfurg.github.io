@@ -113,3 +113,5 @@ python -m http.server 8080
 
 ## 📬 Contato
 Dúvidas e melhorias: abra um **Issue** ou PR. Para segurança, siga `SECURITY.md`.
+<! -- pr test -->
+<! -- pr test test  -->
