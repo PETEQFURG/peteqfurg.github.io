@@ -1,0 +1,27 @@
+name: build-static
+on:
+  pull_request:
+  push:
+    branches: [ "main" ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build (copy to dist)
+        run: |
+          mkdir -p dist
+          rsync -av --delete             --exclude=".git"             --exclude=".github"             ./ dist/
+          touch dist/.nojekyll
+
+      - name: Sanity checks
+        run: |
+          # falha se houver barras invertidas em caminhos HTML
+          ! grep -R "\\" --include="*.html" dist || (echo "Use '/' em vez de '\' nos caminhos." && exit 1)
+
+      - name: Upload site artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: site-dist
+          path: dist

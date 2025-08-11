@@ -1,0 +1,5 @@
+# CODEOWNERS - ajuste os times conforme a org PETEQFURG
+* @PETEQFURG/web @PETEQFURG/admin
+
+assets/** @PETEQFURG/web
+paginas/** @PETEQFURG/web

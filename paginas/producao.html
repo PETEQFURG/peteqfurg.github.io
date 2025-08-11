@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PET Engenharia Química</title>
+<!-- Fonte Lato do Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f3db;
+      font-family: Arial, sans-serif;
+    }
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    .content-wrapper {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    header {
+      background-color: #002855;
+      color: white;
+      padding: 20px;
+    }
+    .header-content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .logo-pet {
+      height: 120px;
+      background-color: #002855;
+      padding: 5px;
+      border-radius: 6px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.2);
+    }
+    .header-text {
+  font-family: 'Lato', sans-serif;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  line-height: 1.2;
+}
+    .header-text h1 {
+      font-size: 2.5em;
+      margin: 0;
+      font-weight: 900;
+    }
+    .header-text .sub {
+  font-size: 1em;
+  font-weight: 400;
+  letter-spacing: 1px;
+}
+.header-text .curso {
+  letter-spacing: 3px;
+  font-size: 1.5em;
+  font-weight: 700;
+  position: relative;
+  display: inline-block;
+  letter-spacing: 3px;
+}
+.header-text .curso::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: #ffffff;
+}
+.header-text .furg {
+  font-size: 0.8em;
+  font-weight: 400;
+  text-align: right;
+  color: #ffffff;
+}
+    .page-wrapper {
+      display: flex;
+      flex: 1;
+    }
+    
+    .sidebar {
+  margin-top: -1rem;
+  padding-top: 0;
+      width: 240px;
+      background-color: #f7f7f7;
+      padding: 20px;
+      box-shadow: 2px 0 4px rgba(0,0,0,0.1);
+      box-sizing: border-box;
+      font-size: 15px;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+    }
+
+    .menu {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 20px 0;
+    }
+    .menu li {
+      margin: 10px 0;
+    }
+    .menu-title {
+      font-weight: bold;
+      color: #002855;
+      margin: 15px 0 5px;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .menu a {
+      text-decoration: none;
+      color: #002855;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 5px 0;
+      transition: all 0.2s ease-in-out;
+    }
+    .menu a:hover {
+      color: #0056b3;
+      transform: translateX(3px);
+    }
+    .divisor {
+      border: none;
+      border-top: 1px solid #ccc;
+      margin: 10px 0;
+    }
+    .conteudo {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      padding: 30px;
+    }
+    .coluna-hexagonos, .coluna-direita {
+      flex: 1;
+    }
+    .dimensoes-svg-container {
+      display: flex;
+      justify-content: center;
+    }
+    .svg-container svg {
+      width: 500px;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+    #calendario {
+      background-color: white;
+      padding: 10px;
+      border-radius: 10px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+      margin-bottom: 30px;
+    }
+    .blocos-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .bloco {
+      background-color: #e6e6e6;
+      padding: 15px 25px;
+      border-radius: 10px;
+      font-weight: bold;
+    }
+    footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background-color: #ffffff;
+      padding: 15px 0;
+      text-align: center;
+      z-index: 1001;
+      box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    }
+    .footer-logos {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 60px;
+    }
+    .footer-logos img {
+      height: 40px;
+      transition: transform 0.2s ease;
+      filter: none;
+    }
+    .footer-logos img:hover {
+      transform: scale(1.05);
+    }
+  
+    .bloco {
+      background-color: #ffffff;
+      padding: 15px 25px;
+      border-radius: 12px;
+      font-weight: 600;
+      font-family: 'Exo 2', sans-serif;
+      font-size: 1.1em;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      transition: transform 0.2s ease;
+    }
+    .bloco:hover {
+      transform: scale(1.03);
+    }
+
+.sidebar {
+  width: 270px;
+  flex-shrink: 0;
+  position: sticky;
+  height: 100vh;
+  overflow-y: auto;
+  
+}
+</style>
+<style>
+  #container-calendario {
+    width: 100%;
+    max-width: 700px;
+  }
+
+  #calendario {
+    width: 100% !important;
+    margin: 0 auto;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+  }
+
+  .fc {
+    width: 100% !important;
+  }
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@500;700&amp;display=swap" rel="stylesheet"/><style>
+.navbar-horizontal {
+  background-color: #ffffff;
+  padding: 0.5rem 1rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.nav-menu {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+  padding: 0;
+  margin: 0;
+  font-family: 'Lato', sans-serif;
+}
+.nav-menu li a {
+  text-decoration: none;
+  color: #1a2a35;
+  font-weight: bold;
+}
+.nav-menu li a:hover {
+  color: #004080;
+}
+</style><style>
+.navbar-horizontal {
+  background-color: #ffffff;
+  border-bottom: 1px solid #ccc;
+  padding: 0.5rem 0;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+.nav-menu {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+}
+.nav-menu li a {
+  text-decoration: none;
+  color: #003366;
+  font-weight: bold;
+  font-family: 'Lato', sans-serif;
+  font-size: 1rem;
+}
+.nav-menu li a:hover {
+  color: #00509e;
+  border-bottom: 2px solid #00509e;
+  padding-bottom: 2px;
+}
+</style><style>.sidebar { margin-bottom: 60px; }</style><style>
+.sidebar {
+    width: 270px !important;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+    
+}
+</style><style>p { margin-bottom: 10px; }</style><style>
+/* Micro polimento para páginas internas */
+a:focus-visible{ outline:3px solid #86b7ff; outline-offset:2px; border-radius:8px; }
+p{ line-height:1.55; }
+.conteudo{ gap:24px; }
+@media (max-width: 480px){ .conteudo{ padding:20px !important; } }
+</style><link crossorigin="True" href="https://fonts.gstatic.com" rel="preconnect"/></head>
+<body>
+<header>
+<div class="header-content">
+<img alt="Logo PET/EQ" class="logo-pet" src="../../assets/img/logo-peteq-furg.svg"/>
+<div class="header-text">
+<h1>PET/EQ</h1>
+<div class="sub">PROGRAMA DE EDUCAÇÃO TUTORIAL</div>
+<div class="curso">ENGENHARIA QUÍMICA</div>
+<div class="furg">FURG</div>
+</div>
+<div class="social-icons" style="margin-left: auto; display: flex; gap: 15px;"><a href="https://www.linkedin.com/in/pet-engenharia-quimica-furg" target="_blank"><i class="fab fa-linkedin" style="font-size: 1.4em; color: white;"></i></a><a href="https://facebook.com/peteqfurg" target="_blank"><i class="fab fa-facebook" style="font-size: 1.4em; color: white;"></i></a><a href="https://instagram.com/peteqfurg" target="_blank"><i class="fab fa-instagram" style="font-size: 1.4em; color: white;"></i></a><a href="https://youtube.com/@peteqfurg" target="_blank"><i class="fab fa-youtube" style="font-size: 1.4em; color: white;"></i></a></div></div>
+</header>
+<nav class="navbar-horizontal">
+<div class="nav-container">
+<ul class="nav-menu">
+<li><a href="../index.html">Apresentação</a></li>
+<li><a href="../paginas/noticias.html">Notícias</a></li>
+<li><a href="../paginas/eventos.html">Eventos</a></li>
+<li><a href="../paginas/ingresso.html">Ingresso</a></li>
+<li><a href="../paginas/comissoes.html">Comissões</a></li>
+<li><a href="../paginas/producao.html">Produções PET/EQ</a></li>
+<li><a href="../paginas/downloads.html">Downloads</a></li>
+</ul>
+</div>
+</nav>
+<div class="content-wrapper">
+<div class="page-wrapper">
+<aside class="sidebar">
+<ul class="menu">
+<li class="menu-title">PET/EQ</li>
+</ul>
+<ul class="menu">
+<li class="menu-title">INSTITUCIONAL</li>
+<li><a href="../index.html"><i class="fas fa-home"></i> Página Inicial</a></li>
+<li><a href="../paginas/equipe.html"><i class="fas fa-users"></i> Equipe PET/EQ</a></li>
+<li><a href="../paginas/organograma.html"><i class="fas fa-sitemap"></i> Organograma PET/EQ</a></li>
+</ul>
+<hr class="divisor"/>
+<ul class="menu">
+<li class="menu-title">GESTÃO DO PROGRAMA</li>
+<li><a href="../arquivos/Sigpet_homologado_CLAA_2025.pdf" target="_blank"><i class="fas fa-file-alt"></i> Planejamento SIGPET</a></li>
+<li><a href="../arquivos/RIC_PET_2024.pdf" target="_blank"><i class="fas fa-clipboard"></i> Relatório Institucional RIC</a></li>
+<li><a href="../paginas/cronograma.html"><i class="fas fa-calendar-alt"></i> Cronograma de Atividades</a></li>
+</ul>
+<hr class="divisor"/>
+<ul class="menu">
+<li class="menu-title">DIMENSÕES DO PET</li>
+<li><a href="../paginas/dimensoes/dimensao1-ensino.html"><i class="fas fa-chalkboard-teacher"></i> Dimensão 1 – Ensino</a></li>
+<li><a href="../paginas/dimensoes/dimensao2-pesquisa.html"><i class="fas fa-flask"></i> Dimensão 2 – Pesquisa</a></li>
+<li><a href="../paginas/dimensoes/dimensao3-extensao.html"><i class="fas fa-handshake"></i> Dimensão 3 – Extensão</a></li>
+<li><a href="../paginas/dimensoes/dimensao4-inovacao.html"><i class="fas fa-lightbulb"></i> Dimensão 4 – Inovação e Tecnologia</a></li>
+<li><a href="../paginas/dimensoes/dimensao5-desenvolvimento.html"><i class="fas fa-user-graduate"></i> Dimensão 5 – Desenvolvimento Pessoal</a></li>
+<li><a href="../paginas/dimensoes/dimensao6-avaliacao.html"><i class="fas fa-chart-line"></i> Dimensão 6 – Gestão e Avaliação</a></li>
+</ul>
+<hr class="divisor"/>
+<ul class="menu">
+<li class="menu-title">MEMÓRIA E HISTÓRICO</li>
+<li><a href="../paginas/memoria.html"><i class="fas fa-archive"></i> Memória do PET/EQ</a></li>
+<li><a href="../paginas/galeria.html"><i class="fas fa-images"></i> Galeria de Fotos e Vídeos</a></li>
+</ul>
+<hr class="divisor"/>
+<ul class="menu">
+<li class="menu-title">AMBIENTES PET/EQ</li>
+<li><a href="https://teams.microsoft.com" target="_blank"><i class="fas fa-users"></i> Teams</a></li>
+<li><a href="https://www.office.com/launch/sharepoint" target="_blank"><i class="fas fa-folder-open"></i> SharePoint</a></li>
+<li><a href="https://onedrive.live.com/" target="_blank"><i class="fas fa-cloud"></i> OneDrive</a></li>
+</ul>
+</aside>
+<main class="conteudo" style="margin-bottom: 60px;"><h1 style="text-align:center; font-family: 'Lato', sans-serif; font-size: 2em; margin-bottom: 0.8em;">Produções Acadêmicas e Técnicas do PET Engenharia Química</h1><div style="max-width: 800px; margin: 0 auto; font-family: 'Lato', sans-serif; font-size: 1.05em; line-height: 1.6; color: #333;"><p>As produções acadêmicas e técnicas do PET Engenharia Química são resultados das atividades de ensino, pesquisa e extensão desenvolvidas pelos petianos ao longo dos anos.</p><p>Nesta página, você encontrará uma lista de produções separadas por ano, com base nos Registros Institucionais Consolidados (RICs) enviados à FURG. As produções incluem artigos, oficinas, apresentações em eventos, materiais didáticos e outras ações desenvolvidas pelo grupo.</p></div><h2 style="font-family: 'Lato', sans-serif; font-size: 1.3em; margin-top: 2.5em; background-color: #eef3fa; border-left: 6px solid #004080; padding: 10px;">Produções 2024</h2><ul style="margin-left: 1.5em; font-family: 'Lato', sans-serif; font-size: 1.02em; line-height: 1.6; color: #333;"><li>Artigo: Experiência com a Produção de um Simulador Interativo para Ensino de Difusão Molecular – 23ª MPU.</li><li>Material Técnico: Planilha de Controle de Atividades (Excel PET/EQ).</li><li>Oficina: Oficina de Ensino – Introdução ao SharePoint (PET Interno).</li><li>Vídeo: Apresentação institucional do PET/EQ no canal da FURG.</li><li>Apresentação: Pôster InterPET Sul 2024 – “A gestão horizontal como estratégia de engajamento”.</li></ul><h2 style="font-family: 'Lato', sans-serif; font-size: 1.3em; margin-top: 2.5em; background-color: #eef3fa; border-left: 6px solid #004080; padding: 10px;">Produções 2023</h2><ul style="margin-left: 1.5em; font-family: 'Lato', sans-serif; font-size: 1.02em; line-height: 1.6; color: #333;"><li>Programa PET: Comissão Programa PET – 22° MPU – Mostra de Produção Universitária da FURG (2023).</li><li>Simulação de Processo Seletivo – Uma Proposta de Oficina do PET/EQ – 22° MPU – Mostra de Produção Universitária da FURG (2023).</li><li>Acolhida Cidadã: Engenharia Química – Apadrinhamento – XII Seminário de Encerramento da Acolhida Cidadã 2023 (a ser publicado).</li><li>Acolhida Cidadã: Engenharia Química – XII Seminário de Encerramento da Acolhida Cidadã 2023 (a ser publicado).</li></ul><h2 style="font-family: 'Lato', sans-serif; font-size: 1.3em; margin-top: 2.5em; background-color: #eef3fa; border-left: 6px solid #004080; padding: 10px;">Produções 2022</h2><ul style="margin-left: 1.5em; font-family: 'Lato', sans-serif; font-size: 1.02em; line-height: 1.6; color: #333;"><li>Oficina: Ferramentas Digitais para Organização Interna do PET – Oficina interna para petianos.</li><li>Artigo: PET Engenharia Química – O desafio da reestruturação em tempos de pandemia – 20ª MPU.</li><li>Material Técnico: Manual PET/EQ 2022 – Versão atualizada.</li><li>Podcast: Episódio piloto do PETcast – Tema: vivência PET.</li></ul><h2 style="font-family: 'Lato', sans-serif; font-size: 1.3em; margin-top: 2.5em; background-color: #eef3fa; border-left: 6px solid #004080; padding: 10px;">Produções 2021</h2><ul style="margin-left: 1.5em; font-family: 'Lato', sans-serif; font-size: 1.02em; line-height: 1.6; color: #333;"><li>Apresentação: Apresentação do Projeto de Extensão PET-EQ na Mostra de Projetos da FURG.</li><li>Material Técnico: Cartilha PET para novos integrantes.</li><li>Artigo: PET Engenharia Química e a formação em tempos de incerteza – 19ª MPU.</li><li>E-book: Coletânea de Atividades do PET/EQ (2019–2021).</li></ul><div style="font-size:0.85rem; color:#555; margin-top:30px; text-align:center; font-style:italic; display:flex; align-items:center; justify-content:center; gap:6px;"><i class="fas fa-info-circle" style="color:#0078d4;"></i><span>Observação: os links para o SharePoint presentes neste site são de uso institucional e requerem login com credenciais da FURG.</span></div></main>
+</div>
+</div>
+<!--<footer style="background-color: #ffffff; text-align: center; box-shadow: 0 -2px 5px rgba(0,0,0,0.1)"><div style="display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 10px 20px; flex-wrap: wrap; font-family: 'Lato', sans-serif; font-size: 0.9em;"><div class="footer-logos">
+<a href="https://portal.mec.gov.br/pet" target="_blank"><img alt="Logo PET" src="../../assets/img/logo-pet-mec.gif"/></a>
+<a href="https://furg.br" target="_blank"><img alt="Logo FURG" src="../../assets/img/logo-furg.png"/></a>
+<a href="https://prograd.furg.br" target="_blank"><img alt="Logo PROGRAD" src="../../assets/img/logo-prograd.png"/></a>
+<a href="https://eqa.furg.br/" target="_blank"><img alt="Logo EQA" src="../../assets/img/logo-eqa.png"/></a>
+</div><div style="display: flex; flex-direction: column; gap: 5px; text-align: right;"><div>📧 E-mail do tutor: <a href="mailto:mauriciogarim@gmail.com">mauriciogarim@gmail.com</a></div><div>📧 E-mail da liderança: <a href="mailto:peteqlideranca@gmail.com">peteqlideranca@gmail.com</a></div></div></div></footer>-->
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const coresPorDimensao = {
+    1: "#1f77b4", 2: "#ff7f0e", 3: "#2ca02c", 4: "#d62728", 5: "#9467bd", 6: "#8c564b"
+  };
+
+  const eventosOriginais = [{"title": "Reunião de Planejamento", "date": "2025-08-04", "description": "Planejamento com novos bolsistas.", "dimensao": 1}, {"title": "Oficina de Excel", "date": "2025-08-05", "description": "Capacitação de planilhas para o grupo.", "dimensao": 5}, {"title": "Apresentação de Projeto", "date": "2025-08-06", "description": "Apresentação para comunidade externa.", "dimensao": 3}, {"title": "Planejamento da Avaliação", "date": "2025-08-07", "description": "Definir critérios de acompanhamento.", "dimensao": 6}, {"title": "Reunião de Inovação", "date": "2025-08-08", "description": "Novas ferramentas tecnológicas.", "dimensao": 4}, {"title": "Discussão de Pesquisa", "date": "2025-08-09", "description": "Resultados parciais do projeto.", "dimensao": 2}];
+
+  function formatarDataPorExtenso(dataStr) {
+    const meses = ['janeiro','fevereiro','março','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro'];
+    const partes = dataStr.split("-");
+    const ano = partes[0];
+    const mes = parseInt(partes[1], 10) - 1;
+    const dia = parseInt(partes[2], 10);
+    return `${dia} de ${meses[mes].charAt(0).toUpperCase() + meses[mes].slice(1)} de ${ano}`;
+  }
+
+  let todosEventos = eventosOriginais.map(e => {
+    return {
+      title: e.title,
+      start: e.date,
+      description: e.description,
+      backgroundColor: coresPorDimensao[e.dimensao],
+      borderColor: coresPorDimensao[e.dimensao],
+      extendedProps: { dimensao: e.dimensao }
+    };
+  });
+
+  function filtrarEventos() {
+    const selecionadas = Array.from(document.querySelectorAll('#filtros input:checked'))
+                              .map(cb => parseInt(cb.value));
+    return todosEventos.filter(e => selecionadas.includes(e.extendedProps.dimensao));
+  }
+
+  function atualizarEventosDoDia(dateStr) {
+    const eventosDoDia = eventosOriginais.filter(e => e.date === dateStr);
+    const container = document.getElementById('eventos-do-dia');
+    const dataFormatada = formatarDataPorExtenso(dateStr);
+    if (eventosDoDia.length > 0) {
+      container.innerHTML = `<h2>Evento(s) do dia</h2>
+        <p><strong>${dataFormatada}</strong></p>` + eventosDoDia.map(e =>
+          `<p><strong>${e.title}</strong>: ${e.description}</p>`
+        ).join('');
+    } else {
+      container.innerHTML = `<h2>Evento(s) do dia</h2><p><strong>${dataFormatada}</strong></p><p>Nenhum evento.</p>`;
+    }
+  }
+
+  const calendarEl = document.getElementById('calendario');
+  const calendar = new FullCalendar.Calendar(calendarEl, {
+    initialView: 'dayGridMonth',
+    locale: 'pt-br',
+    headerToolbar: {
+      left: 'prev,next today',
+      center: 'title',
+      right: 'dayGridMonth,timeGridWeek,listMonth'
+    },
+    buttonText: {
+      today: 'Hoje', month: 'Mês', week: 'Semana', day: 'Dia', list: 'Lista'
+    },
+    events: filtrarEventos(),
+    dateClick: function(info) {
+      atualizarEventosDoDia(info.dateStr);
+    },
+    eventClick: function(info) {
+      const date = info.event.start;
+      const isoDate = date.toISOString().split("T")[0];
+      atualizarEventosDoDia(isoDate);
+    }
+  });
+
+  calendar.render();
+
+  document.querySelectorAll('#filtros input').forEach(cb => {
+    cb.addEventListener('change', () => {
+      calendar.removeAllEvents();
+      calendar.addEventSource(filtrarEventos());
+    });
+  });
+});
+</script>
+</body>
+</html>

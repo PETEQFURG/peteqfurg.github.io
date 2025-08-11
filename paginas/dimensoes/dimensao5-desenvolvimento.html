@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Dimensão 5 – Desenvolvimento Pessoal</title>
+<!-- Fonte Lato do Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f3db;
+      font-family: Arial, sans-serif;
+    }
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    .content-wrapper {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    header {
+      background-color: #002855;
+      color: white;
+      padding: 20px;
+    }
+    .header-content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .logo-pet {
+      height: 120px;
+      background-color: #002855;
+      padding: 5px;
+      border-radius: 6px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.2);
+    }
+    .header-text {
+  font-family: 'Lato', sans-serif;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  line-height: 1.2;
+}
+    .header-text h1 {
+      font-size: 2.5em;
+      margin: 0;
+      font-weight: 900;
+    }
+    .header-text .sub {
+  font-size: 1em;
+  font-weight: 400;
+  letter-spacing: 1px;
+}
+.header-text .curso {
+  letter-spacing: 3px;
+  font-size: 1.5em;
+  font-weight: 700;
+  position: relative;
+  display: inline-block;
+  letter-spacing: 3px;
+}
+.header-text .curso::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: #ffffff;
+}
+.header-text .furg {
+  font-size: 0.8em;
+  font-weight: 400;
+  text-align: right;
+  color: #ffffff;
+}
+    .page-wrapper {
+      display: flex;
+      flex: 1;
+    }
+    
+    .sidebar {
+  margin-top: -1rem;
+  padding-top: 0;
+      width: 240px;
+      background-color: #f7f7f7;
+      padding: 20px;
+      box-shadow: 2px 0 4px rgba(0,0,0,0.1);
+      box-sizing: border-box;
+      font-size: 15px;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+    }
+
+    .menu {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 20px 0;
+    }
+    .menu li {
+      margin: 10px 0;
+    }
+    .menu-title {
+      font-weight: bold;
+      color: #002855;
+      margin: 15px 0 5px;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .menu a {
+      text-decoration: none;
+      color: #002855;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 5px 0;
+      transition: all 0.2s ease-in-out;
+    }
+    .menu a:hover {
+      color: #0056b3;
+      transform: translateX(3px);
+    }
+    .divisor {
+      border: none;
+      border-top: 1px solid #ccc;
+      margin: 10px 0;
+    }
+    .conteudo {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 30px;
+    }
+    .coluna-hexagonos, .coluna-direita {
+      flex: 1;
+    }
+    .dimensoes-svg-container {
+      display: flex;
+      justify-content: center;
+    }
+    .svg-container svg {
+      width: 500px;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+    #calendario {
+      background-color: white;
+      padding: 10px;
+      border-radius: 10px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+      margin-bottom: 30px;
+    }
+    .blocos-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      align-items: flex-start;
+    }
+    .bloco {
+      background-color: #e6e6e6;
+      padding: 15px 25px;
+      border-radius: 10px;
+      font-weight: bold;
+    }
+    footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background-color: #ffffff;
+      padding: 15px 0;
+      text-align: center;
+      z-index: 1001;
+      box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    }
+    .footer-logos {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 60px;
+    }
+    .footer-logos img {
+      height: 40px;
+      transition: transform 0.2s ease;
+      filter: none;
+    }
+    .footer-logos img:hover {
+      transform: scale(1.05);
+    }
+  
+    .bloco {
+      background-color: #ffffff;
+      padding: 15px 25px;
+      border-radius: 12px;
+      font-weight: 600;
+      font-family: 'Exo 2', sans-serif;
+      font-size: 1.1em;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      transition: transform 0.2s ease;
+    }
+    .bloco:hover {
+      transform: scale(1.03);
+    }
+
+.sidebar {
+  width: 270px;
+  flex-shrink: 0;
+  position: sticky;
+  height: 100vh;
+  overflow-y: auto;
+  padding-bottom: 80px;
+}
+</style>
+<style>
+  #container-calendario {
+    width: 100%;
+    max-width: 700px;
+  }
+
+  #calendario {
+    width: 100% !important;
+    margin: 0 auto;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+  }
+
+  .fc {
+    width: 100% !important;
+  }
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@500;700&amp;display=swap" rel="stylesheet"/><style>
+.navbar-horizontal {
+  background-color: #ffffff;
+  padding: 0.5rem 1rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.nav-menu {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+  padding: 0;
+  margin: 0;
+  font-family: 'Lato', sans-serif;
+}
+.nav-menu li a {
+  text-decoration: none;
+  color: #1a2a35;
+  font-weight: bold;
+}
+.nav-menu li a:hover {
+  color: #004080;
+}
+</style><style>
+.navbar-horizontal {
+  background-color: #ffffff;
+  border-bottom: 1px solid #ccc;
+  padding: 0.5rem 0;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+.nav-menu {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+}
+.nav-menu li a {
+  text-decoration: none;
+  color: #003366;
+  font-weight: bold;
+  font-family: 'Lato', sans-serif;
+  font-size: 1rem;
+}
+.nav-menu li a:hover {
+  color: #00509e;
+  border-bottom: 2px solid #00509e;
+  padding-bottom: 2px;
+}
+</style><style>.sidebar { margin-bottom: 60px; }</style><style>
+.sidebar {
+    width: 270px !important;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+    padding-bottom: 80px;
+}
+</style><style>p { margin-bottom: 10px; }</style><style>
+/* Grid fluido para os cards */
+.blocos-container{
+  display:grid !important;
+  gap:30px !important;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)) !important;
+  justify-items: stretch;
+  align-items: start;
+}
+/* Cabeçalho do bloco (título + ícone) */
+.bloco-header{
+  display:flex; align-items:center; gap:8px;
+  padding-bottom:8px; border-bottom:1px solid #edf2f7; margin-bottom:10px;
+}
+.bloco strong a span{ font-family: 'Lato', sans-serif; font-weight: 700; font-size:1.2em; color:#002855; }
+.bloco strong img{ width:16px; height:16px; opacity:.9 }
+/* Ritmo vertical dos parágrafos */
+.bloco p{ line-height:1.55; margin:8px 0; }
+/* Acessibilidade e micro-interações */
+a:focus-visible{ outline:3px solid #86b7ff; outline-offset:2px; border-radius:8px; }
+.bloco{ transition:transform .15s ease; }
+.bloco:hover{ transform:translateY(-1px); }
+/* Botões de ações unificadas */
+.acoes-dimensao { display:flex; justify-content:center; gap:15px; flex-wrap:wrap; margin-top:30px; }
+.btn-acao{ min-width:280px; justify-content:center; display:inline-flex; align-items:center; gap:8px;
+  background-color:#00509e; color:#fff; padding:10px 18px; border-radius:8px; text-decoration:none; font-family:'Lato',sans-serif; font-weight:600; }
+.btn-acao:hover{ background-color:#003f7f; }
+.btn-acao i{ font-size:.95rem; margin-top:1px; }
+</style></head>
+<body>
+<header>
+<div class="header-content">
+<img alt="Logo PET/EQ" class="logo-pet" src="../../assets/img/logo-peteq-furg.svg"/>
+<div class="header-text">
+<h1>PET/EQ</h1>
+<div class="sub">PROGRAMA DE EDUCAÇÃO TUTORIAL</div>
+<div class="curso">ENGENHARIA QUÍMICA</div>
+<div class="furg">FURG</div>
+</div>
+<div class="social-icons" style="margin-left: auto; display: flex; gap: 15px;"><a href="https://www.linkedin.com/in/pet-engenharia-quimica-furg" target="_blank"><i class="fab fa-linkedin" style="font-size: 1.4em; color: white;"></i></a><a href="https://facebook.com/peteqfurg" target="_blank"><i class="fab fa-facebook" style="font-size: 1.4em; color: white;"></i></a><a href="https://instagram.com/peteqfurg" target="_blank"><i class="fab fa-instagram" style="font-size: 1.4em; color: white;"></i></a><a href="https://youtube.com/@peteqfurg" target="_blank"><i class="fab fa-youtube" style="font-size: 1.4em; color: white;"></i></a></div></div>
+</header>
+<nav class="navbar-horizontal">
+<div class="nav-container">
+<ul class="nav-menu">
+<li><a href="../../index.html">Apresentação</a></li>
+<li><a href="../../paginas/noticias.html">Notícias</a></li>
+<li><a href="../../paginas/eventos.html">Eventos</a></li>
+<li><a href="../../paginas/ingresso.html">Ingresso</a></li>
+<li><a href="../../paginas/comissoes.html">Comissões</a></li>
+<li><a href="../../paginas/producao.html">Produções PET/EQ</a></li>
+<li><a href="../../paginas/downloads.html">Downloads</a></li>
+</ul>
+</div>
+</nav>
+<div class="content-wrapper">
+<div class="page-wrapper">
+<aside class="sidebar">
+<ul class="menu">
+<li class="menu-title">PET/EQ</li>
+</ul>
+<ul class="menu">
+<li class="menu-title">INSTITUCIONAL</li>
+<li><a href="../../index.html"><i class="fas fa-home"></i> Página Inicial</a></li>
+<li><a href="../equipe.html"><i class="fas fa-users"></i> Equipe PET/EQ</a></li>
+<li><a href="../organograma.html"><i class="fas fa-sitemap"></i> Organograma PET/EQ</a></li>
+</ul>
+<hr class="divisor"/>
+<ul class="menu">
+<li class="menu-title">GESTÃO DO PROGRAMA</li>
+<li><a href="../../arquivos/Sigpet_homologado_CLAA_2025.pdf" target="_blank"><i class="fas fa-file-alt"></i> Planejamento SIGPET</a></li>
+<li><a href="../../arquivos/RIC_PET_2024.pdf" target="_blank"><i class="fas fa-clipboard"></i> Relatório Institucional RIC</a></li>
+<li><a href="../cronograma.html"><i class="fas fa-calendar-alt"></i> Cronograma de Atividades</a></li>
+</ul>
+<hr class="divisor"/>
+<ul class="menu">
+<li class="menu-title">DIMENSÕES DO PET</li>
+<li><a href="dimensao1-ensino.html"><i class="fas fa-chalkboard-teacher"></i> Dimensão 1 – Ensino</a></li>
+<li><a href="dimensao2-pesquisa.html"><i class="fas fa-flask"></i> Dimensão 2 – Pesquisa</a></li>
+<li><a href="dimensao3-extensao.html"><i class="fas fa-handshake"></i> Dimensão 3 – Extensão</a></li>
+<li><a href="dimensao4-inovacao.html"><i class="fas fa-lightbulb"></i> Dimensão 4 – Inovação e Tecnologia</a></li>
+<li><a href="dimensao5-desenvolvimento.html"><i class="fas fa-user-graduate"></i> Dimensão 5 – Desenvolvimento Pessoal</a></li>
+<li><a href="dimensao6-avaliacao.html"><i class="fas fa-chart-line"></i> Dimensão 6 – Gestão e Avaliação</a></li>
+</ul>
+<hr class="divisor"/>
+<ul class="menu">
+<li class="menu-title">MEMÓRIA E HISTÓRICO</li>
+<li><a href="../memoria.html"><i class="fas fa-archive"></i> Memória do PET/EQ</a></li>
+<li><a href="../galeria.html"><i class="fas fa-images"></i> Galeria de Fotos e Vídeos</a></li>
+</ul>
+<hr class="divisor"/>
+<ul class="menu">
+<li class="menu-title">AMBIENTES PET/EQ</li>
+<li><a href="https://teams.microsoft.com" target="_blank"><i class="fas fa-users"></i> Teams</a></li>
+<li><a href="https://www.office.com/launch/sharepoint" target="_blank"><i class="fas fa-folder-open"></i> SharePoint</a></li>
+<li><a href="https://onedrive.live.com/" target="_blank"><i class="fas fa-cloud"></i> OneDrive</a></li>
+</ul>
+</aside>
+<main class="conteudo" style="padding-bottom: 100px;">
+<h1 style="text-align:center; font-family: 'Exo 2', sans-serif; font-weight: 700; font-size: 2.2em; margin-bottom: 5px;">Dimensão 5 – Desenvolvimento pessoal</h1>
+<hr class="divisor"/>
+<p style="font-size: 1.1em; max-width: 800px; margin: 0 auto;">A dimensão de Desenvolvimento Pessoal do PET/EQ busca promover o crescimento individual dos petianos por meio de ações que envolvem comunicação, integração, criatividade, empatia e estímulo à leitura e à liderança. As atividades desta dimensão contribuem para a formação integral dos estudantes, ampliando suas habilidades interpessoais, culturais e emocionais.</p>
+<div>
+</div>
+<div>
+<div style="display: flex; flex-direction: row; gap: 10px; margin-top: 10px; flex-wrap: wrap;"><div style="flex: 1; min-width: 320px;"><div class="blocos-container" style="margin-top: 30px; display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; align-items: flex-start;">
+<div class="bloco" style="background-color: #ffffff; padding: 20px 25px; border-radius: 12px; box-shadow: 0 2px 6px rgba(0,0,0,0.12); font-family: 'Lato', sans-serif; font-size: 1em; line-height: 1.6; color: black; max-width: 350px; transition: transform 0.2s ease;"><div class="bloco-header"><strong style="color: #084F6A; font-size: 1.2em; display: block; margin-bottom: 10px;"><a href="https://furgbr.sharepoint.com/:f:/s/PETEQ/EizUrxCCsQVOqZMxr_gMkUMBZwrj9PleMEhGf9GD1mZHZw?e=dmK0ms" style="text-decoration:none; color:inherit; display:flex; align-items:center; gap:6px;" target="_blank"><img alt="SharePoint" src="../../assets/icons/sharepoint.svg" style="width:18px; height:18px;"/><span>"English moment"</span></a></strong></div>
+<p style="font-family: 'Lato', sans-serif; font-size: 0.95em; line-height: 1.4; margin-bottom: 6px; color: black;">Objetivo: Estimular o uso da língua inglesa no cotidiano do grupo, promovendo fluência e desenvoltura.</p>
+<p style="font-family: 'Lato', sans-serif; font-size: 0.95em; line-height: 1.4; margin-bottom: 6px; color: black;">Ações: Encontros semanais com conversação; dinâmicas e jogos em inglês; apresentações temáticas.</p>
+<div class="carousel" data-atividade="english_moment" style="position: relative; width: 100%; max-width: 350px; height: 180px; overflow: hidden; border-radius: 10px; margin: 15px auto 0;"><div class="carousel-images" style="display: flex; transition: transform 0.3s ease;"></div><button class="prev" onclick="moveCarousel(this, -1);" style="position: absolute; top: 50%; left: 10px; transform: translateY(-50%); background-color: rgba(0,0,0,0.5); color: white; border: none; border-radius: 50%; width: 28px; height: 28px; cursor: pointer;">‹</button><button class="next" onclick="moveCarousel(this, 1);" style="position: absolute; top: 50%; right: 10px; transform: translateY(-50%); background-color: rgba(0,0,0,0.5); color: white; border: none; border-radius: 50%; width: 28px; height: 28px; cursor: pointer;">›</button></div></div><div class="bloco" style="background-color: #ffffff; padding: 20px 25px; border-radius: 12px; box-shadow: 0 2px 6px rgba(0,0,0,0.12); font-family: 'Lato', sans-serif; font-size: 1em; line-height: 1.6; color: black; max-width: 350px; transition: transform 0.2s ease;"><div class="bloco-header"><strong style="color: #084F6A; font-size: 1.2em; display: block; margin-bottom: 10px;"><a href="https://furgbr.sharepoint.com/:f:/s/PETEQ/Es1cgJpMyMdBneAxYgA9D5IBGwbH2cQ3v_xjYeaDAzsq7w?e=tDJl4D" style="text-decoration:none; color:inherit; display:flex; align-items:center; gap:6px;" target="_blank"><img alt="SharePoint" src="../../assets/icons/sharepoint.svg" style="width:18px; height:18px;"/><span>PET Fun: Sintonia colaborativa</span></a></strong></div>
+<p style="font-family: 'Lato', sans-serif; font-size: 0.95em; line-height: 1.4; margin-bottom: 6px; color: black;">Objetivo: Fortalecer o vínculo entre os petianos por meio de atividades lúdicas e colaborativas.</p>
+<p style="font-family: 'Lato', sans-serif; font-size: 0.95em; line-height: 1.4; margin-bottom: 6px; color: black;">Ações: Sessões de jogos em grupo, desafios criativos, dinâmicas de integração e momentos de descontração coletiva.</p>
+<div class="carousel" data-atividade="pet_fun" style="position: relative; width: 100%; max-width: 350px; height: 180px; overflow: hidden; border-radius: 10px; margin: 15px auto 0;"><div class="carousel-images" style="display: flex; transition: transform 0.3s ease;"></div><button class="prev" onclick="moveCarousel(this, -1);" style="position: absolute; top: 50%; left: 10px; transform: translateY(-50%); background-color: rgba(0,0,0,0.5); color: white; border: none; border-radius: 50%; width: 28px; height: 28px; cursor: pointer;">‹</button><button class="next" onclick="moveCarousel(this, 1);" style="position: absolute; top: 50%; right: 10px; transform: translateY(-50%); background-color: rgba(0,0,0,0.5); color: white; border: none; border-radius: 50%; width: 28px; height: 28px; cursor: pointer;">›</button></div></div><div class="bloco" style="background-color: #ffffff; padding: 20px 25px; border-radius: 12px; box-shadow: 0 2px 6px rgba(0,0,0,0.12); font-family: 'Lato', sans-serif; font-size: 1em; line-height: 1.6; color: black; max-width: 350px; transition: transform 0.2s ease;"><div class="bloco-header"><strong style="color: #084F6A; font-size: 1.2em; display: block; margin-bottom: 10px;"><a href="https://furgbr.sharepoint.com/:f:/s/PETEQ/Egfrd1wFKkRKoojsm4UFQ6EBCqsAMD3ujAV6rVWo8A9PSA?e=DHNgeE" style="text-decoration:none; color:inherit; display:flex; align-items:center; gap:6px;" target="_blank"><img alt="SharePoint" src="../../assets/icons/sharepoint.svg" style="width:18px; height:18px;"/><span>Atividades optativas: compartilhando experiências</span></a></strong></div>
+<p style="font-family: 'Lato', sans-serif; font-size: 0.95em; line-height: 1.4; margin-bottom: 6px; color: black;">Objetivo: Valorizar o protagonismo dos petianos por meio de oficinas e vivências propostas por eles.</p>
+<p style="font-family: 'Lato', sans-serif; font-size: 0.95em; line-height: 1.4; margin-bottom: 6px; color: black;">Ações: Organização de encontros optativos; oficinas de temas diversos (arte, música, escrita); compartilhamento de habilidades pessoais.</p>
+<div class="carousel" data-atividade="experiencias" style="position: relative; width: 100%; max-width: 350px; height: 180px; overflow: hidden; border-radius: 10px; margin: 15px auto 0;"><div class="carousel-images" style="display: flex; transition: transform 0.3s ease;"></div><button class="prev" onclick="moveCarousel(this, -1);" style="position: absolute; top: 50%; left: 10px; transform: translateY(-50%); background-color: rgba(0,0,0,0.5); color: white; border: none; border-radius: 50%; width: 28px; height: 28px; cursor: pointer;">‹</button><button class="next" onclick="moveCarousel(this, 1);" style="position: absolute; top: 50%; right: 10px; transform: translateY(-50%); background-color: rgba(0,0,0,0.5); color: white; border: none; border-radius: 50%; width: 28px; height: 28px; cursor: pointer;">›</button></div></div><div class="bloco" style="background-color: #ffffff; padding: 20px 25px; border-radius: 12px; box-shadow: 0 2px 6px rgba(0,0,0,0.12); font-family: 'Lato', sans-serif; font-size: 1em; line-height: 1.6; color: black; max-width: 350px; transition: transform 0.2s ease;"><div class="bloco-header"><strong style="color: #084F6A; font-size: 1.2em; display: block; margin-bottom: 10px;"><a href="https://furgbr.sharepoint.com/:f:/s/PETEQ/Eslg1zjsmZxElMlzxKOwD5oBoNjc7PLOAThqCXgmo7jV0Q?e=c8tCm2" style="text-decoration:none; color:inherit; display:flex; align-items:center; gap:6px;" target="_blank"><img alt="SharePoint" src="../../assets/icons/sharepoint.svg" style="width:18px; height:18px;"/><span>Palestras</span></a></strong></div>
+<p style="font-family: 'Lato', sans-serif; font-size: 0.95em; line-height: 1.4; margin-bottom: 6px; color: black;">Objetivo: Promover o crescimento pessoal e profissional por meio de palestras inspiradoras.</p>
+<p style="font-family: 'Lato', sans-serif; font-size: 0.95em; line-height: 1.4; margin-bottom: 6px; color: black;">Ações: Organização de palestras com convidados internos e externos; divulgação dos eventos; registro das reflexões.</p>
+<div class="carousel" data-atividade="palestras" style="position: relative; width: 100%; max-width: 350px; height: 180px; overflow: hidden; border-radius: 10px; margin: 15px auto 0;"><div class="carousel-images" style="display: flex; transition: transform 0.3s ease;"></div><button class="prev" onclick="moveCarousel(this, -1);" style="position: absolute; top: 50%; left: 10px; transform: translateY(-50%); background-color: rgba(0,0,0,0.5); color: white; border: none; border-radius: 50%; width: 28px; height: 28px; cursor: pointer;">‹</button><button class="next" onclick="moveCarousel(this, 1);" style="position: absolute; top: 50%; right: 10px; transform: translateY(-50%); background-color: rgba(0,0,0,0.5); color: white; border: none; border-radius: 50%; width: 28px; height: 28px; cursor: pointer;">›</button></div></div><div class="bloco" style="background-color: #ffffff; padding: 20px 25px; border-radius: 12px; box-shadow: 0 2px 6px rgba(0,0,0,0.12); font-family: 'Lato', sans-serif; font-size: 1em; line-height: 1.6; color: black; max-width: 350px; transition: transform 0.2s ease;"><div class="bloco-header"><strong style="color: #084F6A; font-size: 1.2em; display: block; margin-bottom: 10px;"><a href="https://furgbr.sharepoint.com/:f:/s/PETEQ/Etq-n-T5jedFllGOMU95UNMBvaS0eihrTzHhwvV07KGgMg?e=gmlOJe" style="text-decoration:none; color:inherit; display:flex; align-items:center; gap:6px;" target="_blank"><img alt="SharePoint" src="../../assets/icons/sharepoint.svg" style="width:18px; height:18px;"/><span>Liderança: Promoção de Ambientes Saudáveis</span></a></strong></div>
+<p style="font-family: 'Lato', sans-serif; font-size: 0.95em; line-height: 1.4; margin-bottom: 6px; color: black;">Objetivo: Desenvolver habilidades de liderança empática e saudável dentro do grupo.</p>
+<p style="font-family: 'Lato', sans-serif; font-size: 0.95em; line-height: 1.4; margin-bottom: 6px; color: black;">Ações: Rodas de conversa; oficinas de escuta ativa e mediação de conflitos; atividades de liderança compartilhada.</p>
+<div class="carousel" data-atividade="lideranca" style="position: relative; width: 100%; max-width: 350px; height: 180px; overflow: hidden; border-radius: 10px; margin: 15px auto 0;"><div class="carousel-images" style="display: flex; transition: transform 0.3s ease;"></div><button class="prev" onclick="moveCarousel(this, -1);" style="position: absolute; top: 50%; left: 10px; transform: translateY(-50%); background-color: rgba(0,0,0,0.5); color: white; border: none; border-radius: 50%; width: 28px; height: 28px; cursor: pointer;">‹</button><button class="next" onclick="moveCarousel(this, 1);" style="position: absolute; top: 50%; right: 10px; transform: translateY(-50%); background-color: rgba(0,0,0,0.5); color: white; border: none; border-radius: 50%; width: 28px; height: 28px; cursor: pointer;">›</button></div></div><div class="bloco" style="background-color: #ffffff; padding: 20px 25px; border-radius: 12px; box-shadow: 0 2px 6px rgba(0,0,0,0.12); font-family: 'Lato', sans-serif; font-size: 1em; line-height: 1.6; color: black; max-width: 350px; transition: transform 0.2s ease;"><div class="bloco-header"><strong style="color: #084F6A; font-size: 1.2em; display: block; margin-bottom: 10px;"><a href="https://furgbr.sharepoint.com/:f:/s/PETEQ/EtgqRGWSf8NJjzUjnaTEr6UBFsjH8SHZaMmeZ6c4RKlZpA?e=KHMyhP" style="text-decoration:none; color:inherit; display:flex; align-items:center; gap:6px;" target="_blank"><img alt="SharePoint" src="../../assets/icons/sharepoint.svg" style="width:18px; height:18px;"/><span>Entre linhas: Leitura em foco no PET/EQ</span></a></strong></div>
+<p style="font-family: 'Lato', sans-serif; font-size: 0.95em; line-height: 1.4; margin-bottom: 6px; color: black;">Objetivo: Incentivar o hábito da leitura crítica e reflexiva entre os petianos.</p>
+<p style="font-family: 'Lato', sans-serif; font-size: 0.95em; line-height: 1.4; margin-bottom: 6px; color: black;">Ações: Escolha coletiva de leituras; rodas de conversa sobre livros; produção de resenhas e indicações literárias.</p>
+<div class="carousel" data-atividade="leitura" style="position: relative; width: 100%; max-width: 350px; height: 180px; overflow: hidden; border-radius: 10px; margin: 15px auto 0;"><div class="carousel-images" style="display: flex; transition: transform 0.3s ease;"></div><button class="prev" onclick="moveCarousel(this, -1);" style="position: absolute; top: 50%; left: 10px; transform: translateY(-50%); background-color: rgba(0,0,0,0.5); color: white; border: none; border-radius: 50%; width: 28px; height: 28px; cursor: pointer;">‹</button><button class="next" onclick="moveCarousel(this, 1);" style="position: absolute; top: 50%; right: 10px; transform: translateY(-50%); background-color: rgba(0,0,0,0.5); color: white; border: none; border-radius: 50%; width: 28px; height: 28px; cursor: pointer;">›</button></div></div></div></div></div><div style="margin-top: 40px; text-align: center;"><div class="acoes-dimensao"><a class="btn-acao" href="https://furgbr.sharepoint.com/:f:/s/PETEQ/EnYAk1BYDWBLuvhNZqOY84kBW7bc3U0D28osWe3MCHriAw?e=6hHLGu" target="_blank"><i class="fas fa-folder-open"></i> Ver todos os arquivos da Dimensão</a><a class="btn-acao" href="../agenda.html"><i class="fas fa-calendar-alt"></i> Ver Agenda de Atividades PET/EQ</a></div></div><h2 style="text-align:left;">Eventos da Dimensão 5 – Desenvolvimento Pessoal</h2>
+<div class="bloco" style="background-color: #ffffff; padding: 20px 25px; border-radius: 12px; box-shadow: 0 2px 6px rgba(0,0,0,0.12); font-family: 'Lato', sans-serif; font-size: 1em; line-height: 1.6; color: black; max-width: 350px; transition: transform 0.2s ease;"><div class="bloco-header"><strong style="color: #084F6A; font-size: 1.2em; display: block; margin-bottom: 10px;">04 de agosto de 2025 –</strong></div>
+<p style="font-family: 'Lato', sans-serif; font-size: 0.95em; line-height: 1.4; margin-bottom: 6px; color: black;">
+<strong style="color: black;">Objetivo:</strong>
+</p>
+<p style="font-family: 'Lato', sans-serif; font-size: 0.95em; line-height: 1.4; margin-bottom: 6px; color: black;">
+<strong style="color: black;">Ações:</strong>
+</p>
+</div>
+</div>
+<div style="font-size:0.85rem; color:#555; margin-top:30px; text-align:center; font-style:italic; display:flex; align-items:center; justify-content:center; gap:6px;"><i class="fas fa-info-circle" style="color:#0078d4;"></i><span>Observação: os links para o SharePoint presentes neste site são de uso institucional e requerem login com credenciais da FURG.</span></div></main>
+</div>
+</div>
+<footer style="background-color: #ffffff; text-align: center; box-shadow: 0 -2px 5px rgba(0,0,0,0.1)"><div style="display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 10px 20px; flex-wrap: wrap; font-family: 'Lato', sans-serif; font-size: 0.9em;"><div class="footer-logos">
+<a href="https://portal.mec.gov.br/pet" target="_blank"><img alt="Logo PET" src="../../assets/img/logo-pet-mec.gif"/></a>
+<a href="https://furg.br" target="_blank"><img alt="Logo FURG" src="../../assets/img/logo-furg.png"/></a>
+<a href="https://prograd.furg.br" target="_blank"><img alt="Logo PROGRAD" src="../../assets/img/logo-prograd.png"/></a>
+<a href="https://eqa.furg.br/" target="_blank"><img alt="Logo EQA" src="../../assets/img/logo-eqa.png"/></a>
+</div><div style="display: flex; flex-direction: column; gap: 5px; text-align: right;"><div>📧 E-mail do tutor: <a href="mailto:mauriciogarim@gmail.com">mauriciogarim@gmail.com</a></div><div>📧 E-mail da liderança: <a href="mailto:peteqlideranca@gmail.com">peteqlideranca@gmail.com</a></div></div></div></footer>
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const coresPorDimensao = {
+    1: "#1f77b4", 2: "#ff7f0e", 3: "#2ca02c", 4: "#d62728", 5: "#9467bd", 6: "#8c564b"
+  };
+
+  const eventosOriginais = [{"title": "Reunião de Planejamento", "date": "2025-08-04", "description": "Planejamento com novos bolsistas.", "dimensao": 1}, {"title": "Oficina de Excel", "date": "2025-08-05", "description": "Capacitação de planilhas para o grupo.", "dimensao": 5}, {"title": "Apresentação de Projeto", "date": "2025-08-06", "description": "Apresentação para comunidade externa.", "dimensao": 3}, {"title": "Planejamento da Avaliação", "date": "2025-08-07", "description": "Definir critérios de acompanhamento.", "dimensao": 6}, {"title": "Reunião de Inovação", "date": "2025-08-08", "description": "Novas ferramentas tecnológicas.", "dimensao": 4}, {"title": "Discussão de Pesquisa", "date": "2025-08-09", "description": "Resultados parciais do projeto.", "dimensao": 2}];
+
+  function formatarDataPorExtenso(dataStr) {
+    const meses = ['janeiro','fevereiro','março','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro'];
+    const partes = dataStr.split("-");
+    const ano = partes[0];
+    const mes = parseInt(partes[1], 10) - 1;
+    const dia = parseInt(partes[2], 10);
+    return `${dia} de ${meses[mes].charAt(0).toUpperCase() + meses[mes].slice(1)} de ${ano}`;
+  }
+
+  let todosEventos = eventosOriginais.map(e => {
+    return {
+      title: e.title,
+      start: e.date,
+      description: e.description,
+      backgroundColor: coresPorDimensao[e.dimensao],
+      borderColor: coresPorDimensao[e.dimensao],
+      extendedProps: { dimensao: e.dimensao }
+    };
+  });
+
+  function filtrarEventos() {
+    const selecionadas = Array.from(document.querySelectorAll('#filtros input:checked'))
+                              .map(cb => parseInt(cb.value));
+    return todosEventos.filter(e => selecionadas.includes(e.extendedProps.dimensao));
+  }
+
+  function atualizarEventosDoDia(dateStr) {
+    const eventosDoDia = eventosOriginais.filter(e => e.date === dateStr);
+    const container = document.getElementById('eventos-do-dia');
+    const dataFormatada = formatarDataPorExtenso(dateStr);
+    if (eventosDoDia.length > 0) {
+      container.innerHTML = `<h2>Evento(s) do dia</h2>
+        <p><strong>${dataFormatada}</strong></p>` + eventosDoDia.map(e =>
+          `<p><strong>${e.title}</strong>: ${e.description}</p>`
+        ).join('');
+    } else {
+      container.innerHTML = `<h2>Evento(s) do dia</h2><p><strong>${dataFormatada}</strong></p><p>Nenhum evento.</p>`;
+    }
+  }
+
+  const calendarEl = document.getElementById('calendario');
+  const calendar = new FullCalendar.Calendar(calendarEl, {
+    initialView: 'dayGridMonth',
+    locale: 'pt-br',
+    headerToolbar: {
+      left: 'prev,next today',
+      center: 'title',
+      right: 'dayGridMonth,timeGridWeek,listMonth'
+    },
+    buttonText: {
+      today: 'Hoje', month: 'Mês', week: 'Semana', day: 'Dia', list: 'Lista'
+    },
+    events: todosEventos.filter(e => e.extendedProps.dimensao === 5),
+    dateClick: function(info) {
+      atualizarEventosDoDia(info.dateStr);
+    },
+    eventClick: function(info) {
+      const date = info.event.start;
+      const isoDate = date.toISOString().split("T")[0];
+      atualizarEventosDoDia(isoDate);
+    }
+  });
+
+  calendar.render();
+
+  calendar.addEventSource(filtrarEventos());
+    });
+  });
+});
+</script>
+<script>
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  document.querySelectorAll(".carousel").forEach(function (carousel) {
+    const atividade = carousel.dataset.atividade;
+
+    // Desativa carrosséis para pet_fun e palestras
+    const desativados = new Set(["pet_fun", "palestras", "english_moment","experiencias","leitura","lideranca"]);
+    if (desativados.has(atividade)) { carousel.remove(); return; }
+
+
+    // 🔹 Para desativar carrosséis específicos
+    // Exemplo: if (atividade === "palestras") return;
+
+    const container = carousel.querySelector(".carousel-images");
+    const basePath = "../../assets/img/dimensoes/dim5/" + atividade + "/";
+    const prev = carousel.querySelector(".prev");
+    const next = carousel.querySelector(".next");
+    const observer = new MutationObserver(() => {
+      const n = container.children.length;
+      if (prev && next) {
+        if (n < 2) { prev.style.display = "none"; next.style.display = "none"; }
+        else { prev.style.display = ""; next.style.display = ""; }
+      }
+    });
+    observer.observe(container, { childList: true });
+    const extensoes = [".jpg", ".jpeg", ".png", ".webp"];
+    let i = 1;
+    let falhasConsecutivas = 0;
+    const limiteFalhas = 5;
+
+    function tentarCarregarImagem(indice, tentativa = 0) {
+      if (falhasConsecutivas >= limiteFalhas) {
+        return;
+      }
+      if (tentativa >= extensoes.length) {
+        falhasConsecutivas++;
+        return tentarCarregarImagem(indice + 1, 0);
+      }
+
+      const img = new Image();
+      img.src = basePath + indice + extensoes[tentativa];
+
+      img.onload = function () {
+        img.style.width = "100%";
+        img.style.height = "180px";
+        img.style.flexShrink = "0";
+        img.style.objectFit = "cover";
+        container.appendChild(img);
+        falhasConsecutivas = 0;
+        tentarCarregarImagem(indice + 1, 0);
+      };
+
+      img.onerror = function () {
+        tentarCarregarImagem(indice, tentativa + 1);
+      };
+    }
+
+    tentarCarregarImagem(i);
+  });
+});
+
+function moveCarousel(button, direction) {
+  const carousel = button.closest('.carousel');
+  const images = carousel.querySelector('.carousel-images');
+  const totalImages = images.children.length;
+  const imageWidth = images.children[0]?.offsetWidth || 0;
+  const currentIndex = parseInt(images.getAttribute('data-index') || "0");
+  let newIndex = currentIndex + direction;
+
+  if (newIndex < 0) newIndex = totalImages - 1;
+  if (newIndex >= totalImages) newIndex = 0;
+
+  images.style.transform = `translateX(-${newIndex * imageWidth}px)`;
+  images.setAttribute('data-index', newIndex);
+}
+
+
+function moveCarousel(button, direction) {
+  const carousel = button.closest('.carousel');
+  const images = carousel.querySelector('.carousel-images');
+  const totalImages = images.children.length;
+  const imageWidth = images.children[0]?.offsetWidth || 0;
+  const currentIndex = parseInt(images.getAttribute('data-index') || "0");
+  let newIndex = currentIndex + direction;
+
+  if (newIndex < 0) newIndex = totalImages - 1;
+  if (newIndex >= totalImages) newIndex = 0;
+
+  images.style.transform = `translateX(-${newIndex * imageWidth}px)`;
+  images.setAttribute('data-index', newIndex);
+}
+
+
+function moveCarousel(button, direction) {
+  const carousel = button.closest('.carousel');
+  const images = carousel.querySelector('.carousel-images');
+  const totalImages = images.children.length;
+  const imageWidth = images.children[0]?.offsetWidth || 0;
+  const currentIndex = parseInt(images.getAttribute('data-index') || "0");
+  let newIndex = currentIndex + direction;
+
+  if (newIndex < 0) newIndex = totalImages - 1;
+  if (newIndex >= totalImages) newIndex = 0;
+
+  images.style.transform = `translateX(-${newIndex * imageWidth}px)`;
+  images.setAttribute('data-index', newIndex);
+}
+</script></body>
+</html>
