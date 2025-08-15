@@ -1,0 +1,1322 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PET Engenharia Química</title>
+<!-- Fonte Lato do Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@500;700&amp;display=swap" rel="stylesheet"/><link crossorigin="True" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="../assets/css/main.css" rel="stylesheet"/>
+<link href="../assets/css/responsive.css" rel="stylesheet"/>
+<style id="hotfix-curso-furg">
+  /* Wrapper encolhe ao conteúdo da linha "ENGENHARIA QUÍMICA" */
+  .header-text .curso-wrap { display: inline-grid; width: max-content; }
+
+  /* ÚNICA linha branca sob "ENGENHARIA QUÍMICA" */
+  .header-text .curso {
+    display: inline-block;
+    border-bottom: 3px solid #fff !important;
+    text-decoration: none !important;
+  }
+  .header-text .curso::before,
+  .header-text .curso::after { content: none !important; }
+
+  /* "FURG" abaixo, alinhado ao fim da mesma largura do wrapper */
+  .header-text .furg {
+    display: block;
+    justify-self: end;
+    margin-top: 6px;
+    white-space: nowrap;
+  }
+</style>
+<style id="hotfix-ipad-center-min">
+  /* Centraliza o bloco do cabeçalho sem mexer no layout interno */
+  header .header-content{
+    max-width: 1100px;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-left: 16px;
+    padding-right: 16px;
+    box-sizing: border-box;
+  }
+  @media (min-width: 820px) and (max-width: 1180px){
+    header .header-content{
+      max-width: 980px; /* puxa um pouco mais pro centro no iPad */
+    }
+  }
+</style>
+<style id="hotfix-scroll-only">
+  /* Liberar rolagem até o fim sem mexer nos menus/cabeçalho */
+  html, body { min-height: 100%; height: auto; overflow-y: auto; }
+  /* Remover alturas/overflows que possam cortar o conteúdo */
+  .content-wrapper, .page-wrapper, main, .conteudo {
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+  }
+  /* Evitar que o rodapé cubra o final do conteúdo */
+  main, .conteudo { padding-bottom: 96px !important; }
+  footer { position: static !important; }
+  /* iOS momentum scroll */
+  @supports (-webkit-touch-callout: none) {
+    body { -webkit-overflow-scrolling: touch; }
+  }
+  /* Não alterar o comportamento dos menus */
+</style>
+<style id="hotfix-menu-labels">
+  .btn-label{ margin-left:.5rem; font-size:.875rem; font-weight:600; line-height:1; }
+  /* No desktop, deixa o topo sem texto visível para poupar espaço */
+  @media (min-width:992px){
+    .nav-toggle .btn-label--top{ display:none; }
+  }
+</style>
+<script id="hotfix-menu-labels-js">
+document.addEventListener('DOMContentLoaded', function(){
+  function ensureLabel(btn, text, cls){
+    if(!btn) return;
+    // Remove texto direto "solto" (ex.: "Menu") para evitar duplicação
+    Array.from(btn.childNodes).forEach(function(n){
+      if(n.nodeType === Node.TEXT_NODE && n.textContent.trim().length){ n.textContent = ''; }
+    });
+    // Se não existir um label nosso, cria
+    if(!btn.querySelector('.'+cls)){
+      var span = document.createElement('span');
+      span.className = 'btn-label ' + cls;
+      span.textContent = text;
+      btn.appendChild(span);
+    }
+  }
+  var topBtn  = document.querySelector('.nav-toggle');
+  var sideBtn = document.querySelector('.sidebar-toggle');
+  ensureLabel(topBtn,  'Menu superior', 'btn-label--top');
+  ensureLabel(sideBtn, 'Menu lateral',  'btn-label--side');
+  if(topBtn){
+    topBtn.setAttribute('title','Menu superior');
+    topBtn.setAttribute('aria-label','Abrir/fechar menu superior');
+  }
+  if(sideBtn){
+    sideBtn.setAttribute('title','Menu lateral');
+    sideBtn.setAttribute('aria-label','Abrir/fechar menu lateral');
+  }
+});
+</script>
+<style id="edge-fix">
+:root{ --safe-gutter:16px; }
+html, body{ overflow-x: clip; }
+main.conteudo, .conteudo, .page-wrapper, .wrapper, .container{
+  max-width:100vw; width:100%; box-sizing:border-box;
+}
+main.conteudo{ padding-left:var(--safe-gutter); padding-right:var(--safe-gutter); }
+.container{ padding-left:var(--safe-gutter); padding-right:var(--safe-gutter); }
+.row, [class*="row"]{ margin-left:0 !important; margin-right:0 !important; min-width:0; }
+[class*="col-"], .col, .coluna, .coluna-hexagonos, .bloco-atividade, .card, section{
+  min-width:0; max-width:100%; box-sizing:border-box;
+}
+h1,h2,h3,h4,h5,h6,p,li,a,span,small,strong,em{
+  overflow-wrap:anywhere; word-break:break-word;
+}
+.navbar-horizontal .nav-menu{ flex-wrap:wrap; white-space:normal; }
+.navbar-horizontal .nav-container{ min-width:0; }
+#calendario, .calendar-wrapper{ width:100%; max-width:100%; overflow-x:auto; }
+.fc, .fc *{ box-sizing:border-box; }
+.fc, .fc-scrollgrid, .fc-view-harness, .fc-view-harness-active{ width:100% !important; max-width:100% !important; }
+.fc .fc-toolbar.fc-header-toolbar{ display:flex; flex-wrap:wrap; row-gap:8px; }
+.fc .fc-toolbar-title{ font-size:clamp(1rem, 3.5vw, 1.25rem); line-height:1.2; }
+.fc .fc-button{ padding-inline:8px; }
+.fc .fc-col-header-cell-cushion, .fc .fc-daygrid-day-number{ padding-inline:6px; }
+.fc .fc-daygrid-day-frame{ min-width:0; }
+</style><style>
+/* --- PATCH: filtros de dimensões e calendário responsivo --- */
+.filtro-dimensoes, .dimensoes-filtro, .filtros-dimensoes, .filtros-dimensao {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 12px 18px;
+  margin: 6px 0 12px 0;
+}
+.filtro-dimensoes label, .dimensoes-filtro label, .filtros-dimensoes label, .filtros-dimensao label {
+  display: inline-flex; align-items: center; gap: 8px; white-space: nowrap;
+  line-height: 1.2;
+}
+/* Calendário: ocupar 100% sem barra horizontal */
+#calendario, .calendario, .fc, .fc-scrollgrid {
+  width: 100% !important; max-width: 100% !important;
+}
+.fc .fc-scroller {
+  overflow-x: hidden !important; /* evita scroll lateral */
+  overflow-y: auto;
+}
+/* Toolbar quebrável no mobile */
+.fc .fc-toolbar.fc-header-toolbar {
+  display: flex; flex-wrap: wrap; gap: 8px;
+}
+.fc .fc-toolbar-title { font-size: clamp(1rem, 2.6vw, 1.25rem); }
+.fc .fc-button { padding: 6px 10px; font-size: 0.9rem; }
+/* Grid compacto em telas estreitas */
+@media (max-width: 420px){
+  .fc .fc-daygrid-day-top { flex-wrap: wrap; }
+  .fc .fc-col-header-cell-cushion, .fc .fc-daygrid-day-number { padding: 3px; }
+  .fc .fc-daygrid-day-events { margin: 1px 0 2px; }
+  .fc .fc-button { padding: 5px 8px; font-size: .85rem; }
+}
+/* Contêiner não ultrapassa bordas */
+main.conteudo, .container, .container-fluid { max-width: 100%; box-sizing: border-box; }
+</style><style id="patch-v7">
+/* ===== Patch v7: filtros, calendário e overflow ===== */
+html, body { overflow-x: hidden; }
+main.conteudo, .conteudo, .container, .page-wrapper { max-width: 100%; box-sizing: border-box; }
+
+/* Filtros de dimensões (acima do calendário) */
+#filtros, #filtros-dimensoes, .filtros-dimensoes {
+  display: flex; flex-wrap: wrap; gap: 12px; align-items: center;
+  margin-bottom: 10px;
+}
+#filtros label, #filtros-dimensoes label, .filtros-dimensoes label {
+  display: inline-flex; align-items: center; gap: 6px; white-space: nowrap;
+  line-height: 1.2;
+}
+#filtros input[type="checkbox"], #filtros-dimensoes input[type="checkbox"] { margin: 0; }
+
+/* Calendário responsivo */
+#calendario, .calendario { width: 100%; max-width: 100%; overflow-x: hidden; }
+.calendario .fc, #calendario .fc { max-width: 100%; }
+
+/* Evitar "tabela preta" herdada por estilos globais */
+.calendario table, #calendario table,
+.calendario th, #calendario th,
+.calendario td, #calendario td { border: none !important; }
+
+/* Usar as variáveis do FullCalendar para bordas leves */
+.calendario, #calendario { --fc-border-color: rgba(0,0,0,.12); }
+.fc-theme-standard td, .fc-theme-standard th { border-color: var(--fc-border-color) !important; }
+
+/* Grid ocupa a largura sem precisar arrastar lateralmente */
+.fc .fc-scroller { overflow: auto; }
+.fc { max-width: 100%; }
+.fc .fc-scrollgrid, .fc .fc-col-header, .fc .fc-daygrid { border: 0 !important; }
+
+/* Toolbar adaptável */
+.fc .fc-toolbar.fc-header-toolbar {
+  display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+}
+.fc .fc-toolbar-title { font-size: clamp(1rem, 3.5vw, 1.25rem); }
+.fc .fc-button { padding: 4px 10px; font-size: .9rem; }
+
+/* Células compactas em telas bem estreitas */
+@media (max-width: 420px){
+  .fc .fc-daygrid-day-frame { padding: 2px; }
+  .fc .fc-col-header-cell-cushion { padding: 4px 2px; font-size: .85rem; }
+}
+
+/* Tipografia quebra correta no intro e observações */
+.conteudo h1, .conteudo h2, .conteudo p, .conteudo a { overflow-wrap: anywhere; word-break: break-word; }
+</style><style id="patch-v8">
+/* ===== Patch v8: garantir visibilidade dos números dos dias ===== */
+.calendario .fc, #calendario .fc { color: inherit; }
+.fc .fc-daygrid-day-frame { overflow: visible; }
+.fc .fc-daygrid-day-top { display: flex; justify-content: flex-end; align-items: flex-start; }
+.fc a.fc-daygrid-day-number, .fc .fc-daygrid-day-number {
+  color: #111 !important; 
+  font-weight: 600;
+  text-decoration: none;
+  z-index: 2; 
+  position: relative;
+}
+/* Evitar heranças que deixem o número "transparente" */
+.fc-theme-standard a { color: inherit; }
+.fc-day-other a.fc-daygrid-day-number { opacity: .45; }
+
+/* Garantir largura e evitar clipping nas colunas */
+.fc .fc-daygrid-body, .fc .fc-daygrid-day { min-width: 0; }
+.fc table { table-layout: fixed; width: 100%; }
+</style><style id="patch-v9">
+/* ===== Patch v9: Calendário sem rolagem horizontal (7 colunas visíveis) ===== */
+#calendario, .calendario { width: 100%; max-width: 100%; }
+
+/* Evitar barra horizontal em iPhone/Galaxy */
+.fc .fc-scroller { overflow-x: hidden !important; overflow-y: auto; }
+
+/* Forçar grid a ocupar 100% da largura do contêiner */
+.fc, .fc .fc-daygrid, .fc .fc-scrollgrid, .fc .fc-scrollgrid-section,
+.fc .fc-scrollgrid-sync-table, .fc .fc-col-header, .fc .fc-col-header table,
+.fc .fc-daygrid-body, .fc .fc-daygrid-body table {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+.fc table { table-layout: fixed !important; }
+
+/* Compactar cabeçalho e números para caber bem em telas estreitas */
+@media (max-width: 420px){
+  .fc .fc-toolbar-title { font-size: clamp(0.95rem, 3.2vw, 1.15rem); }
+  .fc .fc-button { padding: 3px 8px; font-size: .85rem; }
+  .fc .fc-col-header-cell-cushion { padding: 4px 2px; font-size: .85rem; }
+  .fc .fc-daygrid-day-number { padding: 2px 4px; font-size: .85rem; }
+}
+</style><link href="../assets/css/pet-responsive.css" rel="stylesheet"/><style id="fix-navbar-mobile-onecol">
+/* === Navbar visibility fixes === */
+@media (min-width: 992px){
+  .nav-toggle { display: none !important; }
+  .navbar-horizontal .nav-menu { display: flex !important; flex-wrap: wrap; gap: 16px; }
+}
+@media (max-width: 991px){
+  .navbar-horizontal .nav-menu { display: none; flex-direction: column; gap: 10px; padding: 10px 0; }
+  .navbar-horizontal .nav-menu.open { display: flex; }
+}
+
+/* === One-column mobile for agenda === */
+@media (max-width: 991px){
+  #container-calendario, #eventos-do-dia, #calendario { 
+    width: 100% !important; max-width: none !important;
+  }
+  .conteudo > div[style*="display:flex"],
+  .conteudo div[style*="flex-wrap"] { 
+    flex-direction: column !important; align-items: stretch !important; 
+  }
+}
+</style><style id="fix-internal-no-footer-nav-z">
+/* Garantir visibilidade e clique dos links do menu */
+.navbar-horizontal { position: sticky; top: 0; z-index: 1000; }
+.navbar-horizontal .nav-container { display:flex; align-items:center; gap:12px; }
+@media (min-width: 992px){
+  .nav-toggle { display: none !important; }
+  .navbar-horizontal .nav-menu { display: flex !important; flex-wrap: wrap; gap: 16px; }
+}
+@media (max-width: 991px){
+  .navbar-horizontal .nav-menu { display: none; flex-direction: column; gap: 10px; padding: 10px 0; background: inherit; }
+  .navbar-horizontal .nav-menu.open { display: flex; }
+}
+
+/* Evitar que algum overlay bloquee cliques do menu */
+.navbar-horizontal, .navbar-horizontal * { pointer-events: auto; }
+
+/* iPhone: agenda em 1 coluna */
+@media (max-width: 991px){
+  #container-calendario, #eventos-do-dia, #calendario {
+    width: 100% !important; max-width: none !important;
+  }
+  .conteudo > div[style*="display:flex"],
+  .conteudo div[style*="flex-wrap"] {
+    flex-direction: column !important; align-items: stretch !important;
+  }
+}
+</style><style id="fix-agenda-layout">
+/* --- Layout robusto para conteúdo não ficar espremido --- */
+.page-wrapper{ display:grid; grid-template-columns: 270px minmax(0,1fr); gap:24px; }
+.sidebar{ width:270px; }
+main.conteudo{ min-width:0; }
+
+/* Alinhamento do container da Agenda */
+.agenda-flex{ justify-content: flex-start !important; align-items:flex-start !important; flex-wrap: wrap !important; gap:24px !important; }
+.agenda-left{ flex: 1 1 640px !important; min-width: 360px !important; }
+.agenda-right{ flex: 0 1 420px !important; min-width: 300px !important; max-width: 480px !important; }
+
+/* Card de eventos com largura estável */
+#eventos-do-dia{ width:auto !important; }
+
+/* Mobile: empilhar em 1 coluna */
+@media (max-width: 991px){
+  .page-wrapper{ display:block; }
+  .agenda-left, .agenda-right{ flex: 1 1 100% !important; min-width: 0 !important; max-width: none !important; }
+}
+
+/* Navbar desktop sempre visível */
+@media (min-width: 992px){
+  .nav-toggle{ display:none !important; }
+  .navbar-horizontal .nav-menu{ display:flex !important; flex-wrap:wrap; gap:16px; }
+}
+</style><style id="fix-iphone-filtros-eventos">
+/* iPhone: filtros em duas linhas (3 colunas) */
+@media (max-width: 600px){
+  #filtros{
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px 12px !important;
+    justify-items: start;
+    align-items: center;
+  }
+  #filtros label{ white-space: nowrap; }
+}
+
+/* Mobile: Evento do dia acima do calendário */
+@media (max-width: 991px){
+  
+}
+</style><style id="fix-evento-ordem-espacos">
+/* Filtro das dimensões: card com mais respiro e grid 3x2 no mobile */
+#filtros{
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px 18px !important;
+  padding: 12px 18px !important;
+  margin-bottom: 16px !important;
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+#filtros label{ display:inline-flex; align-items:center; gap:8px; white-space:nowrap; }
+
+/* Em telas médias/grandes, manter duas linhas com mais espaço entre itens */
+@media (min-width: 768px){
+  #filtros{ grid-template-columns: repeat(6, max-content); gap: 10px 24px !important; }
+}
+
+/* Garanta que o card de eventos fique SEMPRE abaixo do filtro e acima do calendário */
+#eventos-do-dia{ order: initial !important; width: 100% !important; max-width: 100% !important; margin-bottom: 16px; }
+#container-calendario{ order: initial !important; width: 100%; }
+</style><style id="fine-tune-event-card-and-filters">
+/* ---- Filtros: evitar sobreposição e dar respiro ---- */
+#filtros{ 
+  gap: 12px 22px !important; 
+  padding: 14px 20px !important; 
+  margin-bottom: 18px !important;
+}
+#filtros label{ 
+  font-size: 0.95rem; 
+  line-height: 1.25; 
+  display: inline-flex; 
+  align-items: center; 
+  gap: 8px; 
+  white-space: nowrap;
+}
+#filtros input[type="checkbox"]{ margin-right: 4px; }
+
+/* ---- Evento(s) do dia: compacto e sem ocupar toda a largura ---- */
+#eventos-do-dia{ 
+  padding: 12px 16px !important; 
+  max-width: 520px !important; 
+  width: 100%; 
+  margin: 0 auto 16px auto !important; 
+  border-radius: 10px;
+}
+#eventos-do-dia h2{ font-size: 1.15rem; margin: 0 0 8px 0; }
+#eventos-do-dia p{ margin: 6px 0; }
+
+/* Para telas grandes, manter o card compacto e centralizado acima do calendário */
+@media (min-width: 992px){
+  .agenda-left{ display: flex; flex-direction: column; align-items: center; }
+}
+</style><style id="v5-fixes-card-and-filters">
+/* --- Filtros: evitar sobreposição e melhorar legibilidade --- */
+#filtros{
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 10px 22px !important;
+  padding: 12px 16px !important;
+  margin-bottom: 14px !important;
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+#filtros label{
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 0.95rem; line-height: 1.2; font-weight: 600;
+  letter-spacing: 0; white-space: nowrap;
+}
+#filtros input[type="checkbox"]{ margin: 0; }
+@media (max-width: 600px){
+  #filtros{
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0,1fr)) !important;
+    gap: 8px 14px !important;
+  }
+  #filtros label{ justify-self: start; font-size: 0.93rem; }
+}
+
+/* --- Card 'Evento(s) do dia)' mais compacto em todas as telas --- */
+#eventos-do-dia{
+  padding: 8px 12px !important;
+  margin: 0 0 12px 0 !important;
+  width: 100%; max-width: 460px !important;
+  border-radius: 10px; box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+#eventos-do-dia h2{ font-size: 1.05rem; margin: 0 0 6px 0 !important; }
+#eventos-do-dia p{ margin: 4px 0 !important; }
+@media (min-width: 992px){
+  .agenda-left{ align-items: flex-start !important; } /* alinha à esquerda acima do calendário */
+}
+</style><style id="align-with-dimensao1-filters-events">
+/* Filtros (mesmo comportamento da Dimensão 1) */
+#filtros-dimensoes, .filtros-dimensoes{
+  display: flex; flex-wrap: wrap; align-items: center;
+  gap: 12px 18px; margin: 6px 0 12px 0;
+}
+#filtros-dimensoes label{ display: inline-flex; align-items: center; gap: 8px; white-space: nowrap; line-height: 1.2; }
+#filtros-dimensoes input[type="checkbox"]{ margin: 0; }
+
+/* Card Evento(s) do dia compacto, alinhado ao estilo base */
+#eventos-do-dia{ padding: 10px 14px; width: 100%; max-width: 420px; border-radius: 10px; }
+#eventos-do-dia .eventos-info{ display:block; font-size: 1rem; font-weight: 700; }
+#eventos-do-dia p{ margin: 4px 0; }
+
+/* iPhone: duas linhas (3 colunas) sem apertar rótulos */
+@media (max-width: 600px){
+  #filtros-dimensoes{ display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px 12px; }
+}
+</style><style id="v7-overrides-filters-and-eventcard">
+/* ===== Filtros: evitar coluna única e alinhar como na Dimensão 1 ===== */
+#filtros-dimensoes, .filtros-dimensoes{
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  gap: 10px 20px !important;
+  padding: 12px 16px !important;
+  background: #fff; border-radius: 14px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+#filtros-dimensoes label{
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  white-space: nowrap !important;
+  font-size: 0.95rem !important;
+  line-height: 1.2 !important;
+}
+#filtros-dimensoes input[type="checkbox"]{ margin: 0 !important; }
+
+/* iPhone: duas linhas (3 colunas) */
+@media (max-width: 600px){
+  #filtros-dimensoes{
+    display: grid !important;
+    grid-template-columns: repeat(3, max-content) !important;
+    gap: 8px 14px !important;
+    justify-content: start !important;
+  }
+}
+
+/* ===== Card 'Evento(s) do dia' ainda mais compacto ===== */
+#eventos-do-dia{
+  padding: 6px 12px !important;
+  margin: 8px 0 10px 0 !important;
+  width: 100% !important;
+  max-width: 380px !important;
+  border-radius: 10px !important;
+}
+#eventos-do-dia .eventos-info{ font-size: 0.98rem !important; line-height: 1.2 !important; }
+#eventos-do-dia p{ margin: 2px 0 !important; }
+</style><style id="v8-final-nav-and-card">
+/* NAV: ensure links visible and clickable on desktop */
+@media (min-width: 992px){
+  .nav-toggle{ display: none !important; }
+  .navbar-horizontal .nav-menu{ display: flex !important; flex-wrap: wrap; gap: 16px; }
+}
+.navbar-horizontal{ position: sticky; top: 0; z-index: 1000; }
+.navbar-horizontal a{ pointer-events: auto !important; text-decoration: none; }
+
+/* EVENT CARD: rectangular and compact */
+#eventos-do-dia{
+  max-width: 560px !important;
+  padding: 8px 12px !important;
+  margin: 8px 0 12px 0 !important;
+  border-radius: 10px !important;
+}
+#eventos-do-dia .eventos-info{ font-size: 0.98rem !important; line-height: 1.25 !important; }
+#eventos-do-dia p{ margin: 2px 0 !important; }
+</style><style id="v9-rect-card-navlinks">
+/* Ensure nav links visible/clickable on desktop and hamburger hidden */
+@media (min-width: 992px){
+  .nav-toggle { display: none !important; }
+  .navbar-horizontal .nav-menu { display: flex !important; flex-wrap: wrap; gap: 16px; }
+}
+.navbar-horizontal { position: sticky; top: 0; z-index: 1100; }
+.navbar-horizontal .nav-menu a { pointer-events: auto !important; }
+
+/* Desktop: make event card rectangular and auto-sized */
+@media (min-width: 992px){
+  #eventos-do-dia{
+    display: block !important;
+    flex: 0 0 auto !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-width: 600px !important;  /* wider rectangle */
+    padding: 8px 14px !important;
+    margin: 8px 0 12px 0 !important;
+    border-radius: 10px !important;
+  }
+  #eventos-do-dia h2{ font-size: 1.05rem !important; margin: 0 0 6px 0 !important; }
+  #eventos-do-dia p{ margin: 4px 0 !important; }
+}
+</style><style id="v10-navlinks-force">
+/* === Force desktop navigation links to appear === */
+@media (min-width: 992px){
+  /* Hide any hamburger toggle buttons/icons */
+  .nav-toggle, .menu-toggle, .hamburger, .nav-hamburger, .menu-hamburger { 
+    display: none !important; 
+  }
+  /* Show the horizontal nav list */
+  .navbar-horizontal .nav-menu { 
+    display: flex !important; 
+    flex-wrap: wrap !important; 
+    gap: 16px !important; 
+    opacity: 1 !important; 
+    visibility: visible !important; 
+  }
+  .navbar-horizontal .nav-menu a{
+    pointer-events: auto !important;
+    color: inherit;
+  }
+}
+/* Ensure bar is above content and clickable */
+.navbar-horizontal{ position: sticky; top: 0; z-index: 1200; }
+</style><style id="v11-sidebar-links">
+/* Sidebar links: visible, clickable, and styled */
+.sidebar{ z-index: 900; }
+.sidebar .menu a{
+  display: block !important;
+  color: #0b2e52 !important;
+  text-decoration: none !important;
+  padding: 8px 10px !important;
+  border-radius: 6px;
+  pointer-events: auto !important;
+}
+.sidebar .menu a:hover{ text-decoration: underline !important; }
+</style><style id="v12-sidebar-mobile-visibility">
+/* Sidebar mobile: ensure it appears above everything and links are visible/clickable */
+@media (max-width: 991px){
+  .sidebar { 
+    position: fixed !important; left: 0; top: 0; bottom: 0;
+    width: 270px; transform: translateX(-100%);
+    background: #fff; overflow-y: auto; padding-bottom: 80px;
+    z-index: 2000 !important; /* above header/nav/cards */
+  }
+  body.sidebar-open .sidebar { transform: translateX(0); }
+  .sidebar-backdrop { z-index: 1900 !important; }
+
+  /* Make sure the inner lists/links render */
+  .sidebar .menu, .sidebar ul { display: block !important; }
+  .sidebar .menu a { display: block !important; pointer-events: auto !important; }
+  body.sidebar-open { overflow: hidden; } /* prevent background scroll under the drawer */
+}
+</style><style id="v12-eventcard-and-nav-desktop">
+/* Desktop nav always visible */
+@media (min-width: 992px){
+  .nav-toggle, .menu-toggle, .hamburger, .nav-hamburger, .menu-hamburger { display: none !important; }
+  .navbar-horizontal .nav-menu { display: flex !important; flex-wrap: wrap !important; gap: 16px !important; }
+}
+.navbar-horizontal{ position: sticky; top: 0; z-index: 1200; }
+
+/* Desktop event card rectangular/compact */
+@media (min-width: 992px){
+  #eventos-do-dia{
+    display: block !important; flex: 0 0 auto !important; height: auto !important; min-height: 0 !important;
+    max-width: 600px !important; padding: 8px 14px !important; margin: 8px 0 12px 0 !important; border-radius: 10px !important;
+  }
+}
+</style><style id="v13-fix-sidebar-toggle-visibility">
+/* === Corrige visibilidade do botão do hambúrguer da SIDEBAR === */
+/* Desktop: esconde o botão da sidebar; Mobile: mostra */
+@media (min-width: 992px){
+  .sidebar-toggle-wrap, .sidebar-toggle { display: none !important; }
+}
+@media (max-width: 991px){
+  .sidebar-toggle-wrap{ 
+    display: flex !important; align-items: center; gap: 8px;
+    padding: 10px 16px; position: sticky; top: 0; z-index: 2100;
+    background: #ffffff; box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  }
+  .sidebar-toggle{
+    display: inline-flex !important; align-items: center; gap: 8px;
+    background: transparent; border: 1px solid #e0e0e0; border-radius: 8px;
+    padding: 8px 12px; color: #0b2e52; font-weight: 700;
+  }
+  .sidebar-toggle i{ font-size: 1.1rem; }
+}
+</style><style id="v14-sidebar-mobile-css">
+/* Mobile drawer behavior for sidebar */
+@media (max-width: 991px){
+  .sidebar{
+    position: fixed !important; top: 0; bottom: 0; left: 0;
+    width: 270px; background: #fff;
+    transform: translateX(-105%);
+    transition: transform .25s ease;
+    overflow-y: auto; padding-bottom: 80px;
+    z-index: 2200 !important;
+    box-shadow: 2px 0 10px rgba(0,0,0,.08);
+  }
+  body.sidebar-open .sidebar{ transform: translateX(0); }
+  .sidebar-backdrop{
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,.25);
+    opacity: 0; pointer-events: none;
+    transition: opacity .2s ease;
+    z-index: 2100 !important;
+  }
+  body.sidebar-open .sidebar-backdrop{ opacity: 1; pointer-events: auto; }
+  .sidebar .menu, .sidebar ul{ display: block !important; }
+  .sidebar .menu a{ display:block !important; pointer-events:auto !important; }
+}
+</style><style id="v15-ipad-filters-fix">
+/* ===== iPad / tablets: manter filtros em várias colunas ===== */
+@media (min-width: 600px) and (max-width: 1024px){
+  #filtros-dimensoes{
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 10px 24px !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
+  }
+  #filtros-dimensoes label{
+    display: inline-flex !important;
+    width: auto !important;
+    white-space: nowrap !important;
+    line-height: 1.2 !important;
+  }
+}
+</style><style id="v16-ipad-grid-3x2">
+/* ===== iPad/tablets: força 3x2 nos filtros (sem empilhar) ===== */
+@supports (display: grid){
+  @media (min-width: 600px) and (max-width: 1024px){
+    #filtros-dimensoes, #filtros{
+      display: grid !important;
+      grid-template-columns: repeat(3, max-content) !important;
+      gap: 10px 24px !important;
+      justify-content: start !important;
+      align-items: center !important;
+    }
+    #filtros-dimensoes label, #filtros label{
+      display: inline-flex !important;
+      align-items: center !important;
+      white-space: nowrap !important;
+      width: auto !important;
+      line-height: 1.2 !important;
+      margin: 0 !important;
+    }
+    #filtros-dimensoes input[type="checkbox"], #filtros input[type="checkbox"]{
+      margin: 0 !important;
+    }
+  }
+}
+</style></head>
+<body><div class="sidebar-backdrop"></div>
+<header>
+<div class="header-content">
+<img alt="Logo PET/EQ" class="logo-pet" src="../assets/img/logo-peteq-furg.svg"/>
+<div class="header-text">
+<h1>PET/EQ</h1>
+<div class="sub">PROGRAMA DE EDUCAÇÃO TUTORIAL</div>
+<div class="curso-wrap"><div class="curso">ENGENHARIA QUÍMICA</div>
+<div class="furg">FURG</div></div>
+</div>
+<div class="social-icons" style="margin-left: auto; display: flex; gap: 15px;"><a href="https://www.linkedin.com/in/pet-engenharia-quimica-furg" target="_blank"><i class="fab fa-linkedin" style="font-size: 1.4em; color: white;"></i></a><a href="https://facebook.com/peteqfurg" target="_blank"><i class="fab fa-facebook" style="font-size: 1.4em; color: white;"></i></a><a href="https://instagram.com/peteqfurg" target="_blank"><i class="fab fa-instagram" style="font-size: 1.4em; color: white;"></i></a><a href="https://youtube.com/@peteqfurg" target="_blank"><i class="fab fa-youtube" style="font-size: 1.4em; color: white;"></i></a></div></div>
+</header>
+<nav class="navbar-horizontal">
+<div class="nav-container">
+<button aria-expanded="false" aria-label="Abrir/fechar menu" class="nav-toggle">☰</button>
+<ul class="nav-menu">
+<li><a href="../index.html">Apresentação</a></li>
+<li><a href="noticias.html">Notícias</a></li>
+<li><a href="eventos.html">Eventos</a></li>
+<li><a href="ingresso.html">Ingresso</a></li>
+<li><a href="comissoes.html">Comissões</a></li>
+<li><a href="producao.html">Produções PET/EQ</a></li>
+<li><a href="downloads.html">Downloads</a></li>
+</ul>
+</div>
+</nav>
+<div class="content-wrapper">
+<div class="page-wrapper">
+<aside class="sidebar">
+<ul class="menu">
+<li class="menu-title">PET/EQ</li>
+</ul>
+<ul class="menu">
+<li class="menu-title">INSTITUCIONAL</li>
+<li><a href="../index.html"><i class="fas fa-home"></i> Página Inicial</a></li>
+<li><a href="equipe.html"><i class="fas fa-users"></i> Equipe PET/EQ</a></li>
+<li><a href="organograma.html"><i class="fas fa-sitemap"></i> Organograma PET/EQ</a></li>
+</ul>
+<hr class="divisor"/>
+<ul class="menu">
+<li class="menu-title">GESTÃO DO PROGRAMA</li>
+<li><a href="../arquivos/Sigpet_homologado_CLAA_2025.pdf" target="_blank"><i class="fas fa-file-alt"></i> Planejamento SIGPET</a></li>
+<li><a href="../arquivos/RIC_PET_2024.pdf" target="_blank"><i class="fas fa-clipboard"></i> Relatório Institucional RIC</a></li>
+<li><a href="cronograma.html"><i class="fas fa-calendar-alt"></i> Cronograma de Atividades</a></li>
+</ul>
+<hr class="divisor"/>
+<ul class="menu">
+<li class="menu-title">DIMENSÕES DO PET</li>
+<li><a href="dimensoes/dimensao1-ensino.html"><i class="fas fa-chalkboard-teacher"></i> Dimensão 1 – Ensino</a></li>
+<li><a href="dimensoes/dimensao2-pesquisa.html"><i class="fas fa-flask"></i> Dimensão 2 – Pesquisa</a></li>
+<li><a href="dimensoes/dimensao3-extensao.html"><i class="fas fa-handshake"></i> Dimensão 3 – Extensão</a></li>
+<li><a href="dimensoes/dimensao4-inovacao.html"><i class="fas fa-lightbulb"></i> Dimensão 4 – Inovação e Tecnologia</a></li>
+<li><a href="dimensoes/dimensao5-desenvolvimento.html"><i class="fas fa-user-graduate"></i> Dimensão 5 – Desenvolvimento Pessoal</a></li>
+<li><a href="dimensoes/dimensao6-avaliacao.html"><i class="fas fa-chart-line"></i> Dimensão 6 – Gestão e Avaliação</a></li>
+</ul>
+<hr class="divisor"/>
+<ul class="menu">
+<li class="menu-title">MEMÓRIA E HISTÓRICO</li>
+<li><a href="memoria.html"><i class="fas fa-archive"></i> Memória do PET/EQ</a></li>
+<li><a href="galeria.html"><i class="fas fa-images"></i> Galeria de Fotos e Vídeos</a></li>
+</ul>
+<hr class="divisor"/>
+<ul class="menu">
+<li class="menu-title">AMBIENTES PET/EQ</li>
+<li><a href="https://teams.microsoft.com" target="_blank"><i class="fas fa-users"></i> Teams</a></li>
+<li><a href="https://www.office.com/launch/sharepoint" target="_blank"><i class="fas fa-folder-open"></i> SharePoint</a></li>
+<li><a href="https://onedrive.live.com/" target="_blank"><i class="fas fa-cloud"></i> OneDrive</a></li>
+</ul>
+</aside>
+<div class="sidebar-toggle-wrap"><button aria-controls="sidebar" aria-expanded="false" class="sidebar-toggle"><i class="fas fa-bars"></i> Menu</button></div>
+<main class="conteudo" style="padding: 30px; margin-bottom: 100px;"><h1 style="text-align:center; font-family: 'Lato', sans-serif; font-size: 2em; margin-bottom: 0.8em;">Memória do PET/EQ</h1>
+<div class="alerta-atualizacao" style="max-width:900px;margin:0 auto 16px; padding:10px 14px; border-radius:8px; background:#fff3cd; color:#664d03; border:1px solid #ffe69c;">
+<i aria-hidden="true" class="fas fa-circle-notch fa-spin"></i>
+<strong> Página em atualização.</strong> Estrutura inicial disponível para revisão.
+    </div>
+<div style="max-width: 1000px; margin: 0 auto; font-family: 'Lato', sans-serif; color:#333;">
+<p style="font-size:1.05em; line-height:1.6;">
+    A Memória do PET/EQ reúne marcos históricos, documentos e registros de atividades de anos anteriores.
+  </p>
+<!-- Linha do tempo por ano -->
+<div class="timeline" style="position:relative; margin-top:16px;">
+<div style="position:absolute; left:14px; top:0; bottom:0; width:2px; background:#e5e7eb;"></div>
+<!-- Ano modelo -->
+<div style="position:relative; padding-left:40px; margin-bottom:18px;">
+<div style="position:absolute; left:6px; top:6px; width:18px; height:18px; border-radius:50%; background:#084F6A;"></div>
+<h3 style="margin:0 0 6px 0;">2025</h3>
+<ul style="margin:0 0 0 18px;">
+<li>Principais eventos e publicações</li>
+<li>Projetos de destaque</li>
+</ul>
+</div>
+<div style="position:relative; padding-left:40px; margin-bottom:18px;">
+<div style="position:absolute; left:6px; top:6px; width:18px; height:18px; border-radius:50%; background:#084F6A;"></div>
+<h3 style="margin:0 0 6px 0;">2024</h3>
+<ul style="margin:0 0 0 18px;">
+<li>Principais eventos e publicações</li>
+<li>Projetos de destaque</li>
+</ul>
+</div>
+<div style="position:relative; padding-left:40px; margin-bottom:18px;">
+<div style="position:absolute; left:6px; top:6px; width:18px; height:18px; border-radius:50%; background:#084F6A;"></div>
+<h3 style="margin:0 0 6px 0;">2023</h3>
+<ul style="margin:0 0 0 18px;">
+<li>Principais eventos e publicações</li>
+<li>Projetos de destaque</li>
+</ul>
+</div>
+</div>
+<div style="margin-top:18px; display:flex; gap:10px; flex-wrap:wrap;">
+<a class="btn-acao btn-acao--blue" href="galeria.html">
+<i class="fas fa-images"></i> Ver Galeria
+    </a>
+<a class="btn-acao btn-acao--blue" href="../arquivos/RIC_PET_2024.pdf" target="_blank">
+<i class="fas fa-file-alt"></i> Relatório Institucional (RIC)
+    </a>
+</div>
+</div>
+</main>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+<style>
+/* ====== Responsividade mínima (não intrusiva) ====== */
+
+/* Imagens e SVGs fluidos */
+img, svg, video { max-width: 100%; height: auto; }
+
+/* Container padrão */
+.content-wrapper { width: 100%; }
+.page-wrapper {
+  display: grid;
+  grid-template-columns: 270px 1fr;
+  gap: 24px;
+}
+
+/* Botões ocultos no desktop */
+.nav-toggle, .sidebar-toggle-wrap { display: none; }
+
+/* Top navbar layout */
+.navbar-horizontal {
+  position: sticky; top: 0; z-index: 50;
+}
+.navbar-horizontal .nav-container {
+  display: flex; align-items: center; gap: 12px;
+}
+.navbar-horizontal .nav-menu { display:flex; flex-wrap:wrap; gap:16px; }
+
+/* Sidebar padrão desktop já vem no CSS do projeto */
+
+/* ===== Breakpoints ===== */
+@media (max-width: 1199px){
+  .page-wrapper { grid-template-columns: 240px 1fr; }
+}
+
+/* Tablet e celular */
+@media (max-width: 991px){
+  /* Header empilha */
+  header .header-content {
+    display: flex; flex-wrap: wrap; gap: 10px;
+  }
+  .logo-pet { width: 120px; height: auto; }
+  .header-text { flex: 1 1 240px; }
+  .social-icons { order: 3; width: 100%; justify-content: center; margin: 8px 0 0 !important; }
+
+  /* Top nav: hamburger */
+  .nav-toggle { display: inline-flex; align-items: center; justify-content: center;
+    background: #084F6A; color: #fff; border: 0; padding: 8px 12px; border-radius: 8px; }
+  .navbar-horizontal .nav-container { justify-content: space-between; }
+  .navbar-horizontal .nav-menu { display: none; flex-direction: column; gap: 10px; padding: 10px 0; }
+  .navbar-horizontal .nav-menu.open { display: flex; }
+
+  /* Layout: sidebar vira gaveta */
+  .page-wrapper {
+    grid-template-columns: 1fr;
+  }
+  .sidebar-toggle-wrap { display: block; padding: 10px 16px; }
+  .sidebar-toggle {
+    background: #084F6A; color: #fff; border: 0; padding: 8px 12px; border-radius: 8px;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+
+  .sidebar {
+    position: fixed; left: 0; top: 0; bottom: 0; width: 270px;
+    transform: translateX(-100%);
+    transition: transform .25s ease;
+    z-index: 100; background: #fff; overflow-y: auto; padding-bottom: 80px;
+    box-shadow: 2px 0 10px rgba(0,0,0,.1);
+  }
+  body.sidebar-open .sidebar { transform: translateX(0); }
+  /* Backdrop quando gaveta aberta */
+  .sidebar-backdrop {
+    position: fixed; inset: 0; background: rgba(0,0,0,.35);
+    z-index: 90; opacity: 0; pointer-events: none; transition: opacity .2s ease;
+  }
+  body.sidebar-open .sidebar-backdrop { opacity: 1; pointer-events: auto; }
+
+  /* Conteúdo com padding menor */
+  main.conteudo { padding: 16px !important; margin-bottom: 80px !important; }
+
+  /* Hexágonos: garante que o SVG reduza corretamente */
+  .dimensoes-svg-container .svg-container svg { width: 100%; height: auto; }
+}
+
+/* Celular pequeno */
+@media (max-width: 575px){
+  h1 { font-size: 1.6rem !important; }
+  .footer-logos img { height: 32px !important; }
+}
+</style>
+<script>
+// ====== Interações responsivas ======
+(function(){
+  // Menu hambúrguer (top nav)
+  const navToggle = document.querySelector('.nav-toggle');
+  const navMenu = document.querySelector('.navbar-horizontal .nav-menu');
+  if (navToggle && navMenu){
+    navToggle.addEventListener('click', () => {
+      const opened = navMenu.classList.toggle('open');
+      navToggle.setAttribute('aria-expanded', opened ? 'true' : 'false');
+    });
+  }
+
+  // Sidebar gaveta no mobile
+  const body = document.body;
+  const sideBtn = document.querySelector('.sidebar-toggle');
+  const sidebar = document.querySelector('.sidebar');
+  let backdrop = null;
+
+  function openSidebar(){
+    if (!backdrop){
+      backdrop = document.createElement('div');
+      backdrop.className = 'sidebar-backdrop';
+      backdrop.addEventListener('click', closeSidebar);
+      document.body.appendChild(backdrop);
+    }
+    body.classList.add('sidebar-open');
+    sideBtn && sideBtn.setAttribute('aria-expanded', 'true');
+  }
+  function closeSidebar(){
+    body.classList.remove('sidebar-open');
+    sideBtn && sideBtn.setAttribute('aria-expanded', 'false');
+  }
+
+  sideBtn && sideBtn.addEventListener('click', () => {
+    if (body.classList.contains('sidebar-open')) closeSidebar(); else openSidebar();
+  });
+
+  // Fecha com ESC
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && body.classList.contains('sidebar-open')) closeSidebar();
+  });
+
+  // Fecha ao trocar breakpoint (se necessário)
+  window.addEventListener('resize', () => {
+    if (window.innerWidth >= 992) closeSidebar();
+  });
+})();
+</script>
+<style>
+/* ===== Mobile scroll fixes ===== */
+html, body { height: auto; min-height: 100%; overflow-x: hidden; }
+.content-wrapper, .page-wrapper, main.conteudo { min-height: auto; }
+@supports (-webkit-touch-callout: none) {
+  /* iOS momentum scroll */
+  body { -webkit-overflow-scrolling: touch; }
+}
+
+/* Off-canvas: não bloquear toques quando escondida */
+@media (max-width: 991px){
+  .sidebar { pointer-events: none; }           /* escondida = sem eventos */
+  body.sidebar-open .sidebar { pointer-events: auto; }  /* aberta = interativa */
+  /* Garante altura útil baseada no innerHeight (corrige 100vh mobile) */
+  :root { --vh: 1vh; }
+  .page-wrapper { min-height: calc(var(--vh, 1vh) * 100); }
+  /* Evita footer "colar" no conteúdo em telas pequenas */
+  main.conteudo { margin-bottom: 100px !important; }
+}
+</style>
+<script>
+// Define --vh com base no innerHeight para corrigir 100vh em mobile
+(function(){
+  function setVH(){
+    var vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', vh + 'px');
+  }
+  setVH();
+  window.addEventListener('resize', setVH);
+  window.addEventListener('orientationchange', setVH);
+})();
+</script>
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script><script>
+document.addEventListener('DOMContentLoaded', function () {
+  const coresPorDimensao = {
+    1: "#1f77b4", 2: "#ff7f0e", 3: "#2ca02c", 4: "#d62728", 5: "#9467bd", 6: "#8c564b"
+  };
+
+  const eventosOriginais = [{"title": "Reunião de Planejamento", "date": "2025-08-04", "description": "Planejamento com novos bolsistas.", "dimensao": 1}, {"title": "Oficina de Excel", "date": "2025-08-05", "description": "Capacitação de planilhas para o grupo.", "dimensao": 5}, {"title": "Apresentação de Projeto", "date": "2025-08-06", "description": "Apresentação para comunidade externa.", "dimensao": 3}, {"title": "Planejamento da Avaliação", "date": "2025-08-07", "description": "Definir critérios de acompanhamento.", "dimensao": 6}, {"title": "Reunião de Inovação", "date": "2025-08-08", "description": "Novas ferramentas tecnológicas.", "dimensao": 4}, {"title": "Discussão de Pesquisa", "date": "2025-08-09", "description": "Resultados parciais do projeto.", "dimensao": 2}];
+
+  function formatarDataPorExtenso(dataStr) {
+    const meses = ['janeiro','fevereiro','março','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro'];
+    const partes = dataStr.split("-");
+    const ano = partes[0];
+    const mes = parseInt(partes[1], 10) - 1;
+    const dia = parseInt(partes[2], 10);
+    return `${dia} de ${meses[mes].charAt(0).toUpperCase() + meses[mes].slice(1)} de ${ano}`;
+  }
+
+  let todosEventos = eventosOriginais.map(e => {
+    return {
+      title: e.title,
+      start: e.date,
+      description: e.description,
+      backgroundColor: coresPorDimensao[e.dimensao],
+      borderColor: coresPorDimensao[e.dimensao],
+      extendedProps: { dimensao: e.dimensao }
+    };
+  });
+
+  function filtrarEventos() {
+    const selecionadas = Array.from(document.querySelectorAll('#filtros-dimensoes input:checked'))
+                              .map(cb => parseInt(cb.value));
+    return todosEventos.filter(e => selecionadas.includes(e.extendedProps.dimensao));
+  }
+
+  function atualizarEventosDoDia(dateStr) {
+    const eventosDoDia = eventosOriginais.filter(e => e.date === dateStr);
+    const container = document.getElementById('eventos-do-dia');
+    const dataFormatada = formatarDataPorExtenso(dateStr);
+    if (eventosDoDia.length > 0) {
+      container.innerHTML = `<h2>Evento(s) do dia</h2>
+        <p><strong>${dataFormatada}</strong></p>` + eventosDoDia.map(e =>
+          `<p><strong>${e.title}</strong>: ${e.description}</p>`
+        ).join('');
+    } else {
+      container.innerHTML = `<h2>Evento(s) do dia</h2><p><strong>${dataFormatada}</strong></p><p>Nenhum evento.</p>`;
+    }
+  }
+
+  const calendarEl = document.getElementById('calendario');
+  const calendar = new FullCalendar.Calendar(calendarEl, {
+    initialView: 'dayGridMonth',
+    locale: 'pt-br',
+    headerToolbar: {
+      left: 'prev,next today',
+      center: 'title',
+      right: 'dayGridMonth,timeGridWeek,listMonth'
+    },
+    buttonText: {
+      today: 'Hoje', month: 'Mês', week: 'Semana', day: 'Dia', list: 'Lista'
+    },
+    events: filtrarEventos(),
+    dateClick: function(info) {
+      atualizarEventosDoDia(info.dateStr);
+    },
+    eventClick: function(info) {
+      const date = info.event.start;
+      const isoDate = date.toISOString().split("T")[0];
+      atualizarEventosDoDia(isoDate);
+    }
+  });
+
+  calendar.render();
+
+  document.querySelectorAll('#filtros-dimensoes input').forEach(cb => {
+    cb.addEventListener('change', () => {
+      calendar.removeAllEvents();
+      calendar.addEventSource(filtrarEventos());
+    });
+  });
+});
+</script><script>
+document.addEventListener("DOMContentLoaded", function () {
+  document.querySelectorAll(".carousel").forEach(function (carousel) {
+    const atividade = carousel.dataset.atividade;
+    
+    // Desativar TODOS os carrosséis desta dimensão
+    carousel.remove();
+    return;
+
+const container = carousel.querySelector(".carousel-images");
+    const basePath = "../../assets/img/dimensoes/dim1/" + atividade + "/";
+    const extensoes = [".jpg", ".jpeg", ".png", ".webp"];
+    let i = 1;
+    let falhasConsecutivas = 0;
+    const limiteFalhas = 5;
+
+    function tentarCarregarImagem(indice, tentativa = 0) {
+      if (falhasConsecutivas >= limiteFalhas) return;
+      if (tentativa >= extensoes.length) {
+        falhasConsecutivas++;
+        return tentarCarregarImagem(indice + 1, 0);
+      }
+
+      const img = new Image();
+      const url = basePath + indice + extensoes[tentativa];
+      img.src = url;
+
+      img.onload = function () {
+        img.style.width = "100%";
+        img.style.height = "180px";
+        img.style.flexShrink = "0";
+        img.style.objectFit = "cover";
+        container.appendChild(img);
+        falhasConsecutivas = 0;
+        tentarCarregarImagem(indice + 1, 0);
+      };
+
+      img.onerror = function () {
+        tentarCarregarImagem(indice, tentativa + 1);
+      };
+    }
+
+    tentarCarregarImagem(i);
+  });
+});
+
+function moveCarousel(button, direction) {
+  const carousel = button.closest('.carousel');
+  const images = carousel.querySelector('.carousel-images');
+  const totalImages = images.children.length;
+  const imageWidth = images.children[0]?.offsetWidth || 0;
+  const currentIndex = parseInt(images.getAttribute('data-index') || "0");
+  let newIndex = currentIndex + direction;
+
+  if (newIndex < 0) newIndex = totalImages - 1;
+  if (newIndex >= totalImages) newIndex = 0;
+
+  images.style.transform = `translateX(-${newIndex * imageWidth}px)`;
+  images.setAttribute('data-index', newIndex);
+}
+</script><script>
+document.addEventListener('DOMContentLoaded', function () {
+  const cores = {1:"#1f77b4",2:"#ff7f0e",3:"#2ca02c",4:"#d62728",5:"#9467bd",6:"#0b5ed7"};
+  const eventosOriginais = window.__eventosDim || []; // você pode definir em outra tag se quiser
+  const filtrosEl = document.getElementById('filtros-dimensoes');
+  const calendarioEl = document.getElementById('calendario');
+  const eventosDiaEl = document.getElementById('eventos-do-dia');
+
+  function selecionadas(){
+    return Array.from(filtrosEl.querySelectorAll('input:checked')).map(c => parseInt(c.value,10));
+  }
+  function dataExtenso(iso){
+    const m = ['janeiro','fevereiro','março','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro'];
+    const [Y,M,D] = iso.split('-');
+    return `${parseInt(D,10)} de ${m[parseInt(M,10)-1].replace(/^./,c=>c.toUpperCase())} de ${Y}`;
+  }
+  function toFC(ev){
+    return { title: ev.title, start: ev.date, description: ev.description,
+      backgroundColor: cores[ev.dimensao] || "#777",
+      borderColor: cores[ev.dimensao] || "#777",
+      extendedProps: { dimensao: ev.dimensao } };
+  }
+  function renderEventosDia(iso){
+    const list = eventosOriginais.filter(e => e.date===iso && selecionadas().includes(e.dimensao));
+    eventosDiaEl.innerHTML = `<h2>Evento(s) do dia</h2><p><strong>${dataExtenso(iso)}</strong></p>` +
+      (list.length ? list.map(e=>`<p><strong>${e.title}</strong>: ${e.description}</p>`).join('')
+                   : `<p>Nenhum evento nas dimensões selecionadas.</p>`);
+  }
+
+  if (calendarioEl){
+    const calendar = new FullCalendar.Calendar(calendarioEl, {
+      initialView: 'dayGridMonth',
+      locale: 'pt-br',
+      headerToolbar: { left:'prev,next today', center:'title', right:'dayGridMonth,timeGridWeek,listMonth' },
+      buttonText: { today:'Hoje', month:'Mês', week:'Semana', day:'Dia', list:'Lista' },
+      events: (eventosOriginais.filter(e => selecionadas().includes(e.dimensao))).map(toFC),
+      dateClick: info => renderEventosDia(info.dateStr),
+      eventClick: info => renderEventosDia(info.event.start.toISOString().split('T')[0])
+    });
+    calendar.render();
+    if (filtrosEl){
+      filtrosEl.addEventListener('change', () => {
+        calendar.removeAllEvents();
+        const filtrados = eventosOriginais.filter(e => selecionadas().includes(e.dimensao)).map(toFC);
+        calendar.addEventSource(filtrados);
+      });
+    }
+  }
+});
+</script><script>
+document.addEventListener("DOMContentLoaded", function () {
+  const ENABLED = new Set([
+    // manter vazio — você habilita depois
+  ]);
+
+  document.querySelectorAll(".carousel").forEach(function (carousel) {
+    const atividade = carousel.dataset.atividade;
+    if (!ENABLED.has(atividade)) {
+      carousel.style.display = "none";
+      return;
+    }
+    const container = carousel.querySelector(".carousel-images");
+    const prev = carousel.querySelector(".prev");
+    const next = carousel.querySelector(".next");
+    const basePath = "../../assets/img/dimensoes/dim1/"+ atividade + "/";
+    const extensoes = [".jpg", ".jpeg", ".png", ".webp"];
+
+    const toggleArrows = () => {
+      const n = container.children.length;
+      const show = n > 1 ? "" : "none";
+      if (prev && next) { prev.style.display = show; next.style.display = show; }
+    };
+
+    let i = 1, falhas = 0, limite = 5;
+    (function carregar(indice, tent=0){
+      if (falhas >= limite) return;
+      if (tent >= extensoes.length){ falhas++; return carregar(indice+1, 0); }
+      const img = new Image();
+      img.src = basePath + indice + extensoes[tent];
+      img.onload = function(){
+        Object.assign(img.style, { width:"100%", height:"180px", flexShrink:"0", objectFit:"cover" });
+        container.appendChild(img);
+        falhas = 0; toggleArrows(); carregar(indice+1, 0);
+      };
+      img.onerror = function(){ carregar(indice, tent+1); };
+    })(i);
+  });
+});
+
+function moveCarousel(button, direction) {
+  const carousel = button.closest('.carousel');
+  const images = carousel.querySelector('.carousel-images');
+  const total = images.children.length;
+  const w = images.children[0]?.offsetWidth || 0;
+  const current = parseInt(images.getAttribute('data-index') || "0");
+  if (!total || !w) return;
+  let next = (current + direction + total) % total;
+  images.style.transform = `translateX(-${next * w}px)`;
+  images.setAttribute('data-index', next);
+}
+</script><script>
+document.addEventListener('DOMContentLoaded', () => {
+  const h2 = Array.from(document.querySelectorAll('h2, .titulo-eventos'))
+    .find(el => /Eventos da Dimensão/i.test(el.textContent));
+  if (!h2) return;
+  const cand = h2.nextElementSibling;
+  if (cand && cand.classList.contains('bloco') && cand.id !== 'eventos-do-dia' &&
+      /Objetivo:|Aç(õ|o)es:/i.test(cand.textContent)) {
+    cand.remove();
+  }
+});
+</script><script>
+(function(){
+  const filtros = document.querySelectorAll('#filtros-dimensoes input[type="checkbox"]');
+  if (!filtros.length) return;
+  const ativos = () => new Set(Array.from(filtros).filter(cb=>cb.checked).map(cb=>cb.dataset.dim||cb.value));
+
+  // DOM cards
+  function applyDOM(){
+    const on = ativos();
+    document.querySelectorAll('[data-dimension]').forEach(el => {
+      el.style.display = on.has(String(el.dataset.dimension)) ? '' : 'none';
+    });
+  }
+
+  // FullCalendar hook (se existir)
+  let calendarDetected = false;
+  try {
+    Object.defineProperty(window, 'calendar', {
+      set(val){
+        this._calendar = val;
+        calendarDetected = !!val;
+        const orig = val?.options?.eventDidMount;
+        val.setOption('eventDidMount', function(info){
+          const on = ativos();
+          const dim = String(info.event?.extendedProps?.dimension ?? '');
+          if (!on.has(dim)) info.el.style.display = 'none';
+          if (typeof orig==='function') return orig(info);
+        });
+      },
+      get(){ return this._calendar; }
+    });
+  } catch(e){}
+
+  filtros.forEach(cb => cb.addEventListener('change', () => {
+    applyDOM();
+    if (calendarDetected && window.calendar) window.calendar.rerenderEvents();
+  }));
+
+  document.addEventListener('DOMContentLoaded', () => {
+    applyDOM();
+    if (calendarDetected && window.calendar) window.calendar.rerenderEvents();
+  });
+})();
+</script>
+<script id="fc-reflow-v9">
+document.addEventListener('DOMContentLoaded', function(){
+  // Refluxo pós-carregamento e em mudanças de viewport/orientação
+  function reflow(){
+    try { window.dispatchEvent(new Event('resize')); } catch(e){}
+  }
+  setTimeout(reflow, 50);
+  setTimeout(reflow, 250);
+  window.addEventListener('orientationchange', function(){ setTimeout(reflow, 60); });
+  window.addEventListener('resize', function(){ /* sem flood */ });
+});
+</script>
+<script defer="" src="../assets/js/pet-nav.js"></script><script id="v10-nav-toggle-js">
+document.addEventListener('DOMContentLoaded', function(){
+  var btn = document.querySelector('.nav-toggle, .menu-toggle, .nav-hamburger, .menu-hamburger');
+  var menu = document.querySelector('.navbar-horizontal .nav-menu');
+  if(btn && menu){
+    btn.addEventListener('click', function(){
+      menu.classList.toggle('open');
+      var expanded = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', expanded ? 'false':'true');
+    });
+  }
+});
+</script><script id="v14-sidebar-toggle-js">
+document.addEventListener('DOMContentLoaded', function(){
+  var sideBtn = document.querySelector('.sidebar-toggle');
+  var backdrop = document.querySelector('.sidebar-backdrop');
+  var sidebar  = document.querySelector('.sidebar');
+  function openSidebar(){ document.body.classList.add('sidebar-open'); }
+  function closeSidebar(){ document.body.classList.remove('sidebar-open'); }
+  if(sideBtn){
+    sideBtn.addEventListener('click', function(e){
+      e.preventDefault();
+      var isOpen = document.body.classList.contains('sidebar-open');
+      if(isOpen) closeSidebar(); else openSidebar();
+    });
+  }
+  if(backdrop){
+    backdrop.addEventListener('click', closeSidebar);
+    backdrop.addEventListener('touchstart', closeSidebar, {passive:true});
+  }
+  // Close on ESC
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape'){ closeSidebar(); }
+  });
+});
+</script></body>
+</html>

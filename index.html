@@ -9,328 +9,110 @@
 <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&amp;display=swap" rel="stylesheet"/>
 <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
-<style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      background-color: #f5f3db;
-      font-family: Arial, sans-serif;
-    }
-    body {
-    }
-    .content-wrapper {
-    }
-    header {
-      background-color: #002855;
-      color: white;
-      padding: 20px;
-    }
-    .header-content {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 20px;
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-    .logo-pet {
-      height: 120px;
-      background-color: #002855;
-      padding: 5px;
-      border-radius: 6px;
-      box-shadow: 0 0 5px rgba(0,0,0,0.2);
-    }
-    .header-text {
-  font-family: 'Lato', sans-serif;
-  color: #ffffff;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  line-height: 1.2;
-}
-    .header-text h1 {
-      font-size: 2.5em;
-      margin: 0;
-      font-weight: 900;
-    }
-    .header-text .sub {
-  font-size: 1em;
-  font-weight: 400;
-  letter-spacing: 1px;
-}
-.header-text .curso {
-  letter-spacing: 3px;
-  font-size: 1.5em;
-  font-weight: 700;
-  position: relative;
-  display: inline-block;
-  letter-spacing: 3px;
-}
-.header-text .curso::after {
-  content: "";
-  display: block;
-  width: 100%;
-  height: 2px;
-  background: #ffffff;
-}
-.header-text .furg {
-  font-size: 0.8em;
-  font-weight: 400;
-  text-align: right;
-  color: #ffffff;
-}
-    .page-wrapper {
-      display: flex;
-      flex: 1;
-    }
-    
-    .sidebar {
-  margin-top: -1rem;
-  padding-top: 0;
-      width: 240px;
-      background-color: #f7f7f7;
-      padding: 20px;
-      box-shadow: 2px 0 4px rgba(0,0,0,0.1);
-      box-sizing: border-box;
-      font-size: 15px;
-      position: sticky;
-      top: 0;
-      min-height: 100vh;
-      overflow-y: auto;
-    }
 
-    .menu {
-      list-style: none;
-      padding: 0;
-      margin: 0 0 20px 0;
-    }
-    .menu li {
-      margin: 10px 0;
-    }
-    .menu-title {
-      font-weight: bold;
-      color: #002855;
-      margin: 15px 0 5px;
-      font-size: 14px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-    .menu a {
-      text-decoration: none;
-      color: #002855;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 5px 0;
-      transition: all 0.2s ease-in-out;
-    }
-    .menu a:hover {
-      color: #0056b3;
-      transform: translateX(3px);
-    }
-    .divisor {
-      border: none;
-      border-top: 1px solid #ccc;
-      margin: 10px 0;
-    }
-    .conteudo {
-      flex-grow: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 40px;
-      padding: 30px;
-    }
-    .coluna-hexagonos, .coluna-direita {
-      flex: 1;
-    }
-    .dimensoes-svg-container {
-      display: flex;
-      justify-content: center;
-    }
-    .svg-container svg {
-      width: 500px;
-      height: auto;
-      display: block;
-      margin: 0 auto;
-    }
-    #calendario {
-      background-color: white;
-      padding: 10px;
-      border-radius: 10px;
-      box-shadow: 0 0 5px rgba(0,0,0,0.1);
-      margin-bottom: 30px;
-    }
-    .blocos-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-    }
-    .bloco {
-      background-color: #e6e6e6;
-      padding: 15px 25px;
-      border-radius: 10px;
-      font-weight: bold;
-    }
-    footer {
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-      background-color: #ffffff;
-      padding: 15px 0;
-      text-align: center;
-      z-index: 1001;
-      box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
-    }
-    .footer-logos {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 60px;
-    }
-    .footer-logos img {
-      height: 40px;
-      transition: transform 0.2s ease;
-      filter: none;
-    }
-    .footer-logos img:hover {
-      transform: scale(1.05);
-    }
-  
-    .bloco {
-      background-color: #ffffff;
-      padding: 15px 25px;
-      border-radius: 12px;
-      font-weight: 600;
-      font-family: 'Exo 2', sans-serif;
-      font-size: 1.1em;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      transition: transform 0.2s ease;
-    }
-    .bloco:hover {
-      transform: scale(1.03);
-    }
 
-.sidebar {
-  width: 270px;
-  flex-shrink: 0;
-  position: sticky;
-  min-height: 100vh;
-  overflow-y: auto;
-  padding-bottom: 80px;
-}
-</style>
-<style>
-  #container-calendario {
-    width: 100%;
-    max-width: 700px;
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@500;700&amp;display=swap" rel="stylesheet"/><link crossorigin="True" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link rel="stylesheet" href="assets/css/main.css">
+<link rel="stylesheet" href="assets/css/responsive.css">
+
+<style id="hotfix-curso-furg">
+  /* Wrapper encolhe ao conteúdo da linha "ENGENHARIA QUÍMICA" */
+  .header-text .curso-wrap { display: inline-grid; width: max-content; }
+
+  /* ÚNICA linha branca sob "ENGENHARIA QUÍMICA" */
+  .header-text .curso {
+    display: inline-block;
+    border-bottom: 3px solid #fff !important;
+    text-decoration: none !important;
   }
+  .header-text .curso::before,
+  .header-text .curso::after { content: none !important; }
 
-  #calendario {
-    width: 100% !important;
-    margin: 0 auto;
-    padding: 10px;
-    border-radius: 10px;
-    background-color: white;
-    box-shadow: 0 0 5px rgba(0,0,0,0.1);
-  }
-
-  .fc {
-    width: 100% !important;
+  /* "FURG" abaixo, alinhado ao fim da mesma largura do wrapper */
+  .header-text .furg {
+    display: block;
+    justify-self: end;
+    margin-top: 6px;
+    white-space: nowrap;
   }
 </style>
-<link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@500;700&amp;display=swap" rel="stylesheet"/><style>
-.navbar-horizontal {
-  background-color: #ffffff;
-  padding: 0.5rem 1rem;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-.nav-menu {
-  list-style: none;
-  display: flex;
-  gap: 1.5rem;
-  padding: 0;
-  margin: 0;
-  font-family: 'Lato', sans-serif;
-}
-.nav-menu li a {
-  text-decoration: none;
-  color: #1a2a35;
-  font-weight: bold;
-}
-.nav-menu li a:hover {
-  color: #004080;
-}
-</style><style>
-.navbar-horizontal {
-  background-color: #ffffff;
-  border-bottom: 1px solid #ccc;
-  padding: 0.5rem 0;
-  margin-bottom: 1rem;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-}
-.nav-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1.5rem;
-}
-.nav-menu {
-  list-style: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 2rem;
-  margin: 0;
-  padding: 0;
-}
-.nav-menu li a {
-  text-decoration: none;
-  color: #003366;
-  font-weight: bold;
-  font-family: 'Lato', sans-serif;
-  font-size: 1rem;
-}
-.nav-menu li a:hover {
-  color: #00509e;
-  border-bottom: 2px solid #00509e;
-  padding-bottom: 2px;
-}
-</style><style>.sidebar { margin-bottom: 60px; }</style><style>
-.sidebar {
-    width: 270px !important;
-    position: sticky;
-    top: 0;
-    height: 100vh;
-    overflow-y: auto;
-    padding-bottom: 80px;
-}
-</style><style>p { margin-bottom: 10px; }</style><style>
-/* Ajustes visuais alinhados à dimensão 1 */
-.blocos-container{
-  display:grid; gap:30px;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  justify-items: stretch;
-  align-items: start;
-}
-.bloco-header{
-  display:flex; align-items:center; gap:8px;
-  padding-bottom:8px; border-bottom:1px solid #edf2f7; margin-bottom:10px;
-}
-.bloco strong a span{ font-size:1.15em; letter-spacing:.2px; }
-.bloco strong img{ width:16px; height:16px; opacity:.9 }
-.bloco p{ line-height:1.55; margin:8px 0; }
-a:focus-visible{ outline:3px solid #86b7ff; outline-offset:2px; border-radius:8px; }
-.bloco{ transition:transform .15s ease; }
-.bloco:hover{ transform:translateY(-1px); }
-.btn-acao{ min-width:280px; justify-content:center; display:inline-flex; align-items:center; gap:8px; }
-.btn-acao i{ font-size:.95rem; margin-top:1px; }
 
-/* Aviso de SharePoint sempre próximo ao rodapé */
-.site-note{
-  font-size: 0.8em; color: #777; text-align: center;
-  margin: 12px auto 90px auto;  /* margem inferior para ficar acima do rodapé */
-  max-width: 900px;
-}
-</style><link crossorigin="True" href="https://fonts.gstatic.com" rel="preconnect"/></head>
+<style id="hotfix-ipad-center-min">
+  /* Centraliza o bloco do cabeçalho sem mexer no layout interno */
+  header .header-content{
+    max-width: 1100px;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-left: 16px;
+    padding-right: 16px;
+    box-sizing: border-box;
+  }
+  @media (min-width: 820px) and (max-width: 1180px){
+    header .header-content{
+      max-width: 980px; /* puxa um pouco mais pro centro no iPad */
+    }
+  }
+</style>
+
+
+<style id="hotfix-scroll-only">
+  /* Liberar rolagem até o fim sem mexer nos menus/cabeçalho */
+  html, body { min-height: 100%; height: auto; overflow-y: auto; }
+  /* Remover alturas/overflows que possam cortar o conteúdo */
+  .content-wrapper, .page-wrapper, main, .conteudo {
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+  }
+  /* Evitar que o rodapé cubra o final do conteúdo */
+  main, .conteudo { padding-bottom: 96px !important; }
+  footer { position: static !important; }
+  /* iOS momentum scroll */
+  @supports (-webkit-touch-callout: none) {
+    body { -webkit-overflow-scrolling: touch; }
+  }
+  /* Não alterar o comportamento dos menus */
+</style>
+
+<style id="hotfix-menu-labels">
+  .btn-label{ margin-left:.5rem; font-size:.875rem; font-weight:600; line-height:1; }
+  /* No desktop, deixa o topo sem texto visível para poupar espaço */
+  @media (min-width:992px){
+    .nav-toggle .btn-label--top{ display:none; }
+  }
+</style>
+
+<script id="hotfix-menu-labels-js">
+document.addEventListener('DOMContentLoaded', function(){
+  function ensureLabel(btn, text, cls){
+    if(!btn) return;
+    // Remove texto direto "solto" (ex.: "Menu") para evitar duplicação
+    Array.from(btn.childNodes).forEach(function(n){
+      if(n.nodeType === Node.TEXT_NODE && n.textContent.trim().length){ n.textContent = ''; }
+    });
+    // Se não existir um label nosso, cria
+    if(!btn.querySelector('.'+cls)){
+      var span = document.createElement('span');
+      span.className = 'btn-label ' + cls;
+      span.textContent = text;
+      btn.appendChild(span);
+    }
+  }
+  var topBtn  = document.querySelector('.nav-toggle');
+  var sideBtn = document.querySelector('.sidebar-toggle');
+  ensureLabel(topBtn,  'Menu superior', 'btn-label--top');
+  ensureLabel(sideBtn, 'Menu lateral',  'btn-label--side');
+  if(topBtn){
+    topBtn.setAttribute('title','Menu superior');
+    topBtn.setAttribute('aria-label','Abrir/fechar menu superior');
+  }
+  if(sideBtn){
+    sideBtn.setAttribute('title','Menu lateral');
+    sideBtn.setAttribute('aria-label','Abrir/fechar menu lateral');
+  }
+});
+</script>
+</head>
 <body>
 <header>
 <div class="header-content">
@@ -338,13 +120,14 @@ a:focus-visible{ outline:3px solid #86b7ff; outline-offset:2px; border-radius:8p
 <div class="header-text">
 <h1>PET/EQ</h1>
 <div class="sub">PROGRAMA DE EDUCAÇÃO TUTORIAL</div>
-<div class="curso">ENGENHARIA QUÍMICA</div>
-<div class="furg">FURG</div>
+<div class="curso-wrap"><div class="curso">ENGENHARIA QUÍMICA</div>
+<div class="furg">FURG</div></div>
 </div>
 <div class="social-icons" style="margin-left: auto; display: flex; gap: 15px;"><a href="https://www.linkedin.com/in/pet-engenharia-quimica-furg" target="_blank"><i class="fab fa-linkedin" style="font-size: 1.4em; color: white;"></i></a><a href="https://facebook.com/peteqfurg" target="_blank"><i class="fab fa-facebook" style="font-size: 1.4em; color: white;"></i></a><a href="https://instagram.com/peteqfurg" target="_blank"><i class="fab fa-instagram" style="font-size: 1.4em; color: white;"></i></a><a href="https://youtube.com/@peteqfurg" target="_blank"><i class="fab fa-youtube" style="font-size: 1.4em; color: white;"></i></a></div></div>
 </header>
 <nav class="navbar-horizontal">
 <div class="nav-container">
+<button class="nav-toggle" aria-label="Abrir/fechar menu" aria-expanded="false">☰</button>
 <ul class="nav-menu">
 <li><a href="index.html">Apresentação</a></li>
 <li><a href="paginas/noticias.html">Notícias</a></li>
@@ -399,6 +182,7 @@ a:focus-visible{ outline:3px solid #86b7ff; outline-offset:2px; border-radius:8p
 <li><a href="https://onedrive.live.com/" target="_blank"><i class="fas fa-cloud"></i> OneDrive</a></li>
 </ul>
 </aside>
+<div class="sidebar-toggle-wrap"><button class="sidebar-toggle" aria-controls="sidebar" aria-expanded="false"><i class="fas fa-bars"></i> Menu</button></div>
 <main class="conteudo" style="padding: 30px; margin-bottom: 100px;">
 <h1 style="text-align:center; font-family: 'Lato', sans-serif; font-weight: 700; font-size: 2.2em; margin-bottom: 5px;">Conheça o PET Engenharia Química – PET/EQ</h1><div style="max-width: 800px; margin: 0 auto; font-family: 'Lato', sans-serif; font-size: 1.05em; line-height: 1.6; color: #333;"><p style="margin-bottom: 0.5em;">O Programa de Educação Tutorial da Engenharia Química (PET/EQ) da FURG é composto por estudantes de graduação orientados por um professor tutor, que desenvolvem atividades integradas de ensino, pesquisa e extensão. Alinhado às diretrizes do MEC, o grupo valoriza o protagonismo estudantil, a horizontalidade e a formação ampla de seus integrantes.</p><p style="margin-bottom: 0.5em;">A estrutura do grupo é representada simbolicamente pela união de hexágonos, sugerindo cooperação, conexão e complementaridade entre as ações. Essa representação gráfica reflete a organização do PET/EQ em seis dimensões, inspiradas na indissociabilidade entre ensino, pesquisa e extensão, e também na necessidade de desenvolver habilidades de gestão, planejamento e avaliação.</p><p style="margin-bottom: 0.5em;">Cada dimensão contempla diferentes aspectos da atuação do grupo, promovendo o desenvolvimento acadêmico, técnico e humano dos petianos. Para conhecer melhor essa estrutura, acesse a página do <a href="paginas/organograma.html">Organograma do PET/EQ</a>.</p><p style="margin-bottom: 0.5em;">Para conhecer os demais grupos PET da FURG, acesse a <a href="https://portalpet.furg.br/grupos-pet-da-furg" target="blank">página dos grupos PET da FURG</a>.</p></div>
 <div class="coluna-hexagonos">
@@ -504,5 +288,179 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 </script>
+
+<style>
+/* ====== Responsividade mínima (não intrusiva) ====== */
+
+/* Imagens e SVGs fluidos */
+img, svg, video { max-width: 100%; height: auto; }
+
+/* Container padrão */
+.content-wrapper { width: 100%; }
+.page-wrapper {
+  display: grid;
+  grid-template-columns: 270px 1fr;
+  gap: 24px;
+}
+
+/* Botões ocultos no desktop */
+.nav-toggle, .sidebar-toggle-wrap { display: none; }
+
+/* Top navbar layout */
+.navbar-horizontal {
+  position: sticky; top: 0; z-index: 50;
+}
+.navbar-horizontal .nav-container {
+  display: flex; align-items: center; gap: 12px;
+}
+.navbar-horizontal .nav-menu { display:flex; flex-wrap:wrap; gap:16px; }
+
+/* Sidebar padrão desktop já vem no CSS do projeto */
+
+/* ===== Breakpoints ===== */
+@media (max-width: 1199px){
+  .page-wrapper { grid-template-columns: 240px 1fr; }
+}
+
+/* Tablet e celular */
+@media (max-width: 991px){
+  /* Header empilha */
+  header .header-content {
+    display: flex; flex-wrap: wrap; gap: 10px;
+  }
+  .logo-pet { width: 120px; height: auto; }
+  .header-text { flex: 1 1 240px; }
+  .social-icons { order: 3; width: 100%; justify-content: center; margin: 8px 0 0 !important; }
+
+  /* Top nav: hamburger */
+  .nav-toggle { display: inline-flex; align-items: center; justify-content: center;
+    background: #084F6A; color: #fff; border: 0; padding: 8px 12px; border-radius: 8px; }
+  .navbar-horizontal .nav-container { justify-content: space-between; }
+  .navbar-horizontal .nav-menu { display: none; flex-direction: column; gap: 10px; padding: 10px 0; }
+  .navbar-horizontal .nav-menu.open { display: flex; }
+
+  /* Layout: sidebar vira gaveta */
+  .page-wrapper {
+    grid-template-columns: 1fr;
+  }
+  .sidebar-toggle-wrap { display: block; padding: 10px 16px; }
+  .sidebar-toggle {
+    background: #084F6A; color: #fff; border: 0; padding: 8px 12px; border-radius: 8px;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+
+  .sidebar {
+    position: fixed; left: 0; top: 0; bottom: 0; width: 270px;
+    transform: translateX(-100%);
+    transition: transform .25s ease;
+    z-index: 100; background: #fff; overflow-y: auto; padding-bottom: 80px;
+    box-shadow: 2px 0 10px rgba(0,0,0,.1);
+  }
+  body.sidebar-open .sidebar { transform: translateX(0); }
+  /* Backdrop quando gaveta aberta */
+  .sidebar-backdrop {
+    position: fixed; inset: 0; background: rgba(0,0,0,.35);
+    z-index: 90; opacity: 0; pointer-events: none; transition: opacity .2s ease;
+  }
+  body.sidebar-open .sidebar-backdrop { opacity: 1; pointer-events: auto; }
+
+  /* Conteúdo com padding menor */
+  main.conteudo { padding: 16px !important; margin-bottom: 80px !important; }
+
+  /* Hexágonos: garante que o SVG reduza corretamente */
+  .dimensoes-svg-container .svg-container svg { width: 100%; height: auto; }
+}
+
+/* Celular pequeno */
+@media (max-width: 575px){
+  h1 { font-size: 1.6rem !important; }
+  .footer-logos img { height: 32px !important; }
+}
+</style>
+
+<script>
+// ====== Interações responsivas ======
+(function(){
+  // Menu hambúrguer (top nav)
+  const navToggle = document.querySelector('.nav-toggle');
+  const navMenu = document.querySelector('.navbar-horizontal .nav-menu');
+  if (navToggle && navMenu){
+    navToggle.addEventListener('click', () => {
+      const opened = navMenu.classList.toggle('open');
+      navToggle.setAttribute('aria-expanded', opened ? 'true' : 'false');
+    });
+  }
+
+  // Sidebar gaveta no mobile
+  const body = document.body;
+  const sideBtn = document.querySelector('.sidebar-toggle');
+  const sidebar = document.querySelector('.sidebar');
+  let backdrop = null;
+
+  function openSidebar(){
+    if (!backdrop){
+      backdrop = document.createElement('div');
+      backdrop.className = 'sidebar-backdrop';
+      backdrop.addEventListener('click', closeSidebar);
+      document.body.appendChild(backdrop);
+    }
+    body.classList.add('sidebar-open');
+    sideBtn && sideBtn.setAttribute('aria-expanded', 'true');
+  }
+  function closeSidebar(){
+    body.classList.remove('sidebar-open');
+    sideBtn && sideBtn.setAttribute('aria-expanded', 'false');
+  }
+
+  sideBtn && sideBtn.addEventListener('click', () => {
+    if (body.classList.contains('sidebar-open')) closeSidebar(); else openSidebar();
+  });
+
+  // Fecha com ESC
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && body.classList.contains('sidebar-open')) closeSidebar();
+  });
+
+  // Fecha ao trocar breakpoint (se necessário)
+  window.addEventListener('resize', () => {
+    if (window.innerWidth >= 992) closeSidebar();
+  });
+})();
+</script>
+
+
+<style>
+/* ===== Mobile scroll fixes ===== */
+html, body { height: auto; min-height: 100%; overflow-x: hidden; }
+.content-wrapper, .page-wrapper, main.conteudo { min-height: auto; }
+@supports (-webkit-touch-callout: none) {
+  /* iOS momentum scroll */
+  body { -webkit-overflow-scrolling: touch; }
+}
+
+/* Off-canvas: não bloquear toques quando escondida */
+@media (max-width: 991px){
+  .sidebar { pointer-events: none; }           /* escondida = sem eventos */
+  body.sidebar-open .sidebar { pointer-events: auto; }  /* aberta = interativa */
+  /* Garante altura útil baseada no innerHeight (corrige 100vh mobile) */
+  :root { --vh: 1vh; }
+  .page-wrapper { min-height: calc(var(--vh, 1vh) * 100); }
+  /* Evita footer "colar" no conteúdo em telas pequenas */
+  main.conteudo { margin-bottom: 100px !important; }
+}
+</style>
+<script>
+// Define --vh com base no innerHeight para corrigir 100vh em mobile
+(function(){
+  function setVH(){
+    var vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', vh + 'px');
+  }
+  setVH();
+  window.addEventListener('resize', setVH);
+  window.addEventListener('orientationchange', setVH);
+})();
+</script>
+
 </body>
 </html>

@@ -1,0 +1,65 @@
+
+/* PET/EQ Responsividade Unificada — v1
+   Aplica em TODAS as páginas (index, /paginas e /paginas/dimensoes) */
+
+/* Base: permitir rolagem e evitar cortes */
+html, body { min-height: 100%; height: auto; overflow-y: auto; }
+
+/* Evitar alturas/overflows que cortem conteúdo */
+.content-wrapper, .page-wrapper, main, .conteudo {
+  min-height: auto; height: auto; overflow: visible;
+}
+
+/* Espaço para o rodapé não cobrir o fim do conteúdo */
+main, .conteudo { padding-bottom: 110px; }
+
+/* Navbar horizontal branca (sem mexer em estrutura) */
+.navbar-horizontal { background: #fff; border-bottom: 1px solid #eaeaea; }
+.navbar-horizontal .nav-menu { display: flex; gap: 16px; flex-wrap: wrap; }
+@media (max-width: 991px){
+  .navbar-horizontal .nav-menu { display: none; flex-direction: column; gap: 10px; padding: 10px 0; }
+  .navbar-horizontal .nav-menu.open { display: flex; }
+}
+
+/* Sidebar padrão desktop */
+aside.sidebar { width: 270px; }
+@media (min-width: 992px){
+  aside.sidebar { position: sticky; top: 64px; height: calc(100dvh - 64px); overflow-y: auto; padding-bottom: 80px; }
+}
+
+/* Sidebar como gaveta no mobile (sem bloquear toques quando fechada) */
+@media (max-width: 991px){
+  aside.sidebar {
+    position: fixed; left: 0; top: 0; width: 270px; height: 100dvh;
+    transform: translateX(-100%); transition: transform .25s ease;
+    z-index: 100; background: #fff; overflow-y: auto; padding-bottom: 80px;
+    box-shadow: 2px 0 10px rgba(0,0,0,.12); pointer-events: none;
+  }
+  body.sidebar-open aside.sidebar { transform: translateX(0); pointer-events: auto; }
+  /* backdrop */
+  .sidebar-backdrop {
+    position: fixed; inset: 0; background: rgba(0,0,0,.35);
+    z-index: 90; opacity: 0; pointer-events: none; transition: opacity .2s ease;
+  }
+  body.sidebar-open .sidebar-backdrop { opacity: 1; pointer-events: auto; }
+}
+
+/* Cabeçalho: linha única sob "ENGENHARIA QUÍMICA" + FURG alinhado ao fim */
+.header-text .curso-wrap { display: inline-grid; width: max-content; }
+.header-text .curso {
+  display: inline-block; border-bottom: 3px solid #fff; text-decoration: none;
+}
+.header-text .curso::before, .header-text .curso::after { content: none !important; }
+.header-text .furg { display: block; justify-self: end; margin-top: 6px; white-space: nowrap; }
+
+/* Logos do rodapé sem distorção e com quebra quando faltar espaço */
+.footer-logos { display: flex; flex-wrap: wrap; gap: 24px; align-items: center; }
+.footer-logos img { height: 40px; width: auto; object-fit: contain; }
+
+/* Utilidades */
+.hide-mobile { display: block; }
+.show-mobile { display: none; }
+@media (max-width: 768px){
+  .hide-mobile { display: none; }
+  .show-mobile { display: inline-block; }
+}
