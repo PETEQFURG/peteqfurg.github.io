@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+<head>
+<meta name="google-site-verification" content="gRy-EKFiAGmkW8WEWcerAAHtGYaChe6sGAKrfSGPZbY" />
+<!-- Favicons -->
+<link rel="icon" type="image/svg+xml" href="assets/img/erlenmeyer.svg">
+<link rel="alternate icon" type="image/png" sizes="192x192" href="assets/img/favicon-192x192.png">
+<link rel="alternate icon" type="image/png" sizes="48x48" href="assets/img/favicon-48x48.png">
+<link rel="alternate icon" type="image/png" sizes="32x32" href="assets/img/favicon-32x32.png">
+<link rel="alternate icon" type="image/png" sizes="16x16" href="assets/img/favicon-16x16.png">
+<link rel="alternate icon" type="image/png" sizes="512x512" href="assets/img/favicon-512x512.png">
+<link rel="icon" href="assets/img/favicon.ico" type="image/x-icon">
+
+<!-- Manifest PWA -->
+<link rel="manifest" href="assets/manifest.json">
+
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PET Engenharia Química</title>
+<!-- Fonte Lato do Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+
+
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@500;700&amp;display=swap" rel="stylesheet"/><link crossorigin="True" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link rel="stylesheet" href="assets/css/main.css">
+<link rel="stylesheet" href="assets/css/responsive.css">
+
+<style id="hotfix-curso-furg">
+  /* Wrapper encolhe ao conteúdo da linha "ENGENHARIA QUÍMICA" */
+  .header-text .curso-wrap { display: inline-grid; width: max-content; }
+
+  /* ÚNICA linha branca sob "ENGENHARIA QUÍMICA" */
+  .header-text .curso {
+    display: inline-block;
+    border-bottom: 3px solid #fff !important;
+    text-decoration: none !important;
+  }
+  .header-text .curso::before,
+  .header-text .curso::after { content: none !important; }
+
+  /* "FURG" abaixo, alinhado ao fim da mesma largura do wrapper */
+  .header-text .furg {
+    display: block;
+    justify-self: end;
+    margin-top: 6px;
+    white-space: nowrap;
+  }
+</style>
+
+<style id="hotfix-ipad-center-min">
+  /* Centraliza o bloco do cabeçalho sem mexer no layout interno */
+  header .header-content{
+    max-width: 1100px;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-left: 16px;
+    padding-right: 16px;
+    box-sizing: border-box;
+  }
+  @media (min-width: 820px) and (max-width: 1180px){
+    header .header-content{
+      max-width: 980px; /* puxa um pouco mais pro centro no iPad */
+    }
+  }
+</style>
+
+
+<style id="hotfix-scroll-only">
+  /* Liberar rolagem até o fim sem mexer nos menus/cabeçalho */
+  html, body { min-height: 100%; height: auto; overflow-y: auto; }
+  /* Remover alturas/overflows que possam cortar o conteúdo */
+  .content-wrapper, .page-wrapper, main, .conteudo {
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+  }
+  /* Evitar que o rodapé cubra o final do conteúdo */
+  main, .conteudo { padding-bottom: 96px !important; }
+  footer { position: static !important; }
+  /* iOS momentum scroll */
+  @supports (-webkit-touch-callout: none) {
+    body { -webkit-overflow-scrolling: touch; }
+  }
+  /* Não alterar o comportamento dos menus */
+</style>
+
+<style id="hotfix-menu-labels">
+  .btn-label{ margin-left:.5rem; font-size:.875rem; font-weight:600; line-height:1; }
+  /* No desktop, deixa o topo sem texto visível para poupar espaço */
+  @media (min-width:992px){
+    .nav-toggle .btn-label--top{ display:none; }
+  }
+</style>
+
+<script id="hotfix-menu-labels-js">
+document.addEventListener('DOMContentLoaded', function(){
+  function ensureLabel(btn, text, cls){
+    if(!btn) return;
+    // Remove texto direto "solto" (ex.: "Menu") para evitar duplicação
+    Array.from(btn.childNodes).forEach(function(n){
+      if(n.nodeType === Node.TEXT_NODE && n.textContent.trim().length){ n.textContent = ''; }
+    });
+    // Se não existir um label nosso, cria
+    if(!btn.querySelector('.'+cls)){
+      var span = document.createElement('span');
+      span.className = 'btn-label ' + cls;
+      span.textContent = text;
+      btn.appendChild(span);
+    }
+  }
+  var topBtn  = document.querySelector('.nav-toggle');
+  var sideBtn = document.querySelector('.sidebar-toggle');
+  ensureLabel(topBtn,  'Menu superior', 'btn-label--top');
+  ensureLabel(sideBtn, 'Menu lateral',  'btn-label--side');
+  if(topBtn){
+    topBtn.setAttribute('title','Menu superior');
+    topBtn.setAttribute('aria-label','Abrir/fechar menu superior');
+  }
+  if(sideBtn){
+    sideBtn.setAttribute('title','Menu lateral');
+    sideBtn.setAttribute('aria-label','Abrir/fechar menu lateral');
+  }
+});
+</script>
+</head>
+<body>
+<header>
+<div class="header-content">
+<img alt="Logo PET/EQ" class="logo-pet" src="assets/img/logo-peteq-furg.svg"/>
+<div class="header-text">
+<h1>PET/EQ</h1>
+<div class="sub">PROGRAMA DE EDUCAÇÃO TUTORIAL</div>
+<div class="curso-wrap"><div class="curso">ENGENHARIA QUÍMICA</div>
+<div class="furg">FURG</div></div>
+</div>
+<div class="social-icons" style="margin-left: auto; display: flex; gap: 15px;"><a href="https://www.linkedin.com/in/pet-engenharia-quimica-furg" target="_blank"><i class="fab fa-linkedin" style="font-size: 1.4em; color: white;"></i></a><a href="https://facebook.com/peteqfurg" target="_blank"><i class="fab fa-facebook" style="font-size: 1.4em; color: white;"></i></a><a href="https://instagram.com/peteqfurg" target="_blank"><i class="fab fa-instagram" style="font-size: 1.4em; color: white;"></i></a><a href="https://youtube.com/@peteqfurg" target="_blank"><i class="fab fa-youtube" style="font-size: 1.4em; color: white;"></i></a></div></div>
+</header>
+<nav class="navbar-horizontal">
+<div class="nav-container">
+<button class="nav-toggle" aria-label="Abrir/fechar menu" aria-expanded="false">☰</button>
+<ul class="nav-menu">
+<li><a href="index.html">Apresentação</a></li>
+<li><a href="paginas/noticias.html">Notícias</a></li>
+<li><a href="paginas/eventos.html">Eventos</a></li>
+<li><a href="paginas/ingresso.html">Ingresso</a></li>
+<li><a href="paginas/comissoes.html">Comissões</a></li>
+<li><a href="paginas/producao.html">Produções PET/EQ</a></li>
+<li><a href="paginas/downloads.html">Downloads</a></li>
+</ul>
+</div>
+</nav>
+<div class="content-wrapper">
+<div class="page-wrapper">
+<aside class="sidebar">
+<ul class="menu">
+<li class="menu-title">PET/EQ</li>
+</ul>
+<ul class="menu">
+<li class="menu-title">INSTITUCIONAL</li>
+<li><a href="index.html"><i class="fas fa-home"></i> Página Inicial</a></li>
+<li><a href="paginas/equipe.html"><i class="fas fa-users"></i> Equipe PET/EQ</a></li>
+<li><a href="paginas/organograma.html"><i class="fas fa-sitemap"></i> Organograma PET/EQ</a></li>
+</ul>
+<hr class="divisor"/>
+<ul class="menu">
+<li class="menu-title">GESTÃO DO PROGRAMA</li>
+<li><a href="arquivos/Sigpet_homologado_CLAA_2025.pdf" target="_blank"><i class="fas fa-file-alt"></i> Planejamento SIGPET</a></li>
+<li><a href="arquivos/RIC_PET_2024.pdf" target="_blank"><i class="fas fa-clipboard"></i> Relatório Institucional RIC</a></li>
+<li><a href="paginas/cronograma.html"><i class="fas fa-calendar-alt"></i> Cronograma de Atividades</a></li>
+</ul>
+<hr class="divisor"/>
+<ul class="menu">
+<li class="menu-title">DIMENSÕES DO PET</li>
+<li><a href="paginas/dimensoes/dimensao1-ensino.html"><i class="fas fa-chalkboard-teacher"></i> Dimensão 1 – Ensino</a></li>
+<li><a href="paginas/dimensoes/dimensao2-pesquisa.html"><i class="fas fa-flask"></i> Dimensão 2 – Pesquisa</a></li>
+<li><a href="paginas/dimensoes/dimensao3-extensao.html"><i class="fas fa-handshake"></i> Dimensão 3 – Extensão</a></li>
+<li><a href="paginas/dimensoes/dimensao4-inovacao.html"><i class="fas fa-lightbulb"></i> Dimensão 4 – Inovação e Tecnologia</a></li>
+<li><a href="paginas/dimensoes/dimensao5-desenvolvimento.html"><i class="fas fa-user-graduate"></i> Dimensão 5 – Desenvolvimento Pessoal</a></li>
+<li><a href="paginas/dimensoes/dimensao6-avaliacao.html"><i class="fas fa-chart-line"></i> Dimensão 6 – Gestão e Avaliação</a></li>
+</ul>
+<hr class="divisor"/>
+<ul class="menu">
+<li class="menu-title">MEMÓRIA E HISTÓRICO</li>
+<li><a href="paginas/memoria.html"><i class="fas fa-archive"></i> Memória do PET/EQ</a></li>
+<li><a href="paginas/galeria.html"><i class="fas fa-images"></i> Galeria de Fotos e Vídeos</a></li>
+</ul>
+<hr class="divisor"/>
+<ul class="menu">
+<li class="menu-title">AMBIENTES PET/EQ</li>
+<li><a href="https://teams.microsoft.com" target="_blank"><i class="fas fa-users"></i> Teams</a></li>
+<li><a href="https://www.office.com/launch/sharepoint" target="_blank"><i class="fas fa-folder-open"></i> SharePoint</a></li>
+<li><a href="https://onedrive.live.com/" target="_blank"><i class="fas fa-cloud"></i> OneDrive</a></li>
+</ul>
+</aside>
+<div class="sidebar-toggle-wrap"><button class="sidebar-toggle" aria-controls="sidebar" aria-expanded="false"><i class="fas fa-bars"></i> Menu</button></div>
+<main class="conteudo" style="padding: 30px; margin-bottom: 100px;">
+<h1 style="text-align:center; font-family: 'Lato', sans-serif; font-weight: 700; font-size: 2.2em; margin-bottom: 5px;">Conheça o PET Engenharia Química – PET/EQ</h1><div style="max-width: 800px; margin: 0 auto; font-family: 'Lato', sans-serif; font-size: 1.05em; line-height: 1.6; color: #333;"><p style="margin-bottom: 0.5em;">O Programa de Educação Tutorial da Engenharia Química (PET/EQ) da FURG é composto por estudantes de graduação orientados por um professor tutor, que desenvolvem atividades integradas de ensino, pesquisa e extensão. Alinhado às diretrizes do MEC, o grupo valoriza o protagonismo estudantil, a horizontalidade e a formação ampla de seus integrantes.</p><p style="margin-bottom: 0.5em;">A estrutura do grupo é representada simbolicamente pela união de hexágonos, sugerindo cooperação, conexão e complementaridade entre as ações. Essa representação gráfica reflete a organização do PET/EQ em seis dimensões, inspiradas na indissociabilidade entre ensino, pesquisa e extensão, e também na necessidade de desenvolver habilidades de gestão, planejamento e avaliação.</p><p style="margin-bottom: 0.5em;">Cada dimensão contempla diferentes aspectos da atuação do grupo, promovendo o desenvolvimento acadêmico, técnico e humano dos petianos. Para conhecer melhor essa estrutura, acesse a página do <a href="paginas/organograma.html">Organograma do PET/EQ</a>.</p><p style="margin-bottom: 0.5em;">Para conhecer os demais grupos PET da FURG, acesse a <a href="https://portalpet.furg.br/grupos-pet-da-furg" target="blank">página dos grupos PET da FURG</a>.</p></div>
+<div class="coluna-hexagonos">
+<div class="dimensoes-svg-container">
+<div class="svg-container">
+<svg viewbox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg">
+<image height="1000" href="assets/img/dimensoes2.svg" width="1000" x="0" y="0"/>
+<a href="paginas/dimensoes/dimensao1-ensino.html"><rect fill="transparent" height="155" width="180" x="410" y="60"></rect></a>
+<a href="paginas/dimensoes/dimensao2-pesquisa.html"><rect fill="transparent" height="155" width="180" x="710" y="235"></rect></a>
+<a href="paginas/dimensoes/dimensao3-extensao.html"><rect fill="transparent" height="155" width="180" x="710" y="575"></rect></a>
+<a href="paginas/dimensoes/dimensao4-inovacao.html"><rect fill="transparent" height="155" width="180" x="410" y="765"></rect></a>
+<a href="paginas/dimensoes/dimensao5-desenvolvimento.html"><rect fill="transparent" height="155" width="180" x="110" y="575"></rect></a>
+<a href="paginas/dimensoes/dimensao6-avaliacao.html"><rect fill="transparent" height="155" width="180" x="110" y="235"></rect></a>
+<a href="index.html"><rect fill="transparent" height="155" width="180" x="410" y="500"></rect></a>
+</svg>
+</div>
+</div>
+</div>
+<!-- CONTAINER COM FILTROS + CALENDÁRIO + EVENTOS DO DIA JUNTOS -->
+<div style="font-size:0.85rem; color:#555; margin-top:30px; text-align:center; font-style:italic; display:flex; align-items:center; justify-content:center; gap:6px;"><i class="fas fa-info-circle" style="color:#0078d4;"></i><span>Em todo o site, o acesso aos links do Teams, SharePoint e OneDrive é restrito a usuários com conta institucional da FURG.</span></div></main>
+</div>
+</div>
+<footer style="background-color: #ffffff; text-align: center; box-shadow: 0 -2px 5px rgba(0,0,0,0.1)"><div style="display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 10px 20px; flex-wrap: wrap; font-family: 'Lato', sans-serif; font-size: 0.9em;"><div class="footer-logos" style="display: flex; gap: 40px; align-items: center;"><a href="https://portal.mec.gov.br/pet" target="_blank"><img alt="Logo PET" loading="lazy" src="assets/img/logo-pet-mec.gif" style="height: 40px;"/></a><a href="https://furg.br" target="_blank"><img alt="Logo FURG" loading="lazy" src="assets/img/logo-furg.png" style="height: 40px;"/></a><a href="https://prograd.furg.br" target="_blank"><img alt="Logo PROGRAD" loading="lazy" src="assets/img/logo-prograd.png" style="height: 40px;"/></a><a href="https://eqa.furg.br/" target="_blank"><img alt="Logo EQA" loading="lazy" src="assets/img/logo-eqa.png" style="height: 40px;"/></a></div><div style="display: flex; flex-direction: column; gap: 5px; text-align: right;"><div>📧 E-mail do tutor: <a href="mailto:mauriciogarim@gmail.com">mauriciogarim@gmail.com</a></div><div>📧 E-mail da liderança: <a href="mailto:peteqlideranca@gmail.com">peteqlideranca@gmail.com</a></div></div></div></footer>
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const coresPorDimensao = {
+    1: "#1f77b4", 2: "#ff7f0e", 3: "#2ca02c", 4: "#d62728", 5: "#9467bd", 6: "#8c564b"
+  };
+
+  const eventosOriginais = [{"title": "Reunião de Planejamento", "date": "2025-08-04", "description": "Planejamento com novos bolsistas.", "dimensao": 1}, {"title": "Oficina de Excel", "date": "2025-08-05", "description": "Capacitação de planilhas para o grupo.", "dimensao": 5}, {"title": "Apresentação de Projeto", "date": "2025-08-06", "description": "Apresentação para comunidade externa.", "dimensao": 3}, {"title": "Planejamento da Avaliação", "date": "2025-08-07", "description": "Definir critérios de acompanhamento.", "dimensao": 6}, {"title": "Reunião de Inovação", "date": "2025-08-08", "description": "Novas ferramentas tecnológicas.", "dimensao": 4}, {"title": "Discussão de Pesquisa", "date": "2025-08-09", "description": "Resultados parciais do projeto.", "dimensao": 2}];
+
+  function formatarDataPorExtenso(dataStr) {
+    const meses = ['janeiro','fevereiro','março','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro'];
+    const partes = dataStr.split("-");
+    const ano = partes[0];
+    const mes = parseInt(partes[1], 10) - 1;
+    const dia = parseInt(partes[2], 10);
+    return `${dia} de ${meses[mes].charAt(0).toUpperCase() + meses[mes].slice(1)} de ${ano}`;
+  }
+
+  let todosEventos = eventosOriginais.map(e => {
+    return {
+      title: e.title,
+      start: e.date,
+      description: e.description,
+      backgroundColor: coresPorDimensao[e.dimensao],
+      borderColor: coresPorDimensao[e.dimensao],
+      extendedProps: { dimensao: e.dimensao }
+    };
+  });
+
+  function filtrarEventos() {
+    const selecionadas = Array.from(document.querySelectorAll('#filtros input:checked'))
+                              .map(cb => parseInt(cb.value));
+    return todosEventos.filter(e => selecionadas.includes(e.extendedProps.dimensao));
+  }
+
+  function atualizarEventosDoDia(dateStr) {
+    const eventosDoDia = eventosOriginais.filter(e => e.date === dateStr);
+    const container = document.getElementById('eventos-do-dia');
+    const dataFormatada = formatarDataPorExtenso(dateStr);
+    if (eventosDoDia.length > 0) {
+      container.innerHTML = `<h2>Evento(s) do dia</h2>
+        <p><strong>${dataFormatada}</strong></p>` + eventosDoDia.map(e =>
+          `<p><strong>${e.title}</strong>: ${e.description}</p>`
+        ).join('');
+    } else {
+      container.innerHTML = `<h2>Evento(s) do dia</h2><p><strong>${dataFormatada}</strong></p><p>Nenhum evento.</p>`;
+    }
+  }
+
+  const calendarEl = document.getElementById('calendario');
+  const calendar = new FullCalendar.Calendar(calendarEl, {
+    initialView: 'dayGridMonth',
+    locale: 'pt-br',
+    headerToolbar: {
+      left: 'prev,next today',
+      center: 'title',
+      right: 'dayGridMonth,timeGridWeek,listMonth'
+    },
+    buttonText: {
+      today: 'Hoje', month: 'Mês', week: 'Semana', day: 'Dia', list: 'Lista'
+    },
+    events: filtrarEventos(),
+    dateClick: function(info) {
+      atualizarEventosDoDia(info.dateStr);
+    },
+    eventClick: function(info) {
+      const date = info.event.start;
+      const isoDate = date.toISOString().split("T")[0];
+      atualizarEventosDoDia(isoDate);
+    }
+  });
+
+  calendar.render();
+
+  document.querySelectorAll('#filtros input').forEach(cb => {
+    cb.addEventListener('change', () => {
+      calendar.removeAllEvents();
+      calendar.addEventSource(filtrarEventos());
+    });
+  });
+});
+</script>
+
+<style>
+/* ====== Responsividade mínima (não intrusiva) ====== */
+
+/* Imagens e SVGs fluidos */
+img, svg, video { max-width: 100%; height: auto; }
+
+/* Container padrão */
+.content-wrapper { width: 100%; }
+.page-wrapper {
+  display: grid;
+  grid-template-columns: 270px 1fr;
+  gap: 24px;
+}
+
+/* Botões ocultos no desktop */
+.nav-toggle, .sidebar-toggle-wrap { display: none; }
+
+/* Top navbar layout */
+.navbar-horizontal {
+  position: sticky; top: 0; z-index: 50;
+}
+.navbar-horizontal .nav-container {
+  display: flex; align-items: center; gap: 12px;
+}
+.navbar-horizontal .nav-menu { display:flex; flex-wrap:wrap; gap:16px; }
+
+/* Sidebar padrão desktop já vem no CSS do projeto */
+
+/* ===== Breakpoints ===== */
+@media (max-width: 1199px){
+  .page-wrapper { grid-template-columns: 240px 1fr; }
+}
+
+/* Tablet e celular */
+@media (max-width: 991px){
+  /* Header empilha */
+  header .header-content {
+    display: flex; flex-wrap: wrap; gap: 10px;
+  }
+  .logo-pet { width: 120px; height: auto; }
+  .header-text { flex: 1 1 240px; }
+  .social-icons { order: 3; width: 100%; justify-content: center; margin: 8px 0 0 !important; }
+
+  /* Top nav: hamburger */
+  .nav-toggle { display: inline-flex; align-items: center; justify-content: center;
+    background: #084F6A; color: #fff; border: 0; padding: 8px 12px; border-radius: 8px; }
+  .navbar-horizontal .nav-container { justify-content: space-between; }
+  .navbar-horizontal .nav-menu { display: none; flex-direction: column; gap: 10px; padding: 10px 0; }
+  .navbar-horizontal .nav-menu.open { display: flex; }
+
+  /* Layout: sidebar vira gaveta */
+  .page-wrapper {
+    grid-template-columns: 1fr;
+  }
+  .sidebar-toggle-wrap { display: block; padding: 10px 16px; }
+  .sidebar-toggle {
+    background: #084F6A; color: #fff; border: 0; padding: 8px 12px; border-radius: 8px;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+
+  .sidebar {
+    position: fixed; left: 0; top: 0; bottom: 0; width: 270px;
+    transform: translateX(-100%);
+    transition: transform .25s ease;
+    z-index: 100; background: #fff; overflow-y: auto; padding-bottom: 80px;
+    box-shadow: 2px 0 10px rgba(0,0,0,.1);
+  }
+  body.sidebar-open .sidebar { transform: translateX(0); }
+  /* Backdrop quando gaveta aberta */
+  .sidebar-backdrop {
+    position: fixed; inset: 0; background: rgba(0,0,0,.35);
+    z-index: 90; opacity: 0; pointer-events: none; transition: opacity .2s ease;
+  }
+  body.sidebar-open .sidebar-backdrop { opacity: 1; pointer-events: auto; }
+
+  /* Conteúdo com padding menor */
+  main.conteudo { padding: 16px !important; margin-bottom: 80px !important; }
+
+  /* Hexágonos: garante que o SVG reduza corretamente */
+  .dimensoes-svg-container .svg-container svg { width: 100%; height: auto; }
+}
+
+/* Celular pequeno */
+@media (max-width: 575px){
+  h1 { font-size: 1.6rem !important; }
+  .footer-logos img { height: 32px !important; }
+}
+</style>
+
+<script>
+// ====== Interações responsivas ======
+(function(){
+  // Menu hambúrguer (top nav)
+  const navToggle = document.querySelector('.nav-toggle');
+  const navMenu = document.querySelector('.navbar-horizontal .nav-menu');
+  if (navToggle && navMenu){
+    navToggle.addEventListener('click', () => {
+      const opened = navMenu.classList.toggle('open');
+      navToggle.setAttribute('aria-expanded', opened ? 'true' : 'false');
+    });
+  }
+
+  // Sidebar gaveta no mobile
+  const body = document.body;
+  const sideBtn = document.querySelector('.sidebar-toggle');
+  const sidebar = document.querySelector('.sidebar');
+  let backdrop = null;
+
+  function openSidebar(){
+    if (!backdrop){
+      backdrop = document.createElement('div');
+      backdrop.className = 'sidebar-backdrop';
+      backdrop.addEventListener('click', closeSidebar);
+      document.body.appendChild(backdrop);
+    }
+    body.classList.add('sidebar-open');
+    sideBtn && sideBtn.setAttribute('aria-expanded', 'true');
+  }
+  function closeSidebar(){
+    body.classList.remove('sidebar-open');
+    sideBtn && sideBtn.setAttribute('aria-expanded', 'false');
+  }
+
+  sideBtn && sideBtn.addEventListener('click', () => {
+    if (body.classList.contains('sidebar-open')) closeSidebar(); else openSidebar();
+  });
+
+  // Fecha com ESC
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && body.classList.contains('sidebar-open')) closeSidebar();
+  });
+
+  // Fecha ao trocar breakpoint (se necessário)
+  window.addEventListener('resize', () => {
+    if (window.innerWidth >= 992) closeSidebar();
+  });
+})();
+</script>
+
+
+<style>
+/* ===== Mobile scroll fixes ===== */
+html, body { height: auto; min-height: 100%; overflow-x: hidden; }
+.content-wrapper, .page-wrapper, main.conteudo { min-height: auto; }
+@supports (-webkit-touch-callout: none) {
+  /* iOS momentum scroll */
+  body { -webkit-overflow-scrolling: touch; }
+}
+
+/* Off-canvas: não bloquear toques quando escondida */
+@media (max-width: 991px){
+  .sidebar { pointer-events: none; }           /* escondida = sem eventos */
+  body.sidebar-open .sidebar { pointer-events: auto; }  /* aberta = interativa */
+  /* Garante altura útil baseada no innerHeight (corrige 100vh mobile) */
+  :root { --vh: 1vh; }
+  .page-wrapper { min-height: calc(var(--vh, 1vh) * 100); }
+  /* Evita footer "colar" no conteúdo em telas pequenas */
+  main.conteudo { margin-bottom: 100px !important; }
+}
+</style>
+<script>
+// Define --vh com base no innerHeight para corrigir 100vh em mobile
+(function(){
+  function setVH(){
+    var vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', vh + 'px');
+  }
+  setVH();
+  window.addEventListener('resize', setVH);
+  window.addEventListener('orientationchange', setVH);
+})();
+</script>
+
+</body>
+</html>

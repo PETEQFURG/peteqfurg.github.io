@@ -1,3 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Apresentação — PET Engenharia Química</title>
 
-<link rel="stylesheet" href="../assets/css/main.css">
-<link rel="stylesheet" href="../assets/css/responsive.css">
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="True"/>
+
+  <!-- Project CSS -->
+  <link rel="stylesheet" href="../assets/css/main.css"/>
+  <link rel="stylesheet" href="../assets/css/responsive.css"/>
+
+  <!-- Canonical / OG -->
+  <link rel="canonical" href="https://peteqfurg.github.io/paginas/apresentacao.html">
+  <meta property="og:title" content="Apresentação — PET/EQ FURG">
+  <meta property="og:description" content="Conheça a missão, estrutura e áreas de atuação do PET Engenharia Química da FURG.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://peteqfurg.github.io/paginas/apresentacao.html">
+  <meta property="og:image" content="https://peteqfurg.github.io/assets/img/social/og-peteq.jpg">
+
+  <!-- Carousel styles -->
+  <style>
+    .apres-carousel {
+      position: relative;
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto 24px auto;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,.12);
+      background: #000;
+    }
+    .apres-carousel__viewport { width: 100%; aspect-ratio: 16/9; overflow: hidden; }
+    .apres-carousel__track { display: flex; width: 100%; height: 100%; transition: transform .5s ease; }
+    .apres-carousel__slide { min-width: 100%; height: 100%; }
+    .apres-carousel__slide img { width: 100%; height: 100%; object-fit: cover; }
+
+    .apres-carousel__control {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      background: rgba(0,0,0,.45); border: 0; color: #fff;
+      padding: 10px 12px; border-radius: 999px; cursor: pointer; z-index: 5;
+    }
+    .apres-carousel__control:hover { background: rgba(0,0,0,.6); }
+    .apres-carousel__control--prev { left: 12px; }
+    .apres-carousel__control--next { right: 12px; }
+
+    .apres-carousel__dots {
+      position: absolute; left: 0; right: 0; bottom: 10px;
+      display: flex; justify-content: center; gap: 8px; z-index: 6;
+    }
+    .apres-carousel__dot {
+      width: 10px; height: 10px; border-radius: 50%;
+      background: rgba(255,255,255,.55); border: 0; cursor: pointer;
+    }
+    .apres-carousel__dot[aria-current="true"] { background: #fff; box-shadow: 0 0 0 2px rgba(0,0,0,.25); }
+  </style>
+</head>
+<body>
+  <div class="sidebar-backdrop"></div>
+
+  <!-- Cabeçalho e navbar copiados do padrão -->
+  <header>
+    <div class="header-content">
+      <img class="logo-pet" src="../assets/img/logo-peteq-furg.svg" alt="Logo PET/EQ"/>
+      <div class="header-text">
+        <h1>PET/EQ</h1>
+        <div class="sub">PROGRAMA DE EDUCAÇÃO TUTORIAL</div>
+        <div class="curso-wrap"><div class="curso">ENGENHARIA QUÍMICA</div><div class="furg">FURG</div></div>
+      </div>
+    </div>
+  </header>
+
+  <nav class="navbar-horizontal">
+    <div class="nav-container">
+      <button class="nav-toggle" aria-label="Abrir/fechar menu" aria-expanded="false">☰</button>
+      <ul class="nav-menu">
+        <li><a href="../index.html">Início</a></li>
+        <li><a href="apresentacao.html" aria-current="page">Apresentação</a></li>
+        <li><a href="noticias.html">Notícias</a></li>
+        <li><a href="eventos.html">Eventos</a></li>
+        <li><a href="ingresso.html">Ingresso</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="content-wrapper">
+    <div class="page-wrapper">
+      <aside class="sidebar">
+        <!-- sidebar padrão -->
+      </aside>
+
+      <main class="conteudo" style="padding: 30px; margin-bottom: 100px;">
+        <!-- ===== CARROSSEL ===== -->
+        <section class="apres-carousel" aria-label="Galeria de imagens do PET/EQ">
+          <div class="apres-carousel__viewport" id="apresViewport">
+            <div class="apres-carousel__track" id="apresTrack">
+              <figure class="apres-carousel__slide"><img src="../assets/img/apresentacao/1.jpg" alt="Slide 1"></figure>
+              <figure class="apres-carousel__slide"><img src="../assets/img/apresentacao/2.jpg" alt="Slide 2"></figure>
+              <figure class="apres-carousel__slide"><img src="../assets/img/apresentacao/3.jpg" alt="Slide 3"></figure>
+              <figure class="apres-carousel__slide"><img src="../assets/img/apresentacao/4.jpg" alt="Slide 4"></figure>
+            </div>
+          </div>
+          <button class="apres-carousel__control apres-carousel__control--prev" id="apresPrev"><i class="fas fa-chevron-left"></i></button>
+          <button class="apres-carousel__control apres-carousel__control--next" id="apresNext"><i class="fas fa-chevron-right"></i></button>
+          <div class="apres-carousel__dots" id="apresDots"></div>
+        </section>
+
+        <!-- ===== TEXTO DE APRESENTAÇÃO ===== -->
+        <h1 style="text-align:center;">Apresentação do PET Engenharia Química – PET/EQ</h1>
+        <p>O Programa de Educação Tutorial da Engenharia Química (PET/EQ) da FURG é composto por estudantes...</p>
+      </main>
+    </div>
+  </div>
+
+  <!-- Script do carrossel -->
+  <script>
+  (function(){
+    const track = document.getElementById('apresTrack');
+    const prevBtn = document.getElementById('apresPrev');
+    const nextBtn = document.getElementById('apresNext');
+    const dotsWrap = document.getElementById('apresDots');
+    const slides = Array.from(track.children);
+    const total = slides.length;
+    let index = 0, timer = null, INTERVAL = 5000;
+
+    slides.forEach((_, i) => {
+      const dot = document.createElement('button');
+      dot.className = 'apres-carousel__dot';
+      dot.addEventListener('click', () => goTo(i));
+      dotsWrap.appendChild(dot);
+    });
+
+    function update(){
+      track.style.transform = `translateX(-${index*100}%)`;
+      Array.from(dotsWrap.children).forEach((d,i)=>d.setAttribute('aria-current', i===index));
+    }
+    function goTo(i){ index=(i+total)%total; update(); restart(); }
+    function next(){ goTo(index+1); }
+    function prev(){ goTo(index-1); }
+    function start(){ timer=setInterval(next, INTERVAL); }
+    function stop(){ clearInterval(timer); timer=null; }
+    function restart(){ stop(); start(); }
+
+    prevBtn.addEventListener('click', prev);
+    nextBtn.addEventListener('click', next);
+
+    update(); start();
+  })();
+  </script>
+</body>
+</html>
