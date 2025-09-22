@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dimensão 1 – Ensino | PET/EQ</title>
+
+  <!-- Favicon e ícones -->
+  <link rel="icon" href="../assets/img/erlenmeyer.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
+  <!-- Fontes -->
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet"/>
+
+  <!-- Estilos principais -->
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <link rel="stylesheet" href="../assets/css/responsive.css">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Lato', sans-serif;
+      background-color: #f4f4f4;
+      color: #222;
+    }
+
+    header {
+      background-color: #084F6A;
+      padding: 1rem;
+      color: white;
+    }
+
+    .header-content {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .header-text h1 {
+      margin: 0;
+      font-size: 1.8em;
+    }
+
+    .header-text .sub {
+      font-size: 0.9em;
+    }
+
+    .curso-wrap {
+      display: flex;
+      gap: 1rem;
+      font-size: 0.95em;
+    }
+
+    nav.navbar-horizontal {
+      background-color: #0b2e52;
+      padding: 0.5rem 1rem;
+    }
+
+    nav.navbar-horizontal .nav-menu {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav.navbar-horizontal .nav-menu li a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .container {
+      display: flex;
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+      gap: 2rem;
+    }
+
+    aside.sidebar {
+      flex: 0 0 270px;
+      background-color: #fff;
+      padding: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+      height: fit-content;
+    }
+
+    aside.sidebar h3 {
+      margin-top: 0;
+      font-size: 1.1rem;
+      color: #084F6A;
+    }
+
+    aside.sidebar ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    aside.sidebar ul li {
+      margin-bottom: 0.5rem;
+    }
+
+    aside.sidebar ul li a {
+      text-decoration: none;
+      color: #333;
+    }
+
+    main.content {
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      flex: 1;
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.06);
+    }
+
+    main.content h2 {
+      color: #0b2e52;
+      margin-top: 0;
+    }
+
+    footer {
+      background-color: #084F6A;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+      margin-top: 3rem;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
+
+      aside.sidebar {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="header-content">
+      <div class="header-text">
+        <h1>PET/EQ</h1>
+        <div class="sub">PROGRAMA DE EDUCAÇÃO TUTORIAL</div>
+        <div class="curso-wrap"><div class="curso">ENGENHARIA QUÍMICA</div><div class="furg">FURG</div></div>
+      </div>
+      <div class="social-icons" style="display: flex; gap: 15px;">
+        <a href="https://www.linkedin.com/in/pet-engenharia-quimica-furg" target="_blank"><i class="fab fa-linkedin" style="color: white;"></i></a>
+        <a href="https://facebook.com/peteqfurg" target="_blank"><i class="fab fa-facebook" style="color: white;"></i></a>
+        <a href="https://instagram.com/peteqfurg" target="_blank"><i class="fab fa-instagram" style="color: white;"></i></a>
+        <a href="https://youtube.com/@peteqfurg" target="_blank"><i class="fab fa-youtube" style="color: white;"></i></a>
+      </div>
+    </div>
+  </header>
+
+  <nav class="navbar-horizontal">
+    <ul class="nav-menu">
+      <li><a href="../apresentacao.html">Apresentação</a></li>
+      <li><a href="../noticias.html">Notícias</a></li>
+      <li><a href="../eventos.html">Eventos</a></li>
+      <li><a href="../ingresso.html">Ingresso</a></li>
+      <li><a href="../egressos.html">Egressos</a></li>
+      <li><a href="../comissoes.html">Comissões</a></li>
+      <li><a href="../producao.html">Produções PET/EQ</a></li>
+      <li><a href="../downloads.html">Downloads</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <aside class="sidebar">
+      <h3>Dimensões</h3>
+      <ul>
+        <li><a href="#">1. Ensino</a></li>
+        <li><a href="#">2. Pesquisa</a></li>
+        <li><a href="#">3. Extensão</a></li>
+        <li><a href="#">4. Inovação</a></li>
+        <li><a href="#">5. Desenvolvimento Pessoal</a></li>
+        <li><a href="#">6. Gestão e Avaliação</a></li>
+        <li style="margin-top: 1em;"><strong>Acesso rápido</strong></li>
+        <li style="margin-left: 1em;"><a href="#">Ambiente do Tutor</a></li>
+        <li style="margin-left: 1em;"><a href="#">Ambiente da Liderança</a></li>
+      </ul>
+    </aside>
+
+    <main class="content">
+      <h2>Dimensão 1 – Ensino</h2>
+      <p>
+        Esta dimensão tem como foco as atividades voltadas ao aprimoramento da formação acadêmica dos petianos. Envolve a realização de grupos de estudos, oficinas, tutorias, capacitações e outras ações que promovam a troca de saberes entre os membros do grupo e a comunidade acadêmica.
+      </p>
+      <p>
+        As ações da Dimensão Ensino visam desenvolver habilidades técnicas e cognitivas dos integrantes do PET/EQ, incentivando a interdisciplinaridade e a integração com a graduação. Além disso, propiciam um espaço de aprendizagem colaborativa e contínua.
+      </p>
+    </main>
+  </div>
+
+  <footer>
+    © PET Engenharia Química – FURG
+  </footer>
+</body>
+</html>

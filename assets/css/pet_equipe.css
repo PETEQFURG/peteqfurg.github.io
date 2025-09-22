@@ -1,0 +1,92 @@
+/* === Equipe PET/EQ — layout em 3 colunas fixas === */
+.pet-equipe {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 24px;
+}
+
+/* Card em grid: linha 1 -> foto + nome; linha 2 -> função; linha 3 -> ícone de email */
+.pet-equipe .membro {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,.12);
+  padding: 14px 18px;
+  display: grid;
+  grid-template-columns: 72px 1fr;
+  grid-template-rows: auto auto auto;
+  column-gap: 14px;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.pet-equipe .membro:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,.12);
+}
+
+/* Foto */
+.pet-equipe .membro img {
+  grid-column: 1;
+  grid-row: 1;
+  width: 64px;
+  height: 64px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid #236489;
+  align-self: center;
+}
+
+/* Nome ao lado da foto, centralizado verticalmente */
+.pet-equipe .membro h3 {
+  grid-column: 2;
+  grid-row: 1;
+  margin: 0;
+  font-size: 1rem;
+  color: #084F6A;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  height: 64px;
+}
+
+/* Função logo abaixo do nome */
+.pet-equipe .membro .funcao {
+  grid-column: 2;
+  grid-row: 2;
+  margin-top: 2px;
+  font-size: 0.9rem;
+  font-style: italic;
+  color: #555;
+}
+
+/* Ícone de email abaixo da foto */
+.pet-equipe .membro .email-icon {
+  grid-column: 1;
+  grid-row: 3;
+  justify-self: center;
+  margin-top: 6px;
+}
+
+.pet-equipe .membro .email-icon a {
+  color: #236489;     /* azul médio (mesma borda da foto) */
+  font-size: 1.2rem;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.pet-equipe .membro .email-icon a:hover {
+  color: #084F6A;     /* azul mais escuro, igual ao nome */
+}
+
+/* Responsividade da grade */
+@media (max-width: 992px) {
+  .pet-equipe { grid-template-columns: repeat(2, minmax(0,1fr)); }
+}
+@media (max-width: 576px) {
+  .pet-equipe { grid-template-columns: 1fr; }
+}
+
+/* Evita botão de menu no conteúdo em telas largas */
+@media (min-width: 992px) {
+  .sidebar-toggle-wrap { display: none !important; }
+}

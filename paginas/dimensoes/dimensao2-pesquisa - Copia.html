@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Dimensão 2 – Pesquisa | PET/EQ</title>
+
+  <!-- Fontes e ícones -->
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+
+  <!-- CSS principal -->
+  <link href="../../assets/css/main.css" rel="stylesheet"/>
+  <link href="../../assets/css/responsive.css" rel="stylesheet"/>
+  <link href="../../assets/css/pet-responsive.css" rel="stylesheet"/>
+<style>
+  /* Esconde o botão da sidebar no desktop */
+  @media (min-width: 992px){
+    .sidebar-toggle-wrap { display: none !important; }
+  }
+</style>
+  <!-- FullCalendar -->
+  <link rel="stylesheet" href="../../assets/js/fullcalendar/main.css"/>
+</head>
+<body>
+<div class="sidebar-backdrop"></div>
+
+<!-- Cabeçalho -->
+<header>
+  <div class="header-content">
+    <img alt="Logo PET/EQ" class="logo-pet" src="../../assets/img/logo-peteq-furg.svg"/>
+    <div class="header-text">
+      <h1>PET/EQ</h1>
+      <div class="sub">PROGRAMA DE EDUCAÇÃO TUTORIAL</div>
+      <div class="curso-wrap">
+        <div class="curso">ENGENHARIA QUÍMICA</div>
+        <div class="furg">FURG</div>
+      </div>
+    </div>
+    <div class="social-icons" style="margin-left:auto;display:flex;gap:15px;">
+      <a href="https://www.linkedin.com/in/pet-engenharia-quimica-furg" target="_blank"><i class="fab fa-linkedin"></i></a>
+      <a href="https://facebook.com/peteqfurg" target="_blank"><i class="fab fa-facebook"></i></a>
+      <a href="https://instagram.com/peteqfurg" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://youtube.com/@peteqfurg" target="_blank"><i class="fab fa-youtube"></i></a>
+    </div>
+  </div>
+</header>
+
+<!-- Navbar horizontal -->
+<nav class="navbar-horizontal">
+  <div class="nav-container">
+    <button class="nav-toggle" aria-expanded="false" aria-label="Abrir/fechar menu">☰</button>
+    <ul class="nav-menu">
+      <li><a href="../../index.html">Apresentação</a></li>
+      <li><a href="../noticias.html">Notícias</a></li>
+      <li><a href="../eventos.html">Eventos</a></li>
+      <li><a href="../ingresso.html">Ingresso</a></li>
+      <li><a href="../egressos.html">Egressos</a></li>
+      <li><a href="../comissoes.html">Comissões</a></li>
+      <li><a href="../producao.html">Produções PET/EQ</a></li>
+      <li><a href="../downloads.html">Downloads</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="content-wrapper">
+  <div class="page-wrapper">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <ul class="menu">
+        <li class="menu-title">PET/EQ</li>
+      </ul>
+
+      <ul class="menu">
+        <li class="menu-title">INSTITUCIONAL</li>
+        <li><a href="../../index.html"><i class="fas fa-home"></i> Página Inicial</a></li>
+        <li><a href="../equipe.html"><i class="fas fa-users"></i> Equipe PET/EQ</a></li>
+        <li><a href="../organograma.html"><i class="fas fa-sitemap"></i> Organograma PET/EQ</a></li>
+      </ul>
+      <hr class="divisor"/>
+
+      <ul class="menu">
+        <li class="menu-title">DIMENSÕES DO PET</li>
+        <li><a href="dimensao1-ensino.html"><i class="fas fa-chalkboard-teacher"></i> Dimensão 1 – Ensino</a></li>
+        <li><a class="active" href="dimensao2-pesquisa.html"><i class="fas fa-flask"></i> Dimensão 2 – Pesquisa</a></li>
+        <li><a href="dimensao3-extensao.html"><i class="fas fa-handshake"></i> Dimensão 3 – Extensão</a></li>
+        <li><a href="dimensao4-inovacao.html"><i class="fas fa-lightbulb"></i> Dimensão 4 – Inovação e Tecnologia</a></li>
+        <li><a href="dimensao5-desenvolvimento.html"><i class="fas fa-user-graduate"></i> Dimensão 5 – Desenvolvimento Pessoal</a></li>
+        <li><a href="dimensao6-avaliacao.html"><i class="fas fa-chart-line"></i> Dimensão 6 – Gestão e Avaliação</a></li>
+        <li style="margin-left:1rem;"><a href="../ambiente_tutor.html">↳ Ambiente do Tutor</a></li>
+        <li style="margin-left:1rem;"><a href="../ambiente_lideranca.html">↳ Ambiente da Liderança</a></li>
+      </ul>
+      <hr class="divisor"/>
+
+      <ul class="menu">
+        <li class="menu-title">MEMÓRIA E HISTÓRICO</li>
+        <li><a href="../egressos.html"><i class="fas fa-user-tie"></i> Egressos do PET/EQ</a></li>
+        <li><a href="../memoria.html"><i class="fas fa-archive"></i> Memória do PET/EQ</a></li>
+        <li><a href="../galeria.html"><i class="fas fa-images"></i> Galeria</a></li>
+      </ul>
+      <hr class="divisor"/>
+
+      <ul class="menu">
+        <li class="menu-title">AMBIENTES PET/EQ</li>
+        <li><a href="https://teams.microsoft.com" target="_blank"><i class="fas fa-users"></i> Teams</a></li>
+        <li><a href="https://www.office.com/launch/sharepoint" target="_blank"><i class="fas fa-folder-open"></i> SharePoint</a></li>
+        <li><a href="https://onedrive.live.com/" target="_blank"><i class="fas fa-cloud"></i> OneDrive</a></li>
+      </ul>
+    </aside>
+<div class="sidebar-toggle-wrap"><button aria-controls="sidebar" aria-expanded="false" class="sidebar-toggle"><i class="fas fa-bars"></i> Menu</button></div>
+<main class="conteudo" style="padding: 30px; margin-bottom: 100px;">
+<h1 style="text-align:center; font-family: 'Exo 2', sans-serif; font-weight: 700; font-size: 2.2em;color:#003366; margin-bottom: 5px;">Dimensão 2 – Pesquisa</h1>
+<hr class="divisor"/>
+<p style="font-size: 1.1em; max-width: 800px; margin: 0 auto;">A pesquisa em nível de iniciação científica é um dos pilares da filosofia do PET, sendo fundamental para a formação acadêmica e profissional dos integrantes. Para o ano de 2025, o grupo PET/EQ planeja estruturar e conduzir um projeto de pesquisa, com o objetivo de fomentar a autonomia e a colaboração entre seus membros. Essa iniciativa permitirá que todos os petianos tenham acesso a uma experiência de pesquisa enriquecedora, fortalecendo a identidade do grupo como um espaço ativo de produção de conhecimento na área de Engenharia Química.</p>
+    <!-- Botão da sidebar no mobile -->
+    <div class="sidebar-toggle-wrap">
+      <button class="sidebar-toggle" aria-controls="sidebar" aria-expanded="false">
+        <i class="fas fa-bars"></i> Menu
+      </button>
+    </div>
+
+    
+    </main>
+  </div>
+</div>
+
+<!-- Rodapé -->
+<footer style="background-color: #ffffff; text-align: center; box-shadow: 0 -2px 5px rgba(0,0,0,0.1)"><div style="display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 10px 20px; flex-wrap: wrap; font-family: 'Lato', sans-serif; font-size: 0.9em;"><div class="footer-logos" style="display: flex; gap: 40px; align-items: center;"><a href="https://www.gov.br/mec/pt-br/pet" target="_blank"><img alt="Logo PET" loading="lazy" src="../../assets/img/logo-pet-mec.gif" style="height: 40px;"/></a><a href="https://furg.br" target="_blank"><img alt="Logo FURG" loading="lazy" src="../../assets/img/logo-furg.png" style="height: 40px;"/></a><a href="https://prograd.furg.br" target="_blank"><img alt="Logo PROGRAD" loading="lazy" src="../../assets/img/logo-prograd.png" style="height: 40px;"/></a><a href="https://eqa.furg.br/" target="_blank"><img alt="Logo EQA" loading="lazy" src="../../assets/img/logo-eqa.png" style="height: 40px;"/></a></div><div style="display: flex; flex-direction: column; gap: 5px; text-align: right;"><div>📧 E-mail do tutor: <a href="mailto:mauriciogarim@gmail.com">mauriciogarim@gmail.com</a></div><div>📧 E-mail da liderança: <a href="mailto:peteqlideranca@gmail.com">peteqlideranca@gmail.com</a></div></div></div></footer>
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+
+  <div class="footer-contatos">
+    <p>E-mail do tutor: <a href="mailto:mauriciogarim@gmail.com">mauriciogarim@gmail.com</a></p>
+    <p>E-mail da liderança: <a href="mailto:pet.equipe@gmail.com">pet.equipe@gmail.com</a></p>
+  </div>
+</footer>
+
+<!-- Scripts -->
+<script src="../../assets/js/fullcalendar/main.js"></script>
+<script src="../../assets/js/fullcalendar/locales/pt-br.js"></script>
+<script src="../../assets/js/pet-nav.js"></script>
+<script src="../../assets/js/agenda.js"></script>
+
+<!-- Forçar filtro da dimensão 2 -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const checkboxDim2 = document.querySelector('#filtros-dimensoes input[value="2"]');
+  if (checkboxDim2) {
+    document.querySelectorAll('#filtros-dimensoes input[type="checkbox"]').forEach(cb => cb.checked = false);
+    checkboxDim2.checked = true;
+    checkboxDim2.dispatchEvent(new Event("change"));
+  }
+});
+</script>
+</body>
+</html>

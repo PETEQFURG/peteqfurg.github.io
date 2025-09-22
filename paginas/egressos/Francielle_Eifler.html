@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Reencontro com o PET/EQ — Francielle Eifler</title>
+  <link href="../../assets/css/main.css" rel="stylesheet"/>
+  <link href="../../assets/css/responsive.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <style>
+    .carousel-container {
+      max-width: 800px;
+      margin: 2em auto;
+      position: relative;
+      overflow: hidden;
+      border-radius: 10px;
+    }
+    .carousel-track {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+    .carousel-slide {
+      min-width: 100%;
+      box-sizing: border-box;
+    }
+    .carousel-slide img {
+      width: 100%;
+      height: auto;
+      max-height: 480px;
+      object-fit: cover;
+      display: block;
+      border-radius: 10px;
+    }
+    .carousel-caption {
+      text-align: center;
+      font-size: 0.95em;
+      margin-top: 8px;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <div class="header-content">
+    <img alt="Logo PET/EQ" class="logo-pet" src="../../assets/img/logo-peteq-furg.svg"/>
+    <div class="header-text">
+      <h1>PET/EQ</h1>
+      <div class="sub">PROGRAMA DE EDUCAÇÃO TUTORIAL</div>
+      <div class="curso-wrap"><div class="curso">ENGENHARIA QUÍMICA</div><div class="furg">FURG</div></div>
+    </div>
+    <div class="social-icons" style="margin-left: auto; display: flex; gap: 15px;">
+      <a href="https://www.linkedin.com/in/pet-engenharia-quimica-furg" target="_blank"><i class="fab fa-linkedin" style="font-size: 1.4em; color: white;"></i></a>
+      <a href="https://facebook.com/peteqfurg" target="_blank"><i class="fab fa-facebook" style="font-size: 1.4em; color: white;"></i></a>
+      <a href="https://instagram.com/peteqfurg" target="_blank"><i class="fab fa-instagram" style="font-size: 1.4em; color: white;"></i></a>
+      <a href="https://youtube.com/@peteqfurg" target="_blank"><i class="fab fa-youtube" style="font-size: 1.4em; color: white;"></i></a>
+    </div>
+  </div>
+</header>
+<nav class="navbar-horizontal">
+  <div class="nav-container">
+    <ul class="nav-menu">
+      <li><a href="../../index.html">Início</a></li>
+      <li><a href="../apresentacao.html">Apresentação</a></li>
+      <li><a href="../noticias.html">Notícias</a></li>
+      <li><a href="../eventos.html">Eventos</a></li>
+      <li><a href="../ingresso.html">Ingresso</a></li>
+      <li><a href="../egressos.html">Egressos</a></li>
+      <li><a href="../comissoes.html">Comissões</a></li>
+      <li><a href="../producao.html">Produções PET/EQ</a></li>
+      <li><a href="../downloads.html">Downloads</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main style="max-width:900px;margin:2em auto;padding:1em;">
+ <!-- <h1 style="text-align:center;">Reencontro com o PET/EQ</h1>-->
+<h1 style="text-align:center; color:#002f5f;">Reencontro com o PET/EQ</h1>
+  <!-- Bloco com fundo branco e sombra -->
+  <div style="background:white; padding:1.5em; border-radius:10px; box-shadow:0 0 12px rgba(0,0,0,0.05); margin-bottom:2em;">
+    <h2 style="text-align:center;color:#002f5f;">Enga. Química Francielle Dias Eifler</h2>
+    <p style="line-height:1.6; margin-top:1em;">
+      Em julho de 2022, a petiana egressa Francielle Dias Eifler retornou ao grupo PET/EQ para um Papo de Engenheiro sobre sua trajetória como petiana egressa e atual gernte de território da empresa Raízen.
+    </p>
+    <img src="../../assets/img/egressos/atividades/Francielle/Francielle-palestra.png"
+         alt="Francielle palestra"
+         style="display:block; max-width:100%; height:auto; margin:2em auto; border-radius:10px;" />
+  </div>
+
+  <p style="font-size:1.05em; line-height:1.6;"><em>Momentos do reencontro com o PET/EQ:</em></p>
+
+  <div class="carousel-container">
+    <div class="carousel-track">
+      <div class="carousel-slide"><img src="../../assets/img/egressos/atividades/Francielle/Francielle_1.jpeg" alt="Início"><div class="carousel-caption">Início</div></div>
+      <div class="carousel-slide"><img src="../../assets/img/egressos/atividades/Francielle/Francielle_2.jpeg" alt="Palestra"><div class="carousel-caption">Palestra</div></div>
+      <div class="carousel-slide"><img src="../../assets/img/egressos/atividades/Francielle/Francielle_3.jpeg" alt="Registro com o grupo"><div class="carousel-caption">Registro com o grupo</div></div>
+      <div class="carousel-slide"><img src="../../assets/img/egressos/atividades/Francielle/Francielle_4.jpeg" alt="Despedida PAz e Amor!"><div class="carousel-caption">Despedida PAz e Amor!</div></div>
+    </div>
+  </div>
+
+  <p style="text-align:center; margin-top:2em;">
+    <a class="cta" href="../egressos.html">← Retornar à página de egressos</a>
+  </p>
+</main>
+
+<script>
+  let currentSlide = 0;
+  const track = document.querySelector('.carousel-track');
+  const slides = document.querySelectorAll('.carousel-slide');
+
+  setInterval(() => {
+    currentSlide = (currentSlide + 1) % slides.length;
+    track.style.transform = `translateX(-${currentSlide * 100}%)`;
+  }, 5000);
+</script>
+</body>
+</html>

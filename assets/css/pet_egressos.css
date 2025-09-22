@@ -1,0 +1,68 @@
+.pet-eg {
+  --bg: #fff;
+  --fg: #222;
+  --muted: #666;
+  --border: #e3e7ee;
+  --thead: #f6f8fb;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, 'Helvetica Neue', Arial, sans-serif;
+  color: var(--fg);
+}
+@media (prefers-color-scheme: dark) {
+  .pet-eg {
+    --bg: #0c0d10;
+    --fg: #e8e8ea;
+    --muted: #a9adb6;
+    --border: #2a2e35;
+    --thead: #141720;
+  }
+}
+.pet-eg .pet-toolbar {
+  display: flex;
+  gap: .75rem;
+  align-items: center;
+  margin: 1rem 0;
+  flex-wrap: wrap;
+}
+.pet-eg .pet-search {
+  padding: .6rem .75rem;
+  border: 1px solid var(--border);
+  border-radius: .5rem;
+  width: min(460px, 90%);
+  background: var(--bg);
+  color: var(--fg);
+}
+.pet-eg .pet-hint { color: var(--muted); font-size: .9rem; }
+.pet-eg .pet-count { margin-left: auto; color: var(--muted); }
+.pet-eg table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid var(--border);
+  background: var(--bg);
+}
+.pet-eg thead th {
+  background: var(--thead);
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  font-weight: 600;
+}
+.pet-eg th, .pet-eg td {
+  padding: .6rem .75rem;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+}
+.pet-eg tbody tr:hover { background: rgba(11,107,242,0.04); }
+.pet-eg th.pet-sortable { cursor: pointer; user-select: none; }
+.pet-eg th.pet-sortable::after { content: ' \25B4\25BE'; color: #b9c0cc; font-size: .8em; padding-left: .25rem; }
+/* === Banner Egressos com selo PET+20 anos === */
+.eg-hero { position: relative; width:100%; min-height:320px; overflow:hidden; display:grid; place-items:center; }
+.eg-hero-slides img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0; transition:opacity 1s ease; }
+.eg-hero-slides img.active { opacity:1; }
+.eg-hero-overlay { position:absolute; inset:0; background:rgba(0,0,0,.35); }
+.eg-hero-content { position:relative; z-index:2; text-align:center; color:#fff; }
+.eg-hero-badge { position:absolute; bottom:1rem; right:1rem; z-index:3; }
+/*.eg-hero-badge img { width:90px; height:auto; filter:drop-shadow(0 2px 6px rgba(0,0,0,.5)); }*/
+.eg-hero-badge img { width: 100px; height: auto; }
+
+
+

@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Egressos — PET Engenharia Química</title>
+
+  <!-- Fontes / Ícones -->
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+  <!-- CSS do site -->
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <link rel="stylesheet" href="../assets/css/responsive.css">
+
+  <!-- CSS específico (usado no modo fetch; no iframe será injetado) -->
+  <link rel="stylesheet" href="../assets/css/pet_egressos.css">
+
+  <style>
+    main.conteudo { padding: 30px; }
+    .eg-intro { max-width: 860px; margin: 0 auto 16px; color:#333; font-family:'Lato',sans-serif; line-height:1.6; }
+    .eg-host { max-width:1100px; margin:0 auto; }
+    .eg-frame { width:100%; height:75vh; border:0; display:block; }
+
+    /* Sidebar: botão só no mobile */
+    .sidebar-toggle-wrap{ display:none; }
+    @media (max-width:991px){ .sidebar-toggle-wrap{ display:block; padding:10px 16px; } }
+
+    /* Navbar garantida no desktop */
+    @media (min-width:992px){
+      .nav-toggle{ display:none !important; }
+      .navbar-horizontal .nav-menu{ display:flex !important; gap:16px; }
+    }
+  
+/* === Ajustes da página Egressos === */
+:root{ --hero-h: clamp(240px, 30vh, 420px); }
+
+.eg-hero{ min-height: var(--hero-h); display: grid !important; }
+.eg-hero .eg-hero-content{
+  position: relative !important;
+  top: auto !important;
+  transform: none !important;
+  align-self: end !important;
+  padding-bottom: clamp(96px, 18vh, 200px) !important;
+  text-align: center;
+}
+
+/* Sidebar com respiro abaixo do hero */
+@media (min-width: 992px){
+  .content-wrapper > .page-wrapper > .sidebar{ margin-top: 12px !important; }
+}
+
+/* Corrige rolagem até a âncora */
+#egressos-host{ scroll-margin-top: 120px; }
+html{ scroll-behavior: smooth; }
+
+  </style>
+</head>
+<body>
+  <!-- Header igual às demais páginas -->
+  <header>
+    <div class="header-content">
+      <img alt="Logo PET/EQ" class="logo-pet" src="../assets/img/logo-peteq-furg.svg"/>
+      <div class="header-text">
+        <h1>PET/EQ</h1>
+        <div class="sub">PROGRAMA DE EDUCAÇÃO TUTORIAL</div>
+        <div class="curso-wrap">
+          <div class="curso">ENGENHARIA QUÍMICA</div>
+          <div class="furg">FURG</div>
+        </div>
+      </div>
+      <div class="social-icons" style="margin-left:auto;display:flex;gap:15px;">
+        <a href="https://www.linkedin.com/in/pet-engenharia-quimica-furg" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin" style="font-size:1.4em;color:white;"></i></a>
+        <a href="https://facebook.com/peteqfurg" target="_blank" aria-label="Facebook"><i class="fab fa-facebook" style="font-size:1.4em;color:white;"></i></a>
+        <a href="https://instagram.com/peteqfurg" target="_blank" aria-label="Instagram"><i class="fab fa-instagram" style="font-size:1.4em;color:white;"></i></a>
+        <a href="https://youtube.com/@peteqfurg" target="_blank" aria-label="YouTube"><i class="fab fa-youtube" style="font-size:1.4em;color:white;"></i></a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Navbar -->
+  <nav class="navbar-horizontal">
+    <div class="nav-container">
+      <button class="nav-toggle" aria-label="Abrir/fechar menu" aria-expanded="false">☰</button>
+      <ul class="nav-menu">
+        <!--<li><a href="../index.html">Início</a></li>-->
+        <li><a href="apresentacao.html">Apresentação</a></li>
+        <li><a href="noticias.html">Notícias</a></li>
+        <li><a href="eventos.html">Eventos</a></li>
+        <li><a href="ingresso.html">Ingresso</a></li>
+        <li><a href="egressos.html" aria-current="page"><strong>Egressos</strong></a></li>
+        <li><a href="comissoes.html">Comissões</a></li>
+        <li><a href="producao.html">Produções PET/EQ</a></li>
+        <li><a href="downloads.html">Downloads</a></li>
+      </ul>
+    </div>
+  </nav>
+<section class="eg-hero" role="banner" aria-label="Egressos PET/EQ">
+  <div class="eg-hero-slides">
+    <img src="../assets/img/egressos/hero-outono.jpg" alt="Egressos - Outono" class="active">
+    <img src="../assets/img/egressos/hero-inverno.jpg" alt="Egressos - Inverno">
+    <img src="../assets/img/egressos/hero-primavera.jpg" alt="Egressos - Primavera">
+    <img src="../assets/img/egressos/hero-verao.jpg" alt="Egressos - Verão">
+  </div>
+
+  <!-- Selo comemorativo -->
+  <div class="eg-hero-badge">
+     <img src="../assets/img/egressos/selo_peteq_logo_2012.svg" alt="PET/EQ — Desde 2012">
+  </div>
+
+  <div class="eg-hero-overlay"></div>
+  <div class="eg-hero-content">
+    <p class="eg-hero-sub">Trajetórias que inspiram a próxima geração de engenheiros químicos.</p>
+  </div>
+</section>
+
+  <div class="content-wrapper">
+    <div class="page-wrapper">
+      <!-- Sidebar completa -->
+      <aside class="sidebar">
+        <ul class="menu"><li class="menu-title">PET/EQ</li></ul>
+
+        <ul class="menu">
+          <li class="menu-title">INSTITUCIONAL</li>
+          <li><a href="../index.html"><i class="fas fa-home"></i> Página Inicial</a></li>
+          <li><a href="equipe.html"><i class="fas fa-users"></i> Equipe PET/EQ</a></li>
+          <li><a href="organograma.html"><i class="fas fa-sitemap"></i> Organograma PET/EQ</a></li>
+        </ul>
+
+        <hr class="divisor"/>
+        <!--<ul class="menu">
+          <li class="menu-title">GESTÃO DO PROGRAMA</li>
+          <li><a href="../arquivos/Sigpet_homologado_CLAA_2025.pdf" target="_blank"><i class="fas fa-file-alt"></i> Planejamento SIGPET</a></li>
+          <li><a href="../arquivos/RIC_PET_2024.pdf" target="_blank"><i class="fas fa-clipboard"></i> Relatório Institucional RIC</a></li>
+          <li><a href="cronograma.html"><i class="fas fa-calendar-alt"></i> Cronograma de Atividades</a></li>
+        </ul>
+
+        <hr class="divisor"/>-->
+        <ul class="menu">
+          <li class="menu-title">DIMENSÕES DO PET</li>
+          <li><a href="dimensoes/dimensao1-ensino.html"><i class="fas fa-chalkboard-teacher"></i> Dimensão 1 – Ensino</a></li>
+          <li><a href="dimensoes/dimensao2-pesquisa.html"><i class="fas fa-flask"></i> Dimensão 2 – Pesquisa</a></li>
+          <li><a href="dimensoes/dimensao3-extensao.html"><i class="fas fa-handshake"></i> Dimensão 3 – Extensão</a></li>
+          <li><a href="dimensoes/dimensao4-inovacao.html"><i class="fas fa-lightbulb"></i> Dimensão 4 – Inovação e Tecnologia</a></li>
+          <li><a href="dimensoes/dimensao5-desenvolvimento.html"><i class="fas fa-user-graduate"></i> Dimensão 5 – Desenvolvimento Pessoal</a></li>
+          <li><a href="dimensoes/dimensao6-avaliacao.html"><i class="fas fa-chart-line"></i> Dimensão 6 – Gestão e Avaliação</a></li>
+        <li style="margin-left: 1rem;">
+          <a href="../ambiente_tutor.html">↳ Ambiente do Tutor</a>
+        </li>
+        <li style="margin-left: 1rem;">
+          <a href="../ambiente_lideranca.html">↳ Ambiente da Liderança</a>
+        </li>
+        </ul>
+
+        <hr class="divisor"/>
+        <ul class="menu">
+          <li class="menu-title">MEMÓRIA E HISTÓRICO</li>
+          <li><a href="egressos.html"><i class="fas fa-user-tie"></i> Egressos do PET/EQ</a></li>
+          <li><a href="memoria.html"><i class="fas fa-archive"></i> Memória do PET/EQ</a></li>
+          <li><a href="galeria.html"><i class="fas fa-images"></i> Galeria de Fotos e Vídeos</a></li>
+        </ul>
+
+        <hr class="divisor"/>
+        <ul class="menu">
+          <li class="menu-title">AMBIENTES PET/EQ</li>
+          <li><a href="https://teams.microsoft.com" target="_blank"><i class="fas fa-users"></i> Teams</a></li>
+          <li><a href="https://www.office.com/launch/sharepoint" target="_blank"><i class="fas fa-folder-open"></i> SharePoint</a></li>
+          <li><a href="https://onedrive.live.com/" target="_blank"><i class="fas fa-cloud"></i> OneDrive</a></li>
+        </ul>
+      </aside>
+
+      <!-- Botão da drawer no mobile -->
+      <div class="sidebar-toggle-wrap"><button class="sidebar-toggle" aria-controls="sidebar" aria-expanded="false"><i class="fas fa-bars"></i> Menu</button></div>
+
+      <main class="conteudo">
+        <h1 style="text-align:center; font-size:2em; margin-bottom:.4em;">Egressos do PET Engenharia Química</h1>
+
+        <p style="text-align:center; margin: 0 0 1rem 0;"><a href="#egressos-host" class="eg-hero-cta">Ver lista</a></p>
+<div class="eg-intro">
+          <p>Conheça as trajetórias dos nossos egressos. Você pode buscar por <em>nome</em>, <em>ingresso</em> ou <em>ano</em> e ordenar clicando nos cabeçalhos.</p>
+          <p><strong>Privacidade:</strong> por padrão, o e-mail é exibido como <strong>“contato”</strong>. Se você é egresso(a) e deseja ocultar totalmente seu contato (ou atualizar seus dados), escreva para <a href="mailto:peteq@furg.br">peteq@furg.br</a>.</p>
+        </div>
+
+        <!-- Aqui o embed será carregado -->
+        <div id="egressos-host" class="eg-host" aria-live="polite"></div>
+      </main>
+    </div>
+  </div>
+
+<!-- Loader: fetch + busca/ordenação + mascarar e-mail como link “contato” -->
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+  const host = document.getElementById('egressos-host');
+  const url  = 'egressos_embed_external.html'; // mesmo diretório de egressos.html
+
+  // Cria um <a> "contato" com mailto:EMAIL
+  function makeContactLink(doc, email){
+    const a = doc.createElement('a');
+    a.href = 'mailto:' + email;
+    a.textContent = 'contato';
+    a.setAttribute('aria-label','contato');
+    // opcional: não exibir email em tooltip
+    a.removeAttribute('title');
+    return a;
+  }
+
+  // Normaliza cabeçalho “E-mail”
+  const norm = s => (s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z]/g,'');
+
+  // Regex para detectar e-mail em texto
+  const RE_EMAIL = /([A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,})/ig;
+
+  // Mascarar e-mails: mostrar "contato" como link mailto
+  function maskEmails(container){
+    const doc  = container.ownerDocument || document;
+    const root = container.querySelector('.pet-eg') || container;
+
+    // 1) Em QUALQUER lugar: se já existir link mailto, só troca o rótulo para “contato”
+    root.querySelectorAll('a[href^="mailto:"]').forEach(a=>{
+      a.textContent = 'contato';
+      a.removeAttribute('title');
+    });
+
+    // 2) Na tabela, garantir que a COLUNA de e-mail fique sempre “contato” clicável
+    const table = root.querySelector('#pet-eg-tbl') || root.querySelector('table');
+    if (!table || !table.tHead || !table.tBodies[0]) return;
+
+    const ths = Array.from(table.tHead.querySelectorAll('th'));
+    const emailIdx = ths.findIndex(th => {
+      const t = norm(th.textContent);
+      return t === 'email' || t === 'e-mail' || t === 'emails' || t === 'eemail';
+    });
+    if (emailIdx < 0) return;
+
+    Array.from(table.tBodies[0].rows).forEach(row=>{
+      const cell = row.children[emailIdx];
+      if (!cell) return;
+
+      // Se já existe link mailto, apenas renomeia
+      const link = cell.querySelector('a[href^="mailto:"]');
+      if (link){
+        link.textContent = 'contato';
+        link.removeAttribute('title');
+        return;
+      }
+
+      // Se o e-mail está como texto puro, cria o link “contato”
+      const txt = cell.textContent || '';
+      const m = txt.match(RE_EMAIL);
+      if (m && m[0]){
+        const a = makeContactLink(doc, m[0]);
+        cell.textContent = '';
+        cell.appendChild(a);
+      } else {
+        // Se não tem e-mail, mantém vazio/como está
+      }
+    });
+  }
+
+  // Extrai todos os e-mails (para permitir buscar por e-mail sem exibir o texto)
+  function emailsInRow(row){
+    const emails = [];
+    // de links mailto
+    row.querySelectorAll('a[href^="mailto:"]').forEach(a=>{
+      const href = a.getAttribute('href')||'';
+      const e = href.replace(/^mailto:/i,'').trim();
+      if (e) emails.push(e);
+    });
+    // de textos residuais (fallback)
+    (row.textContent||'').replace(RE_EMAIL, (full)=>{
+      emails.push(full);
+      return full;
+    });
+    return emails.join(' ');
+  }
+
+  // 1) Carrega o embed
+  fetch(url, { cache: 'no-store' })
+    .then(r => { if(!r.ok) throw new Error('HTTP '+r.status); return r.text(); })
+    .then(html => {
+      host.innerHTML = html;
+      // 2) Aplica máscara de e-mails (link “contato” clicável)
+      maskEmails(host);
+      // 3) Liga busca e ordenação
+      wireUp(host);
+    })
+    .catch(err => {
+      console.error('[Egressos] Falha ao carregar embed:', err);
+      host.innerHTML = '<p style="text-align:center;color:#a33">Não foi possível carregar a lista de egressos.</p>';
+    });
+
+  // 3) Busca + Ordenação (idêntico ao anterior, com busca incluindo e-mails via href)
+  function wireUp(container){
+    const root   = container.querySelector('.pet-eg') || container;
+    const table  = root.querySelector('#pet-eg-tbl') || root.querySelector('table');
+    const tbody  = table && table.tBodies && table.tBodies[0];
+    if(!table || !tbody){ console.warn('[Egressos] Tabela não encontrada'); return; }
+
+    const rows   = Array.from(tbody.rows || []);
+    const input  = root.querySelector('#pet-eg-q, .pet-search, input[type="search"], input[placeholder*="busca" i], input[placeholder*="buscar" i]');
+    const count  = root.querySelector('#pet-eg-count, .pet-count');
+
+    function updateCount(){
+      if(!count) return;
+      const visible = rows.filter(r => r.style.display !== 'none').length;
+      count.textContent = visible + ' de ' + rows.length;
+    }
+    updateCount();
+
+    // BUSCA (inclui e-mails via href)
+    function rowTextForSearch(r){
+      const base = (r.textContent || '').toLowerCase();
+      const extra = emailsInRow(r).toLowerCase();
+      return (base + ' ' + extra).trim();
+    }
+    const cachedSearchText = new Map(); // melhora desempenho
+    rows.forEach(r => cachedSearchText.set(r, rowTextForSearch(r)));
+
+    if(input){
+      input.addEventListener('input', function(){
+        const term = (input.value || '').toLowerCase().trim();
+        rows.forEach(r => {
+          const txt = cachedSearchText.get(r);
+          r.style.display = term ? (txt.includes(term) ? '' : 'none') : '';
+        });
+        updateCount();
+      });
+    }
+
+    // ORDENAÇÃO
+    const headers = Array.from(
+      (table.tHead && table.tHead.querySelectorAll('th.pet-sortable')) ||
+      (table.tHead && table.tHead.querySelectorAll('th')) || []
+    );
+
+    function getCell(row, idx){ return (row.children[idx] ? row.children[idx].textContent : '').trim(); }
+    function asNumber(s){
+      const n = parseFloat((s||'').replace(/[^\d.-]/g,''));
+      return Number.isNaN(n) ? null : n;
+    }
+    function sortBy(idx, th){
+      const asc = !(th.dataset.sortAsc === 'true');
+      headers.forEach(h => { h.removeAttribute('data-sort-asc'); h.classList.remove('sorted-asc','sorted-desc'); });
+      th.dataset.sortAsc = asc ? 'true' : 'false';
+      th.classList.add(asc ? 'sorted-asc' : 'sorted-desc');
+
+      rows.sort((a,b) => {
+        const av = getCell(a, idx), bv = getCell(b, idx);
+        const an = asNumber(av),     bn = asNumber(bv);
+        if(an !== null && bn !== null) return asc ? (an - bn) : (bn - an);
+        return asc
+          ? av.localeCompare(bv, 'pt-BR', {numeric:true, sensitivity:'base'})
+          : bv.localeCompare(av, 'pt-BR', {numeric:true, sensitivity:'base'});
+      });
+
+      rows.forEach(r => tbody.appendChild(r));
+    }
+
+    headers.forEach((th, idx) => {
+      th.tabIndex = 0;
+      th.setAttribute('role','button');
+      th.setAttribute('aria-label', 'Ordenar coluna');
+      th.addEventListener('click', () => sortBy(idx, th));
+      th.addEventListener('keydown', (e) => { if(e.key==='Enter' || e.key===' '){ e.preventDefault(); sortBy(idx, th); } });
+    });
+  }
+});
+</script>
+
+
+
+  <!-- JS da navegação básica -->
+  <script>
+    (function(){
+      const n=document.querySelector('.nav-toggle');
+      const m=document.querySelector('.navbar-horizontal .nav-menu');
+      n&&m&&n.addEventListener('click',()=>{ const o=m.classList.toggle('open'); n.setAttribute('aria-expanded',o?'true':'false'); });
+      const s=document.querySelector('.sidebar-toggle'); const b=document.body;
+      function open(){ b.classList.add('sidebar-open'); s?.setAttribute('aria-expanded','true'); }
+      function close(){ b.classList.remove('sidebar-open'); s?.setAttribute('aria-expanded','false'); }
+      s&&s.addEventListener('click',()=> b.classList.contains('sidebar-open')?close():open());
+      document.addEventListener('keydown',e=>{ if(e.key==='Escape') close(); });
+    })();
+  </script>
+  <script>
+document.addEventListener("DOMContentLoaded",()=>{
+  const slides=document.querySelectorAll(".eg-hero-slides img");
+  let idx=0;
+  setInterval(()=>{
+    slides[idx].classList.remove("active");
+    idx=(idx+1)%slides.length;
+    slides[idx].classList.add("active");
+  }, 8000); // troca a cada 8s
+});
+</script>
+
+
+</body>
+</html>

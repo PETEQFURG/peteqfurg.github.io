@@ -1,0 +1,115 @@
+/* === Dimensão 2 - Pesquisa (versão revisada) ===============================
+   - Cards em GRID (4/3/2/1 colunas)
+   - Título com link em laranja
+   - Função em itálico
+   - Correção: esconde o botão 'Menu' (sidebar-toggle) no desktop
+   - Correção: agenda centralizada e com espaçamento adequado
+============================================================================= */
+
+:root{
+  --laranja: #ff7f0e;
+  --laranja-hover: #e06900;
+}
+
+/* GRID de cards */
+.pet-pesquisa{
+  display: grid;
+  grid-template-columns: repeat(4, minmax(240px, 1fr));
+  gap: 20px;
+  margin: 28px auto 0;
+  max-width: 1200px;
+}
+
+/* Responsividade */
+@media (max-width: 1200px){
+  .pet-pesquisa{ grid-template-columns: repeat(3, minmax(240px, 1fr)); }
+}
+@media (max-width: 900px){
+  .pet-pesquisa{ grid-template-columns: repeat(2, minmax(220px, 1fr)); }
+}
+@media (max-width: 560px){
+  .pet-pesquisa{ grid-template-columns: 1fr; }
+}
+
+/* Card */
+.pet-pesquisa .projeto{
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,.12);
+  padding: 18px 20px;
+  border-left: 6px solid var(--laranja);
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+  min-height: 110px;
+}
+.pet-pesquisa .projeto:hover{
+  transform: translateY(-3px);
+  box-shadow: 0 6px 14px rgba(0,0,0,.15);
+  border-left-color: var(--laranja-hover);
+}
+
+/* Título (link) */
+.pet-pesquisa .projeto h3{
+  margin: 0 0 6px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+.pet-pesquisa .projeto h3 a,
+.pet-pesquisa .projeto h3 a:visited{
+  color: var(--laranja);
+  text-decoration: none;
+  transition: color .2s ease, text-decoration .2s ease;
+}
+.pet-pesquisa .projeto h3 a:hover{
+  color: var(--laranja-hover);
+  text-decoration: underline;
+}
+
+/* Função */
+.pet-pesquisa .projeto .funcao{
+  font-size: .9rem;
+  font-style: italic;
+  color: #666;
+  margin-top: 2px;
+}
+
+/* Resumo */
+.pet-pesquisa .projeto p{
+  margin: 8px 0 0;
+  font-size: .95rem;
+  color: #333;
+  line-height: 1.45;
+}
+
+/* ---------- Correções de layout gerais desta página ---------- */
+
+/* Esconde o botão "Menu" (sidebar-toggle) no desktop; mantém no mobile */
+@media (min-width: 992px){
+  .sidebar-toggle-wrap{ display: none !important; }
+}
+
+/* Agenda / calendário alinhados e espaçosos */
+.agenda-center{
+  max-width: 1100px;
+  margin: 48px auto 0;
+}
+.filtros-dimensoes{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 14px;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+.bloco--eventos{
+  max-width: 1000px;
+  margin: 0 auto 22px;
+}
+.calendario--center{
+  max-width: 1100px;
+  margin: 0 auto;
+}.embed-container {
+  width: 100%;
+  border: none;
+  min-height: 500px; /* altura mínima pro conteúdo */
+  margin-top: 25px;
+}

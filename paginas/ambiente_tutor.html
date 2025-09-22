@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ambiente do Tutor — PET/EQ</title>
+
+  <!-- FAVICONS E MANIFEST -->
+  <link rel="icon" type="image/svg+xml" href="../assets/img/erlenmeyer.svg" />
+  <link rel="manifest" href="../assets/manifest.json" />
+
+  <!-- FONTS & ICONS -->
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- CSS PRINCIPAL -->
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <link rel="stylesheet" href="../assets/css/responsive.css">
+
+  <!-- ESTILO LOCAL -->
+  <style>
+    .ambiente-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin: 2em 0;
+    }
+
+    .ambiente-card {
+      flex: 1 1 320px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      padding: 20px;
+      transition: transform 0.2s;
+    }
+
+    .ambiente-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .ambiente-card h3 {
+      margin-top: 0;
+      font-size: 1.2rem;
+      color: #0b2e52;
+    }
+
+    .ambiente-card p {
+      font-size: 0.95rem;
+      color: #333;
+    }
+
+    .ambiente-card a {
+      display: inline-block;
+      margin-top: 10px;
+      color: #0b5ed7;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .ambiente-card a:hover {
+      text-decoration: underline;
+    }
+
+    .section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+
+    .section h2 {
+      font-size: 1.5rem;
+      color: #0b2e52;
+      margin-top: 1.5em;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <img src="../assets/img/logo-peteq-furg.svg" alt="Logo PET/EQ" class="logo-pet">
+      <div class="header-text">
+        <h1>PET/EQ</h1>
+        <div class="sub">PROGRAMA DE EDUCAÇÃO TUTORIAL</div>
+        <div class="curso-wrap">
+          <div class="curso">ENGENHARIA QUÍMICA</div>
+          <div class="furg">FURG</div>
+        </div>
+      </div>
+      <div class="social-icons" style="margin-left: auto; display: flex; gap: 15px;">
+        <a href="https://www.linkedin.com/in/pet-engenharia-quimica-furg" target="_blank"><i class="fab fa-linkedin"></i></a>
+        <a href="https://facebook.com/peteqfurg" target="_blank"><i class="fab fa-facebook"></i></a>
+        <a href="https://instagram.com/peteqfurg" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://youtube.com/@peteqfurg" target="_blank"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+  </header>
+
+  <nav class="navbar-horizontal">
+    <div class="nav-container">
+      <ul class="nav-menu">
+        <li><a href="../index.html">Início</a></li>
+        <li><a href="apresentacao.html">Apresentação</a></li>
+        <li><a href="noticias.html">Notícias</a></li>
+        <li><a href="eventos.html">Eventos</a></li>
+        <li><a href="ingresso.html">Ingresso</a></li>
+        <li><a href="egressos.html">Egressos</a></li>
+        <li><a href="comissoes.html">Comissões</a></li>
+        <li><a href="producao.html">Produções PET/EQ</a></li>
+        <li><a href="downloads.html">Downloads</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+    <section class="section">
+      <h2>Ambiente do Tutor</h2>
+      <div class="ambiente-grid">
+        <div class="ambiente-card">
+          <h3>Planejamento e Documentos</h3>
+          <p>Acesso rápido aos arquivos de planejamento, relatórios e cronogramas do PET/EQ.</p>
+          <a href="https://furgbr.sharepoint.com/:f:/s/PETEQ/EuOvdI8MSXpLhTZNIlym1esBaI4aaKl9PFMYqyf5jcWpwA?e=bhU3xg" target="_blank" rel="noopener noreferrer">Acessar pastas</a>
+        </div>
+        <div class="ambiente-card">
+          <h3>Registros de Reuniões</h3>
+          <p>Atas, pautas e registros das reuniões internas do grupo com foco em gestão.</p>
+          <a href="https://furgbr.sharepoint.com/:f:/s/PETEQ/EuOvdI8MSXpLhTZNIlym1esBaI4aaKl9PFMYqyf5jcWpwA?e=bhU3xg" target="_blank" rel="noopener noreferrer">Ver registros</a>
+        </div>
+        <div class="ambiente-card">
+          <h3>Documentos de Avaliação</h3>
+          <p>Ferramentas de autoavaliação, avaliação do tutor e instrumentos do MEC.</p>
+          <a href="https://furgbr.sharepoint.com/:f:/s/PETEQ/EuOvdI8MSXpLhTZNIlym1esBaI4aaKl9PFMYqyf5jcWpwA?e=bhU3xg" target="_blank" rel="noopener noreferrer">Abrir documentos</a>
+        </div>
+      </div>
+      <a class="cta-back" href="../paginas/dimensoes/dimensao6-avaliacao.html">← Voltar para Dimensão 6</a>
+    </section>
+  </main>
+</body>
+</html>
