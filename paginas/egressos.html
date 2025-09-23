@@ -15,6 +15,40 @@
 
   <!-- CSS específico (usado no modo fetch; no iframe será injetado) -->
   <link rel="stylesheet" href="../assets/css/pet_egressos.css">
+  <style id="hotfix-menu-labels">
+    .btn-label{ margin-left:.5rem; font-size:.875rem; font-weight:600; line-height:1; }
+    @media (min-width:992px){
+      .nav-toggle .btn-label--top{ display:none; }
+    }
+  </style>
+  <script id="hotfix-menu-labels-js">
+document.addEventListener("DOMContentLoaded", function(){
+  function ensureLabel(btn, text, cls){
+    if(!btn) return;
+    Array.from(btn.childNodes).forEach(function(n){
+      if(n.nodeType === Node.TEXT_NODE && n.textContent.trim().length){ n.textContent = ""; }
+    });
+    if(!btn.querySelector("."+cls)){
+      var span = document.createElement("span");
+      span.className = "btn-label " + cls;
+      span.textContent = text;
+      btn.appendChild(span);
+    }
+  }
+  var topBtn  = document.querySelector(".nav-toggle");
+  var sideBtn = document.querySelector(".sidebar-toggle");
+  ensureLabel(topBtn,  "Menu superior", "btn-label--top");
+  ensureLabel(sideBtn, "Menu lateral",  "btn-label--side");
+  if(topBtn){
+    topBtn.setAttribute("title","Menu superior");
+    topBtn.setAttribute("aria-label","Abrir/fechar menu superior");
+  }
+  if(sideBtn){
+    sideBtn.setAttribute("title","Menu lateral");
+    sideBtn.setAttribute("aria-label","Abrir/fechar menu lateral");
+  }
+});
+  </script>
 
   <!-- ===== BLOCO DE RESPONSIVIDADE (importado do notícias) ===== -->
   <style>
@@ -492,17 +526,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
 
   
-  <script>
-document.addEventListener("DOMContentLoaded",()=>{
-  const slides=document.querySelectorAll(".eg-hero-slides img");
-  let idx=0;
-  setInterval(()=>{
-    slides[idx].classList.remove("active");
-    idx=(idx+1)%slides.length;
-    slides[idx].classList.add("active");
-  }, 8000); // troca a cada 8s
-});
-</script>
+  
 
 
 
@@ -616,6 +640,23 @@ document.addEventListener("DOMContentLoaded",()=>{
   });
   </script>
 
+
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const btn = document.getElementById("btnTopo");
+  if (btn) {
+    btn.addEventListener("click", () => {
+      const alvo = document.querySelector("main.conteudo");
+      if (alvo) {
+        alvo.scrollIntoView({ behavior: "smooth" });
+      } else {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    });
+  }
+});
+</script>
 
 </body>
 </html>
