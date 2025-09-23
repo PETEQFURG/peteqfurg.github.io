@@ -16,6 +16,72 @@
   <!-- CSS específico (usado no modo fetch; no iframe será injetado) -->
   <link rel="stylesheet" href="../assets/css/pet_egressos.css">
 
+  <!-- ===== BLOCO DE RESPONSIVIDADE (importado do notícias) ===== -->
+  <style>
+    img, svg, video { max-width: 100%; height: auto; }
+
+    .content-wrapper { width: 100%; }
+    .page-wrapper {
+      display: grid;
+      grid-template-columns: 270px 1fr;
+      gap: 24px;
+    }
+
+    .nav-toggle, .sidebar-toggle-wrap { display: none; }
+
+    .navbar-horizontal {
+      position: sticky; top: 0; z-index: 50;
+    }
+    .navbar-horizontal .nav-container {
+      display: flex; align-items: center; gap: 12px;
+    }
+    .navbar-horizontal .nav-menu { display:flex; flex-wrap:wrap; gap:16px; }
+
+    @media (max-width: 991px){
+      header .header-content {
+        display: flex; flex-wrap: wrap; gap: 10px;
+      }
+      .logo-pet { width: 120px; height: auto; }
+      .header-text { flex: 1 1 240px; }
+      .social-icons { order: 3; width: 100%; justify-content: center; margin: 8px 0 0 !important; }
+
+      .nav-toggle { display: inline-flex; align-items: center; justify-content: center;
+        background: #084F6A; color: #fff; border: 0; padding: 8px 12px; border-radius: 8px; }
+      .navbar-horizontal .nav-container { justify-content: space-between; }
+      .navbar-horizontal .nav-menu { display: none; flex-direction: column; gap: 10px; padding: 10px 0; }
+      .navbar-horizontal .nav-menu.open { display: flex; }
+
+      .page-wrapper { grid-template-columns: 1fr; }
+      .sidebar-toggle-wrap { display: block; padding: 10px 16px; }
+      .sidebar-toggle {
+        background: #084F6A; color: #fff; border: 0; padding: 8px 12px; border-radius: 8px;
+        display: inline-flex; align-items: center; gap: 8px;
+      }
+
+      .sidebar {
+        position: fixed; left: 0; top: 0; bottom: 0; width: 270px;
+        transform: translateX(-100%);
+        transition: transform .25s ease;
+        z-index: 100; background: #fff; overflow-y: auto; padding-bottom: 80px;
+        box-shadow: 2px 0 10px rgba(0,0,0,.1);
+      }
+      body.sidebar-open .sidebar { transform: translateX(0); }
+
+      .sidebar-backdrop {
+        position: fixed; inset: 0; background: rgba(0,0,0,.35);
+        z-index: 90; opacity: 0; pointer-events: none; transition: opacity .2s ease;
+      }
+      body.sidebar-open .sidebar-backdrop { opacity: 1; pointer-events: auto; }
+
+      main.conteudo { padding: 16px !important; margin-bottom: 80px !important; }
+    }
+
+    @media (max-width: 575px){
+      h1 { font-size: 1.6rem !important; }
+    }
+  </style>
+
+
   <style>
     main.conteudo { padding: 30px; }
     .eg-intro { max-width: 860px; margin: 0 auto 16px; color:#333; font-family:'Lato',sans-serif; line-height:1.6; }
@@ -76,6 +142,57 @@ html{ scroll-behavior: smooth; }
 }
 
 </style>
+
+  <style>
+    #btnTopo {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 999;
+      background-color: #004a91;
+      color: white;
+      border: none;
+      padding: 12px 14px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1.2rem;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease-in-out;
+    }
+    #btnTopo.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  </style>
+
+
+  <style>
+    @media (max-width: 991px){
+      .page-wrapper{ display:block !important; }
+      main.conteudo{
+        max-width:100% !important;
+        overflow-wrap:anywhere;
+        word-break:break-word;
+      }
+    }
+  </style>
+
+
+  <style>
+    /* Sobrescreve regras conflituosas garantindo prioridade */
+    @media (max-width: 768px){
+      .conteudo .pet-eg{ overflow-x:auto !important; -webkit-overflow-scrolling: touch; }
+      .conteudo .pet-eg table{ width:max-content; min-width:100%; border-collapse:collapse; }
+      .conteudo .pet-eg th, .conteudo .pet-eg td{ white-space:nowrap; }
+      .conteudo .pet-eg th:last-child, .conteudo .pet-eg td:last-child{ 
+        white-space: normal !important; 
+        word-break: break-word; 
+      }
+    }
+  </style>
+
 </head>
 <body>
   <!-- Header igual às demais páginas -->
@@ -374,19 +491,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
 
 
-  <!-- JS da navegação básica -->
-  <script>
-    (function(){
-      const n=document.querySelector('.nav-toggle');
-      const m=document.querySelector('.navbar-horizontal .nav-menu');
-      n&&m&&n.addEventListener('click',()=>{ const o=m.classList.toggle('open'); n.setAttribute('aria-expanded',o?'true':'false'); });
-      const s=document.querySelector('.sidebar-toggle'); const b=document.body;
-      function open(){ b.classList.add('sidebar-open'); s?.setAttribute('aria-expanded','true'); }
-      function close(){ b.classList.remove('sidebar-open'); s?.setAttribute('aria-expanded','false'); }
-      s&&s.addEventListener('click',()=> b.classList.contains('sidebar-open')?close():open());
-      document.addEventListener('keydown',e=>{ if(e.key==='Escape') close(); });
-    })();
-  </script>
+  
   <script>
 document.addEventListener("DOMContentLoaded",()=>{
   const slides=document.querySelectorAll(".eg-hero-slides img");
@@ -421,6 +526,96 @@ document.addEventListener("DOMContentLoaded",()=>{
     window.scrollTo({ top: 0, behavior: "smooth" });
   });
 </script>
+
+
+  
+  
+
+
+
+  
+
+
+  
+  <!-- ===== Script unificado de interação (fix2) ===== -->
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    // ===== Navbar (hambúrguer topo) =====
+    const navToggle = document.querySelector('.nav-toggle');
+    const navMenu = document.querySelector('.navbar-horizontal .nav-menu');
+    if (navToggle && navMenu){
+      navToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const opened = navMenu.classList.toggle('open');
+        navToggle.setAttribute('aria-expanded', opened ? 'true' : 'false');
+      });
+      document.addEventListener('click', (e) => {
+        if(navMenu.classList.contains('open') && !navMenu.contains(e.target) && !navToggle.contains(e.target)){
+          navMenu.classList.remove('open');
+          navToggle.setAttribute('aria-expanded','false');
+        }
+      });
+    }
+
+    // ===== Sidebar (menu lateral) =====
+    const body = document.body;
+    const sideBtn = document.querySelector('.sidebar-toggle');
+    const sidebar = document.querySelector('.sidebar');
+
+    // cria backdrop se não existir
+    let backdrop = document.querySelector('.sidebar-backdrop');
+    if(!backdrop){
+      backdrop = document.createElement('div');
+      backdrop.className = 'sidebar-backdrop';
+      document.body.appendChild(backdrop);
+    }
+
+    function openSidebar(){ body.classList.add('sidebar-open'); }
+    function closeSidebar(){ body.classList.remove('sidebar-open'); }
+
+    if(sideBtn){
+      sideBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if(body.classList.contains('sidebar-open')) closeSidebar(); else openSidebar();
+      });
+    }
+
+    // fechar ao clicar no backdrop
+    backdrop.addEventListener('click', closeSidebar);
+
+    // fechar ao clicar em qualquer lugar fora da sidebar quando aberta
+    document.addEventListener('click', (e) => {
+      if (body.classList.contains('sidebar-open')
+          && sidebar
+          && !sidebar.contains(e.target)
+          && !sideBtn.contains(e.target)) {
+        closeSidebar();
+      }
+    });
+
+    // fechar ao clicar em links da sidebar
+    if(sidebar){
+      sidebar.querySelectorAll('a').forEach(a=>{
+        a.addEventListener('click', closeSidebar);
+      });
+    }
+
+    document.addEventListener('keydown', e => {
+      if(e.key === 'Escape' && body.classList.contains('sidebar-open')) closeSidebar();
+    });
+
+    // ===== Botão voltar ao topo =====
+    const btnTopo = document.getElementById("btnTopo");
+    if(btnTopo){
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 300) btnTopo.classList.add("show");
+        else btnTopo.classList.remove("show");
+      });
+      btnTopo.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+    }
+  });
+  </script>
+
 
 </body>
 </html>

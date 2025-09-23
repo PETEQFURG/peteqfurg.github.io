@@ -66,3 +66,83 @@
 
 
 
+
+
+
+
+  /* A tabela ocupa sua largura natural */
+  .eg-host table, .pet-eg table {
+    width: max-content;
+    min-width: 100%;
+    border-collapse: collapse;
+  }
+
+  /* As células não quebram, só rolam */
+  .eg-host th, .eg-host td,
+  .pet-eg th, .pet-eg td {
+    white-space: nowrap;
+  }
+}
+
+
+
+
+  .eg-host table, .pet-eg table {
+    min-width: 700px;   /* força scroll no mobile */
+    width: auto;
+    border-collapse: collapse;
+  }
+
+  .eg-host th, .eg-host td,
+  .pet-eg th, .pet-eg td {
+    white-space: nowrap;
+  }
+}
+
+
+/* === Ajuste última coluna no desktop === */
+.eg-host th:last-child, .eg-host td:last-child,
+.pet-eg th:last-child, .pet-eg td:last-child {
+  max-width: 200px;
+  white-space: normal !important;
+  word-break: break-word;
+}
+
+
+/* === Mobile: força scroll horizontal real e largura maior que a tela === */
+@media (max-width: 768px){
+  /* Qualquer wrapper do bloco de egressos vira rolável */
+  .conteudo .eg-host,
+  .conteudo .pet-eg,
+  .conteudo .eg-host .dataTables_wrapper,
+  .conteudo .pet-eg .dataTables_wrapper {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+    display: block;
+  }
+
+  /* A tabela não pode ficar limitada a 100%: precisa ser maior que a tela */
+  .conteudo .eg-host table,
+  .conteudo .pet-eg table,
+  .conteudo .eg-host .dataTable,
+  .conteudo .pet-eg .dataTable {
+    width: max-content !important;
+    min-width: 900px !important;  /* ajuste este valor se precisar */
+    border-collapse: collapse;
+  }
+
+  /* Evita quebra de colunas; o usuário arrasta lateralmente */
+  .conteudo .eg-host th, .conteudo .eg-host td,
+  .conteudo .pet-eg th, .conteudo .pet-eg td {
+    white-space: nowrap;
+  }
+}
+
+
+/* === Ajuste final da tabela de egressos === */
+.eg-host th:last-child, .eg-host td:last-child,
+.pet-eg th:last-child, .pet-eg td:last-child {
+  max-width: 200px;
+  white-space: normal !important;
+  word-break: break-word;
+}
