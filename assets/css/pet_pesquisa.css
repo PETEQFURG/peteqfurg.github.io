@@ -113,3 +113,59 @@
   min-height: 500px; /* altura mínima pro conteúdo */
   margin-top: 25px;
 }
+/* ===== Cabeçalho da Dimensão 2 — alinhado ao Ensino ===== */
+
+/* layout do header */
+header .header-content{
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 18px 20px;
+}
+header .logo-pet{
+  max-height: 90px;
+  width: auto;
+}
+header .header-text{
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+header .curso-wrap{
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+}
+header .social-row{
+  display: flex;
+  gap: 14px;
+  margin-top: 8px;
+}
+
+/* ícones sociais brancos (link e <i>) */
+header .social-row a,
+header .social-row a i{
+  color: #fff !important;
+  fill: #fff !important; /* caso venha algum SVG */
+  text-decoration: none;
+}
+header .social-row a:hover,
+header .social-row a:focus{
+  opacity: .85;
+}
+
+/* responsivo: empilha quando estreito */
+@media (max-width: 520px){
+  header .header-content{
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  header .logo-pet{ max-height: 72px; }
+}
+
+/* (opcional) se quiser ocultar o botão "Menu" lateral no desktop,
+   mantendo no mobile. Use este seletor quando não houver wrapper */
+@media (min-width: 992px){
+  .sidebar-toggle{ display: none; }
+}

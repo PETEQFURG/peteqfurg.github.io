@@ -1,0 +1,318 @@
+
+/* PET/EQ Responsividade Unificada — v1
+   Aplica em TODAS as páginas (index, /paginas e /paginas/dimensoes) */
+
+/* Base: permitir rolagem e evitar cortes */
+html, body { min-height: 100%; height: auto; overflow-y: auto; }
+
+/* Evitar alturas/overflows que cortem conteúdo */
+.content-wrapper, .page-wrapper, main, .conteudo {
+  min-height: auto; height: auto; overflow: visible;
+}
+
+/* Espaço para o rodapé não cobrir o fim do conteúdo */
+main, .conteudo { padding-bottom: 110px; }
+
+/* Navbar horizontal branca (sem mexer em estrutura) */
+.navbar-horizontal { background: #fff; border-bottom: 1px solid #eaeaea; }
+.navbar-horizontal .nav-menu { display: flex; gap: 16px; flex-wrap: wrap; }
+@media (max-width: 991px){
+  .navbar-horizontal .nav-menu { display: none; flex-direction: column; gap: 10px; padding: 10px 0; }
+  .navbar-horizontal .nav-menu.open { display: flex; }
+}
+
+/* Sidebar padrão desktop */
+aside.sidebar { width: 270px; }
+@media (min-width: 992px){
+  aside.sidebar { position: sticky; top: 64px; height: calc(100dvh - 64px); overflow-y: auto; padding-bottom: 80px; }
+}
+
+/* Sidebar como gaveta no mobile (sem bloquear toques quando fechada) */
+@media (max-width: 991px){
+  aside.sidebar {
+    position: fixed; left: 0; top: 0; width: 270px; height: 100dvh;
+    transform: translateX(-100%); transition: transform .25s ease;
+    z-index: 100; background: #fff; overflow-y: auto; padding-bottom: 80px;
+    box-shadow: 2px 0 10px rgba(0,0,0,.12); pointer-events: none;
+  }
+  body.sidebar-open aside.sidebar { transform: translateX(0); pointer-events: auto; }
+  /* backdrop */
+  .sidebar-backdrop {
+    position: fixed; inset: 0; background: rgba(0,0,0,.35);
+    z-index: 90; opacity: 0; pointer-events: none; transition: opacity .2s ease;
+  }
+  body.sidebar-open .sidebar-backdrop { opacity: 1; pointer-events: auto; }
+}
+
+/* Cabeçalho: linha única sob "ENGENHARIA QUÍMICA" + FURG alinhado ao fim */
+.header-text .curso-wrap { display: inline-grid; width: max-content; }
+.header-text .curso {
+  display: inline-block; border-bottom: 3px solid #fff; text-decoration: none;
+}
+.header-text .curso::before, .header-text .curso::after { content: none !important; }
+.header-text .furg { display: block; justify-self: end; margin-top: 6px; white-space: nowrap; }
+
+/* Logos do rodapé sem distorção e com quebra quando faltar espaço */
+.footer-logos { display: flex; flex-wrap: wrap; gap: 24px; align-items: center; }
+.footer-logos img { height: 40px; width: auto; object-fit: contain; }
+
+/* Utilidades */
+.hide-mobile { display: block; }
+.show-mobile { display: none; }
+@media (max-width: 768px){
+  .hide-mobile { display: none; }
+  .show-mobile { display: inline-block; }
+}
+
+
+/* ============================= */
+/* Botões e layout da navegação  */
+/* ============================= */
+
+/* Container da navbar horizontal: alinha à esquerda */
+.navbar-horizontal .nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 8px 12px;
+  gap: 12px;
+}
+
+/* Botão do menu superior (hamburger) */
+.nav-toggle {
+  background: #0B6F8C;
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  line-height: 1.1;
+}
+
+/* Injeta o rótulo "Menu superior" ao lado do ícone (quando o HTML só tem o ícone) */
+.nav-toggle::after {
+  content: " Menu superior";
+  margin-left: 6px;
+}
+
+/* Hover/focus */
+.nav-toggle:hover { background: #084F6A; }
+.nav-toggle:focus { outline: 2px solid #47B8C7; outline-offset: 2px; }
+
+/* Esconde o botão no desktop, onde a navegação já fica visível */
+@media (min-width: 992px){
+  .navbar-horizontal .nav-toggle { display: none; }
+}
+
+/* Wrapper e botão do menu lateral (abaixo do header) */
+.sidebar-toggle-wrap {
+  padding: 8px 12px;
+}
+
+.sidebar-toggle {
+  background: #0B6F8C;
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  line-height: 1.1;
+}
+
+.sidebar-toggle:hover { background: #084F6A; }
+.sidebar-toggle:focus { outline: 2px solid #47B8C7; outline-offset: 2px; }
+
+/* Garante que a lista abra logo abaixo do header no mobile */
+@media (max-width: 991px){
+  .navbar-horizontal .nav-menu.open {
+    width: 100%;
+    padding: 10px 12px;
+    border-top: 1px solid #eaeaea;
+  }
+}
+/* Estilo do label dos botões */
+.btn-label {
+  margin-left: .5rem;
+  font-size: .875rem;
+  font-weight: 600;
+  line-height: 1;
+}
+
+/* No desktop, esconde o texto para economizar espaço */
+@media (min-width: 992px) {
+  .btn-label--top {
+    display: none;
+  }
+}
+/* Cabeçalho do calendário em visualização semanal */
+.fc .fc-col-header-cell-cushion {
+  display: flex;
+  flex-direction: column;    /* força empilhar em 2 linhas */
+  align-items: center;       /* centraliza horizontalmente */
+  white-space: normal;       /* permite quebra de linha */
+  line-height: 1.2;          /* deixa mais compacto */
+  font-weight: 600;          /* destaca o dia */
+}
+
+/* Dia da semana (primeira linha) */
+.fc .fc-col-header-cell-cushion abbr {
+  text-decoration: none;     /* remove o ponto sublinhado do abbr */
+}
+
+/* Opcional: diminuir um pouco a fonte da data (segunda linha) */
+.fc .fc-col-header-cell-cushion {
+  font-size: 0.9rem;
+}
+/* === Ajuste de cor dos botões de acesso rápido === */
+.acesso-rapido a,
+.acesso-rapido button {
+  background-color: #0B6F8C;   /* azul-petróleo */
+  color: #fff;
+  border: none;
+}
+
+.acesso-rapido a:hover,
+.acesso-rapido button:hover {
+  background-color: #084F6A;   /* tom mais escuro no hover */
+  color: #fff;
+}
+
+/* opcional: leve sombra para dar destaque */
+.acesso-rapido a,
+.acesso-rapido button {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+/* Só os "quadros" (chips) da seção Acesso rápido da HOME */
+.section.acessos .chips .btn,
+.acessos .btn {
+  background-color: #0B6F8C !important;  /* azul-petróleo */
+  border-color: #0B6F8C !important;
+  color: #fff !important;
+}
+
+.section.acessos .chips .btn:hover,
+.acessos .btn:hover {
+  background-color: #084F6A !important;  /* hover mais escuro */
+  border-color: #084F6A !important;
+  color: #fff !important;
+}
+/* Botão de lupa da busca */
+.busca-site button,
+.busca-site .btn {
+  background-color: #0B6F8C !important;
+  border-color: #0B6F8C !important;
+  color: #fff !important;
+}
+.busca-site button:hover,
+.busca-site .btn:hover {
+  background-color: #084F6A !important;
+  border-color: #084F6A !important;
+  color: #fff !important;
+}
+
+/* ====== LUPA (botão ao lado do campo "Buscar no site...") ====== */
+/* 1) casos mais comuns: container da busca */
+.busca-site button,
+.busca-site .btn {
+  background-color: #0B6F8C !important;
+  border-color: #0B6F8C !important;
+  color: #fff !important;
+}
+.busca-site button:hover,
+.busca-site .btn:hover {
+  background-color: #084F6A !important;
+  border-color: #084F6A !important;
+  color: #fff !important;
+}
+
+/* 2) fallback: quando o HTML não tem a classe do container */
+input[type="search"] + button,
+input[type="search"] + .btn,
+input[placeholder*="Buscar"] + button,
+input[placeholder*="Buscar"] + .btn {
+  background-color: #0B6F8C !important;
+  border-color: #0B6F8C !important;
+  color: #fff !important;
+}
+input[type="search"] + button:hover,
+input[type="search"] + .btn:hover,
+input[placeholder*="Buscar"] + button:hover,
+input[placeholder*="Buscar"] + .btn:hover {
+  background-color: #084F6A !important;
+  border-color: #084F6A !important;
+  color: #fff !important;
+}
+
+/* 3) fallback moderno (se o navegador suportar :has) — botão que contém o ícone da lupa */
+:where(button, .btn):has(> i.fa-search) {
+  background-color: #0B6F8C !important;
+  border-color: #0B6F8C !important;
+  color: #fff !important;
+}
+:where(button, .btn):has(> i.fa-search):hover {
+  background-color: #084F6A !important;
+  border-color: #084F6A !important;
+}
+
+/* ====== "Ver agenda completa" ====== */
+/* âncora .btn que aponta para a agenda */
+a.btn[href*="agenda"] {
+  background-color: #0B6F8C !important;
+  border-color: #0B6F8C !important;
+  color: #fff !important;
+}
+a.btn[href*="agenda"]:hover {
+  background-color: #084F6A !important;
+  border-color: #084F6A !important;
+  color: #fff !important;
+}
+<style>
+  /* Header full-bleed (faixa azul 100% e conteúdo centralizado) */
+  body > header{
+    background:#084F6A;      /* azul do site */
+    margin:0 !important;
+    padding:0;               /* sem bordas/padding extras */
+    width:100%;
+    max-width:none !important;
+  }
+
+  /* centraliza o conteúdo interno e define o layout */
+  body > header .header-content{
+    max-width:1100px;        /* mesma largura das demais páginas */
+    margin:0 auto;
+    padding:14px 16px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+
+  /* logo e tipografia iguais ao padrão */
+  body > header .logo-pet{ height:86px; width:auto; }
+  body > header .header-text h1{
+    font-family:'Exo 2',sans-serif; font-weight:700;
+    font-size:2.25rem; line-height:1.1; margin:0 0 2px; color:#fff;
+  }
+  body > header .header-text .sub{ color:#dbeaf1; letter-spacing:.5px; }
+  body > header .curso-wrap .curso{ border-bottom:3px solid #fff; }
+  body > header .furg{ color:#dbeaf1; }
+
+  /* mobile: empilha e centraliza */
+  @media (max-width:640px){
+    body > header .header-content{
+      flex-wrap:wrap;
+      justify-content:center;
+      text-align:center;
+    }
+    body > header .logo-pet{ height:80px; }
+    body > header .social-icons{ margin-left:0 !important; justify-content:center !important; }
+  }
+</style>

@@ -1,0 +1,175 @@
+/* ====== Estilos globais para páginas com calendário ====== */
+
+/* Filtros de dimensões */
+.filtro-dimensoes,
+.dimensoes-filtro,
+.filtros-dimensoes,
+.filtros-dimensao {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 18px;
+  margin: 6px 0 12px 0;
+}
+.filtro-dimensoes label,
+.dimensoes-filtro label,
+.filtros-dimensoes label,
+.filtros-dimensao label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+  line-height: 1.2;
+}
+#filtros,
+#filtros-dimensoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+#filtros label,
+#filtros-dimensoes label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  line-height: 1.2;
+}
+#filtros input[type="checkbox"],
+#filtros-dimensoes input[type="checkbox"] {
+  margin: 0;
+}
+
+/* Calendário ocupa largura total */
+#calendario,
+.calendario,
+.fc,
+.fc-scrollgrid {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+.fc .fc-scroller {
+  overflow-x: hidden !important;
+  overflow-y: auto;
+}
+
+/* Toolbar adaptável */
+.fc .fc-toolbar.fc-header-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+.fc .fc-toolbar-title {
+  font-size: clamp(1rem, 3.5vw, 1.25rem);
+}
+.fc .fc-button {
+  padding: 4px 10px;
+  font-size: 0.9rem;
+  background-color: #0B6F8C;
+  border: none;
+  border-radius: 6px;
+  color: #fff;
+  font-weight: 600;
+}
+.fc .fc-button:hover {
+  background-color: #084F6A;
+}
+.fc .fc-button.fc-button-active {
+  background-color: #1D8AAC;
+}
+
+/* Cabeçalho do calendário (dias da semana) */
+.fc .fc-col-header-cell-cushion {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  line-height: 1.2;
+  padding: 4px 0;
+  font-size: 0.9rem;
+  font-weight: 600; /*0.9rem;*/
+  white-space:normal; /* permite duas linhas */
+}
+.fc .fc-col-header-cell-cushion abbr {
+  text-decoration: none; /* remove sublinhado */
+}
+/* controla a quebra do texto gerado pelo JS */
+.fc .fc-col-header-cell-cushion .fc-wd { white-space: nowrap; } /* “dom.” não quebra */
+.fc .fc-col-header-cell-cushion .fc-dm {
+  display: inline-block;
+  white-space: nowrap;
+  word-break: normal;
+  overflow-wrap: normal;
+  font-weight: 600;
+ }    /* “21/09” ligeiro destaque */
+
+/* remover sublinhado do <abbr> se alguma view ainda usar */
+.fc .fc-col-header-cell-cushion abbr { text-decoration: none; }
+
+/* Estilo dos números do grid */
+.fc a.fc-daygrid-day-number,
+.fc .fc-daygrid-day-number {
+  color: #111 !important;
+  font-weight: 600;
+  text-decoration: none;
+  z-index: 2;
+  position: relative;
+}
+.fc-day-other a.fc-daygrid-day-number {
+  opacity: 0.45;
+}
+
+/* Bordas leves */
+.calendario,
+#calendario {
+  --fc-border-color: rgba(0, 0, 0, 0.12);
+}
+.fc-theme-standard td,
+.fc-theme-standard th {
+  border-color: var(--fc-border-color) !important;
+}
+.calendario table,
+#calendario table,
+.calendario th,
+#calendario th,
+.calendario td,
+#calendario td {
+  border: none !important;
+}
+
+/* Grid ocupa largura */
+.fc table {
+  table-layout: fixed !important;
+  width: 100% !important;
+}
+.fc .fc-daygrid-day-frame {
+  overflow: visible;
+}
+.fc .fc-daygrid-day-top {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+}
+
+/* ===== Responsividade ===== */
+@media (max-width: 420px) {
+  .fc .fc-toolbar-title {
+    font-size: clamp(0.95rem, 3.2vw, 1.15rem);
+  }
+  .fc .fc-button {
+    padding: 3px 8px;
+    font-size: 0.85rem;
+  }
+  .fc .fc-col-header-cell-cushion {
+    padding: 4px 2px;
+    font-size: 0.85rem;
+  }
+  .fc .fc-daygrid-day-number {
+    padding: 2px 4px;
+    font-size: 0.85rem;
+  }
+}
