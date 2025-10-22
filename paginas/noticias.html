@@ -190,17 +190,71 @@ img,svg,video{max-width:100%;height:auto}
       <p>Nosso objetivo é manter a comunidade acadêmica e o público externo informados sobre o que acontece nas diversas dimensões do programa.</p>
     </div>
 
-    <!-- Blocos simples de notícias (conteúdo mantido) -->
-    <section class="blocos-container" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;max-width:980px;margin:24px auto 0;">
+    <!-- Blocos simples de notícias -->
+    <style>
+  .blocos-container{
+    display:flex !important;
+    flex-direction:column !important;
+    align-items:center !important;     /* centraliza os cartões */
+    gap:16px !important;
+    max-width:980px;
+    margin:24px auto 0;
+    overflow-x:hidden;
+  }
+  .blocos-container .bloco{
+    width:95% !important;              /* ocupa 95% da largura do container */
+    max-width:700px !important;        /* limite confortável */
+    box-sizing:border-box;
+    margin:0 auto !important;          /* centraliza */
+    float:none !important;
+    clear:both !important;
+  }
+  .blocos-container .bloco *{
+    max-width:100%;
+    box-sizing:border-box;
+  }
+  .blocos-container .bloco img{
+    width:100% !important;
+    height:auto !important;
+    display:block;
+    border-radius:10px;
+  }
+  @media (max-width:600px){
+    .blocos-container .bloco{
+      width:100% !important;
+      max-width:100% !important;
+    }
+  }
+</style>
+
+
+    <!-- ALTERAÇÃO AQUI: layout em coluna, cards um abaixo do outro -->
+    <section class="blocos-container" style="display:flex;flex-direction:column;gap:16px;max-width:980px;margin:24px auto 0;">
+      
+      <!-- Card atualizado: Oficina Modelando com Bizagi (com link para o SINSC) -->
       <article class="bloco" style="border:1px solid #e6e6e6;border-radius:12px;padding:14px 16px;box-shadow:0 2px 6px rgba(0,0,0,.06);background:#fff;">
-        <p style="margin:0 0 6px 0;font-weight:700;">10/08/2025 – Oficina de Excel</p>
-        <p style="margin:0;">Capacitação promovida pela Dimensão 5, voltada ao uso de planilhas para organização das atividades do grupo.</p>
+        <p style="margin:0 0 6px 0;font-weight:700;">24/10/2025 – Oficina “Modelando com Bizagi”</p>
+        <img src="../assets/img/noticias/bizagi.png" alt="Oficina Modelando com Bizagi" style="width:100%;border-radius:10px;margin-bottom:10px;object-fit:cover;">
+        <p style="margin:0;">Venha praticar seus conhecimentos em modelagem de processos na oficina <strong>“Modelando com Bizagi”</strong>!</p>
+        <p style="margin:6px 0 0 0;">Ministrada pela <strong>Prof.ª Dr.ª Mariane Cásseres</strong>, referência no assunto, a atividade proporcionará experiências práticas para aprimorar o uso do software <em>Bizagi Modeler</em>.</p>
+        <p style="margin:6px 0 0 0;">📅 <strong>Data:</strong> 24 de outubro (sexta-feira)<br>
+        ⏰ <strong>Horário:</strong> 17h<br>
+        📍 <strong>Local:</strong> Auditório da EQA</p>
+        <p style="margin:6px 0 0 0;font-style:italic;">💻 É essencial levar seu notebook com o Bizagi Modeler previamente instalado.</p>
+        <!-- link solicitado -->
+        <p style="margin:10px 0 0 0;">
+          <a href="https://sinsc.furg.br/detalheseventos/2990" target="_blank" rel="noopener">
+            🔗 Inscrições no SINSC
+          </a>
+        </p>
       </article>
 
+      <!-- Segundo card (fica abaixo por causa do container em coluna) -->
       <article class="bloco" style="border:1px solid #e6e6e6;border-radius:12px;padding:14px 16px;box-shadow:0 2px 6px rgba(0,0,0,.06);background:#fff;">
         <p style="margin:0 0 6px 0;font-weight:700;">06/08/2025 – Apresentação de Projeto</p>
         <p style="margin:0;">Estudantes apresentaram seus projetos de extensão à comunidade acadêmica e externa.</p>
       </article>
+
     </section>
 
     <div style="font-size:.85rem;color:#555;margin-top:30px;text-align:center;font-style:italic;display:flex;align-items:center;justify-content:center;gap:6px;">
