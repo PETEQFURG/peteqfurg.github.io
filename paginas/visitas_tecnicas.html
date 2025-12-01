@@ -1,6 +1,20 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+<meta name="google-site-verification" content="gRy-EKFiAGmkW8WEWcerAAHtGYaChe6sGAKrfSGPZbY" />
+
+<!-- Favicons -->
+<link rel="icon" type="image/svg+xml" href="../assets/img/erlenmeyer.svg">
+<link rel="alternate icon" type="image/png" sizes="512x512" href="../assets/img/favicon-512x512.png">
+<link rel="alternate icon" type="image/png" sizes="192x192" href="../assets/img/favicon-192x192.png">
+<link rel="alternate icon" type="image/png" sizes="48x48" href="../assets/img/favicon-48x48.png">
+<link rel="alternate icon" type="image/png" sizes="32x32" href="../assets/img/favicon-32x32.png">
+<link rel="alternate icon" type="image/png" sizes="16x16" href="../assets/img/favicon-16x16.png">
+<link rel="icon" href="../assets/img/favicon.ico" type="image/x-icon">
+
+<!-- Manifest PWA -->
+<link rel="manifest" href="../assets/manifest.json">
+
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>PET Engenharia Química</title>
@@ -9,16 +23,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@500;700&display=swap" rel="stylesheet"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="true"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
 <!-- CSS do projeto -->
-<link href="../assets/css/main.css" rel="stylesheet"/>
-<link href="../assets/css/pet-responsive.css" rel="stylesheet"/>
-<link href="../assets/css/calendar.css" rel="stylesheet"/>
+<link rel="stylesheet" href="../assets/css/main.css">
+<link rel="stylesheet" href="../assets/css/pet-responsive.css">
 
-<link rel="icon" href="../assets/img/logo-peteq-furg.svg" type="image/svg+xml">
-
-<!-- Hotfixes (iguais às outras páginas) -->
+<!-- Hotfixes (iguais aos usados na apresentação) -->
 <style id="hotfix-curso-furg">
   .header-text .curso-wrap{display:inline-grid;width:max-content}
   .header-text .curso{display:inline-block;border-bottom:3px solid #fff!important;text-decoration:none!important}
@@ -47,14 +58,6 @@ main.conteudo{padding-left:var(--safe-gutter);padding-right:var(--safe-gutter)}
 h1,h2,h3,h4,h5,h6,p,li,a,span,small,strong,em{overflow-wrap:anywhere;word-break:break-word}
 .navbar-horizontal .nav-menu{flex-wrap:wrap;white-space:normal}
 .navbar-horizontal .nav-container{min-width:0}
-#calendario,.calendar-wrapper{width:100%;max-width:100%;overflow-x:auto}
-.fc,.fc *{box-sizing:border-box}
-.fc,.fc-scrollgrid,.fc-view-harness,.fc-view-harness-active{width:100%!important;max-width:100%!important}
-.fc .fc-toolbar.fc-header-toolbar{display:flex;flex-wrap:wrap;row-gap:8px}
-.fc .fc-toolbar-title{font-size:clamp(1rem,3.5vw,1.25rem);line-height:1.2}
-.fc .fc-button{padding-inline:8px}
-.fc .fc-col-header-cell-cushion,.fc .fc-daygrid-day-number{padding-inline:6px}
-.fc .fc-daygrid-day-frame{min-width:0}
 </style>
 
 <!-- Estilos estruturais -->
@@ -82,26 +85,11 @@ img,svg,video{max-width:100%;height:auto}
   .sidebar{position:fixed;left:0;top:0;bottom:0;width:270px;transform:translateX(-100%);transition:transform .25s ease;z-index:100;background:#fff;overflow-y:auto;padding-bottom:80px;box-shadow:2px 0 10px rgba(0,0,0,.1)}
   body.sidebar-open .sidebar{transform:translateX(0)}
   main.conteudo{padding:16px!important;margin-bottom:80px!important}
-  .dimensoes-svg-container .svg-container svg{width:100%;height:auto}
 }
 @media (max-width:575px){
   h1{font-size:1.6rem!important}
   .footer-logos img{height:32px!important}
 }
-
-/* Agenda – filtros e painel “eventos do dia” */
-#filtros-dimensoes{
-  display:flex;flex-wrap:wrap;align-items:center;gap:12px 18px;
-  background:#fff;padding:12px 16px;border-radius:14px;box-shadow:0 2px 6px rgba(0,0,0,.1)
-}
-#filtros-dimensoes label{display:inline-flex;align-items:center;gap:8px;white-space:nowrap;font-weight:700}
-@media(max-width:600px){
-  #filtros-dimensoes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px 12px}
-}
-#eventos-do-dia{padding:8px 12px;margin:8px 0 12px;border-radius:10px;box-shadow:0 0 5px rgba(0,0,0,.1);max-width:680px}
-#eventos-do-dia .eventos-info{font-weight:700}
-#eventos-do-dia ul{margin:8px 0 0 18px}
-.calendario{width:100%;max-width:100%}
 </style>
 </head>
 
@@ -191,52 +179,79 @@ img,svg,video{max-width:100%;height:auto}
     </button>
   </div>
 
-  <main class="conteudo" style="padding:30px; margin-bottom:100px;">
-    <h1 style="text-align:center; font-family:'Exo 2',sans-serif; font-weight:700; font-size:2.2em; margin-bottom:5px;">
-      Agenda do PET Engenharia Química
-    </h1>
-    <hr class="divisor"/>
+  <!-- ===== CONTEÚDO ESPECÍFICO: Visita ===== -->
+  <main class="conteudo" style="padding: 30px; margin-bottom: 100px;">
+    <h1 style="text-align:center; font-family: 'Lato', sans-serif; font-size: 2em; margin-bottom: 0.8em;">Visitas técnicas</h1>
+    <div style="max-width: 1000px; margin: 0 auto; font-family: 'Lato', sans-serif; color:#333;">
+      <p style="font-size:1.05em; line-height:1.6;">
+        Acompanhe alguns momentos de nossas visitas técnicas.
+      </p>
 
-    <div style="max-width:800px;margin:0 auto;font-size:1.05em;line-height:1.6;color:#333;">
-      <p>A agenda organiza os compromissos do grupo (reuniões, oficinas, eventos etc.) em todas as dimensões. Use os filtros abaixo para exibir/ocultar as dimensões desejadas.</p>
-    </div>
+      <!-- Linha do tempo por ano -->
+      <div class="timeline" style="position:relative; margin-top:16px;">
+        <div style="position:absolute; left:14px; top:0; bottom:0; width:2px; background:#e5e7eb;"></div>
 
-    <div class="agenda-center">
-      <div id="filtros-dimensoes" class="filtros-dimensoes" aria-label="Filtros por dimensão">
-        <label for="filtro-d1"><input id="filtro-d1" type="checkbox" name="dimensoes[]" value="1" checked> Dimensão 1</label>
-        <label for="filtro-d2"><input id="filtro-d2" type="checkbox" name="dimensoes[]" value="2" checked> Dimensão 2</label>
-        <label for="filtro-d3"><input id="filtro-d3" type="checkbox" name="dimensoes[]" value="3" checked> Dimensão 3</label>
-        <label for="filtro-d4"><input id="filtro-d4" type="checkbox" name="dimensoes[]" value="4" checked> Dimensão 4</label>
-        <label for="filtro-d5"><input id="filtro-d5" type="checkbox" name="dimensoes[]" value="5" checked> Dimensão 5</label>
-        <label for="filtro-d6"><input id="filtro-d6" type="checkbox" name="dimensoes[]" value="6" checked> Dimensão 6</label>
+        <!-- 2025 -->
+        <div style="position:relative; padding-left:40px; margin-bottom:18px;">
+          <div style="position:absolute; left:6px; top:6px; width:18px; height:18px; border-radius:50%; background:#084F6A;"></div>
+          <h3 style="margin:0 0 6px 0;">2025</h3>
+          <ul style="margin:0 0 0 0.8rem; padding-left:0.8rem;">
+            <li><a href="visitas_tecnicas/visitas_2025.html">Verallia - Fábrica de Campo Bom - RS e Madef Refrigeração Industrial - Canoas - RS</a></li>
+          </ul>
+        </div>
+        
+       <!-- 2024 -->
+       <!-- <div style="position:relative; padding-left:40px; margin-bottom:18px;">
+          <div style="position:absolute; left:6px; top:6px; width:18px; height:18px; border-radius:50%; background:#0B6F8C;"></div>
+          <h3 style="margin:0 0 6px 0;">2024</h3>
+          <ul style="margin:0 0 0 0.8rem; padding-left:0.8rem;">
+            <li>Atividades de ensino, pesquisa e extensão</li>
+            <li>Participações em eventos e ações sociais</li>
+          </ul>
+        </div>
+      -->
+
+        <!-- 2023 -->
+      <!--  <div style="position:relative; padding-left:40px; margin-bottom:18px;">
+          <div style="position:absolute; left:6px; top:6px; width:18px; height:18px; border-radius:50%; background:#32A1B9;"></div>
+          <h3 style="margin:0 0 6px 0;">2023</h3>
+          <ul style="margin:0 0 0 0.8rem; padding-left:0.8rem;">
+            <li>Iniciativas institucionais e marcos do PET/EQ</li>
+            <li>Produções e resultados</li>
+          </ul>
+        </div>
       </div>
 
-      <div id="eventos-do-dia" class="bloco bloco--eventos bloco--center" aria-live="polite">
-        <strong class="eventos-info">Selecione um dia no calendário para ver os eventos.</strong>
-        <p>&nbsp;</p>
+      <div style="margin-top:18px; display:flex; gap:10px; flex-wrap:wrap;">
+        <a class="btn-acao btn-acao--blue" href="galeria.html">
+          <i class="fas fa-images"></i> Ver Galeria
+        </a>
+        <a class="btn-acao btn-acao--blue" href="../arquivos/RIC_PET_2024.pdf" target="_blank">
+          <i class="fas fa-file-alt"></i> Relatório Institucional (RIC)
+        </a>
       </div>
-
-      <div id="calendario" class="calendario calendario--center"></div>
-    </div>
-
+    </div> 
+  -->
+  
     <div style="font-size:.85rem;color:#555;margin-top:30px;text-align:center;font-style:italic;display:flex;align-items:center;justify-content:center;gap:6px;">
       <i class="fas fa-info-circle" style="color:#0078d4;"></i>
       <span>Observação: os links para o SharePoint presentes neste site são de uso institucional e requerem login com credenciais da FURG.</span>
     </div>
   </main>
+  <!-- ===== FIM DO CONTEÚDO ESPECÍFICO ===== -->
 
 </div>
 </div>
 
-<footer style="background-color:#ffffff; text-align:center; box-shadow:0 -2px 5px rgba(0,0,0,0.1)">
-  <div style="display:flex; justify-content:space-between; align-items:center; max-width:1200px; margin:0 auto; padding:10px 20px; flex-wrap:wrap; font-family:'Lato',sans-serif; font-size:.9em;">
-    <div class="footer-logos" style="display:flex; gap:40px; align-items:center;">
-      <a href="https://www.gov.br/mec/pt-br/pet" target="_blank"><img alt="Logo PET" loading="lazy" src="../assets/img/logo-pet-mec.gif" style="height:40px;"/></a>
+<footer style="background:#ffffff;text-align:center;box-shadow:0 -2px 5px rgba(0,0,0,0.1)">
+  <div style="display:flex;justify-content:space-between;align-items:center;max-width:1200px;margin:0 auto;padding:10px 20px;flex-wrap:wrap;font-family:'Lato',sans-serif;font-size:.9em;">
+    <div class="footer-logos" style="display:flex;gap:40px;align-items:center;">
+      <a href="https://portal.mec.gov.br/pet" target="_blank"><img alt="Logo PET" loading="lazy" src="../assets/img/logo-pet-mec.gif" style="height:40px;"/></a>
       <a href="https://furg.br" target="_blank"><img alt="Logo FURG" loading="lazy" src="../assets/img/logo-furg.png" style="height:40px;"/></a>
       <a href="https://prograd.furg.br" target="_blank"><img alt="Logo PROGRAD" loading="lazy" src="../assets/img/logo-prograd.png" style="height:40px;"/></a>
       <a href="https://eqa.furg.br/" target="_blank"><img alt="Logo EQA" loading="lazy" src="../assets/img/logo-eqa.png" style="height:40px;"/></a>
     </div>
-    <div style="display:flex; flex-direction:column; gap:5px; text-align:right;">
+    <div style="display:flex;flex-direction:column;gap:5px;text-align:right;">
       <div>📧 E-mail do tutor: <a href="mailto:mauriciogarim@gmail.com">mauriciogarim@gmail.com</a></div>
       <div>📧 E-mail da liderança: <a href="mailto:peteqlideranca@gmail.com">peteqlideranca@gmail.com</a></div>
     </div>
@@ -247,8 +262,8 @@ img,svg,video{max-width:100%;height:auto}
 <script>
 (function(){
   const navToggle = document.querySelector('.nav-toggle');
-  const navMenu = document.querySelector('.navbar-horizontal .nav-menu');
-  if (navToggle && navMenu){
+  const navMenu  = document.querySelector('.navbar-horizontal .nav-menu');
+  if(navToggle && navMenu){
     navToggle.addEventListener('click', () => {
       const opened = navMenu.classList.toggle('open');
       navToggle.setAttribute('aria-expanded', opened ? 'true' : 'false');
@@ -258,7 +273,7 @@ img,svg,video{max-width:100%;height:auto}
   const sideBtn = document.querySelector('.sidebar-toggle');
   let backdrop = null;
   function openSidebar(){
-    if (!backdrop){
+    if(!backdrop){
       backdrop = document.createElement('div');
       backdrop.className = 'sidebar-backdrop';
       backdrop.addEventListener('click', closeSidebar);
@@ -271,15 +286,13 @@ img,svg,video{max-width:100%;height:auto}
     body.classList.remove('sidebar-open');
     sideBtn && sideBtn.setAttribute('aria-expanded','false');
   }
-  sideBtn && sideBtn.addEventListener('click', () => {
-    if (body.classList.contains('sidebar-open')) closeSidebar(); else openSidebar();
-  });
-  document.addEventListener('keydown', e => { if (e.key==='Escape' && body.classList.contains('sidebar-open')) closeSidebar(); });
-  window.addEventListener('resize', () => { if (window.innerWidth >= 992) closeSidebar(); });
+  sideBtn && sideBtn.addEventListener('click', ()=> body.classList.contains('sidebar-open') ? closeSidebar() : openSidebar());
+  document.addEventListener('keydown', e => { if(e.key==='Escape' && body.classList.contains('sidebar-open')) closeSidebar(); });
+  window.addEventListener('resize', ()=> { if(window.innerWidth>=992) closeSidebar(); });
 })();
 </script>
 
-<!-- Mobile scroll fixes -->
+<!-- Mobile scroll fixes (iguais às dimensões) -->
 <style>
 html,body{height:auto;min-height:100%;overflow-x:hidden}
 .content-wrapper,.page-wrapper,main.conteudo{min-height:auto}
@@ -296,30 +309,5 @@ html,body{height:auto;min-height:100%;overflow-x:hidden}
 (function(){function setVH(){var vh=window.innerHeight*0.01;document.documentElement.style.setProperty('--vh',vh+'px');}
 setVH();window.addEventListener('resize',setVH);window.addEventListener('orientationchange',setVH);})();
 </script>
-
-<!-- FullCalendar CDN -->
-<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js" crossorigin="anonymous"></script>
-
-<!-- Locale pt-BR inline -->
-<script>
-(function(){
-  var l = {
-    code: "pt-br",
-    week: { dow: 0, doy: 4 },
-    buttonText: { prev: "Anterior", next: "Próximo", today: "Hoje", month: "Mês", week: "Semana", day: "Dia", list: "Lista" },
-    weekText: "Sm",
-    allDayText: "dia inteiro",
-    moreLinkText: function(n){ return "mais " + n; },
-    noEventsText: "Não há eventos para mostrar"
-  };
-  if (window.FullCalendar && Array.isArray(window.FullCalendar.globalLocales)) {
-    window.FullCalendar.globalLocales.push(l);
-  }
-})();
-</script>
-
-<!-- Inicialização baseada em JSON (NÃO carregar mais eventos.js) -->
-<script src="../assets/js/calendar.js"></script>
-
 </body>
 </html>

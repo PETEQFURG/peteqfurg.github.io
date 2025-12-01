@@ -18,7 +18,7 @@
 
 <link rel="icon" href="../assets/img/logo-peteq-furg.svg" type="image/svg+xml">
 
-<!-- Hotfixes (iguais às outras páginas) -->
+<!-- Hotfixes (EXATAMENTE como na dimensão 6) -->
 <style id="hotfix-curso-furg">
   .header-text .curso-wrap{display:inline-grid;width:max-content}
   .header-text .curso{display:inline-block;border-bottom:3px solid #fff!important;text-decoration:none!important}
@@ -57,7 +57,7 @@ h1,h2,h3,h4,h5,h6,p,li,a,span,small,strong,em{overflow-wrap:anywhere;word-break:
 .fc .fc-daygrid-day-frame{min-width:0}
 </style>
 
-<!-- Estilos estruturais -->
+<!-- Estilos estruturais (iguais aos das dimensões) -->
 <style>
 img,svg,video{max-width:100%;height:auto}
 .content-wrapper{width:100%}
@@ -89,7 +89,7 @@ img,svg,video{max-width:100%;height:auto}
   .footer-logos img{height:32px!important}
 }
 
-/* Agenda – filtros e painel “eventos do dia” */
+/* Agenda – mesmos espaçamentos */
 #filtros-dimensoes{
   display:flex;flex-wrap:wrap;align-items:center;gap:12px 18px;
   background:#fff;padding:12px 16px;border-radius:14px;box-shadow:0 2px 6px rgba(0,0,0,.1)
@@ -98,9 +98,8 @@ img,svg,video{max-width:100%;height:auto}
 @media(max-width:600px){
   #filtros-dimensoes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px 12px}
 }
-#eventos-do-dia{padding:8px 12px;margin:8px 0 12px;border-radius:10px;box-shadow:0 0 5px rgba(0,0,0,.1);max-width:680px}
+#eventos-do-dia{padding:8px 12px;margin:8px 0 12px;border-radius:10px;box-shadow:0 0 5px rgba(0,0,0,.1);max-width:560px}
 #eventos-do-dia .eventos-info{font-weight:700}
-#eventos-do-dia ul{margin:8px 0 0 18px}
 .calendario{width:100%;max-width:100%}
 </style>
 </head>
@@ -202,7 +201,7 @@ img,svg,video{max-width:100%;height:auto}
     </div>
 
     <div class="agenda-center">
-      <div id="filtros-dimensoes" class="filtros-dimensoes" aria-label="Filtros por dimensão">
+      <div id="filtros-dimensoes" class="filtros-dimensoes">
         <label for="filtro-d1"><input id="filtro-d1" type="checkbox" name="dimensoes[]" value="1" checked> Dimensão 1</label>
         <label for="filtro-d2"><input id="filtro-d2" type="checkbox" name="dimensoes[]" value="2" checked> Dimensão 2</label>
         <label for="filtro-d3"><input id="filtro-d3" type="checkbox" name="dimensoes[]" value="3" checked> Dimensão 3</label>
@@ -211,7 +210,7 @@ img,svg,video{max-width:100%;height:auto}
         <label for="filtro-d6"><input id="filtro-d6" type="checkbox" name="dimensoes[]" value="6" checked> Dimensão 6</label>
       </div>
 
-      <div id="eventos-do-dia" class="bloco bloco--eventos bloco--center" aria-live="polite">
+      <div id="eventos-do-dia" class="bloco bloco--eventos bloco--center">
         <strong class="eventos-info">Selecione um dia no calendário para ver os eventos.</strong>
         <p>&nbsp;</p>
       </div>
@@ -219,6 +218,7 @@ img,svg,video{max-width:100%;height:auto}
       <div id="calendario" class="calendario calendario--center"></div>
     </div>
 
+    <!-- Aviso igual ao das dimensões -->
     <div style="font-size:.85rem;color:#555;margin-top:30px;text-align:center;font-style:italic;display:flex;align-items:center;justify-content:center;gap:6px;">
       <i class="fas fa-info-circle" style="color:#0078d4;"></i>
       <span>Observação: os links para o SharePoint presentes neste site são de uso institucional e requerem login com credenciais da FURG.</span>
@@ -243,7 +243,7 @@ img,svg,video{max-width:100%;height:auto}
   </div>
 </footer>
 
-<!-- Interações responsivas (iguais às outras páginas) -->
+<!-- Interações responsivas (idênticas) -->
 <script>
 (function(){
   const navToggle = document.querySelector('.nav-toggle');
@@ -279,7 +279,7 @@ img,svg,video{max-width:100%;height:auto}
 })();
 </script>
 
-<!-- Mobile scroll fixes -->
+<!-- Mobile scroll fixes (mesmos da dimensão 6) -->
 <style>
 html,body{height:auto;min-height:100%;overflow-x:hidden}
 .content-wrapper,.page-wrapper,main.conteudo{min-height:auto}
@@ -297,10 +297,10 @@ html,body{height:auto;min-height:100%;overflow-x:hidden}
 setVH();window.addEventListener('resize',setVH);window.addEventListener('orientationchange',setVH);})();
 </script>
 
-<!-- FullCalendar CDN -->
+<!-- FullCalendar: núcleo (remoto) -->
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js" crossorigin="anonymous"></script>
 
-<!-- Locale pt-BR inline -->
+<!-- Locale pt-BR inline (sem CDN) -->
 <script>
 (function(){
   var l = {
@@ -318,7 +318,8 @@ setVH();window.addEventListener('resize',setVH);window.addEventListener('orienta
 })();
 </script>
 
-<!-- Inicialização baseada em JSON (NÃO carregar mais eventos.js) -->
+<!-- Inicialização e ajustes do calendário do PET -->
+<script src="../assets/js/eventos.js"></script>
 <script src="../assets/js/calendar.js"></script>
 
 </body>

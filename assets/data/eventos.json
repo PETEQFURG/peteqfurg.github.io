@@ -1,0 +1,68 @@
+[
+  {
+    "id": "2025-11-reuniao-semanal",
+    "titulo": "Reunião Semanal PET/EQ",
+    "descricao": "Alinhamento de atividades e tarefas da semana.",
+    "inicio": "2025-11-04T14:00",
+    "fim": "2025-11-04T15:30",
+    "local": "Sala PET/EQ",
+    "status": "planejado",
+    "dimensao": [6],
+    "link": ""
+  },
+  {
+    "id": "2025-10-oficina-ensino",
+    "titulo": "Oficina de Monitoria (Termo II)",
+    "descricao": "Revisão de condução de calor e exercícios guiados.",
+    "inicio": "2025-10-30T10:00",
+    "fim": "2025-10-30T12:00",
+    "local": "EQA - Lab de Cálculo",
+    "status": "planejado",
+    "dimensao": [1],
+    "link": ""
+  },
+  {
+    "id": "2025-10-pesquisa-seminario",
+    "titulo": "Seminário de Pesquisa PET/EQ",
+    "descricao": "Apresentação de resultados parciais (Iniciação Científica).",
+    "inicio": "2025-10-28T16:00",
+    "fim": "2025-10-28T18:00",
+    "local": "Auditório EQA",
+    "status": "planejado",
+    "dimensao": [2],
+    "link": ""
+  },
+  {
+    "id": "2025-11-extensao-feira",
+    "titulo": "Extensão: Feira de Ciências",
+    "descricao": "Interação com escolas; demonstrações experimentais.",
+    "inicio": "2025-11-09",
+    "fim": "2025-11-09",
+    "local": "Escola Municipal X",
+    "status": "planejado",
+    "dimensao": [3],
+    "link": ""
+  },
+  {
+    "id": "2025-11-inovacao-workshop",
+    "titulo": "Workshop de Inovação e Prototipagem",
+    "descricao": "Prototipagem rápida e apresentação de cases PET.",
+    "inicio": "2025-11-12T14:00",
+    "fim": "2025-11-12T17:30",
+    "local": "Makerspace EQA",
+    "status": "planejado",
+    "dimensao": [4],
+    "link": ""
+  },
+  {
+    "id": "2025-12-softskills",
+    "titulo": "Ciclo de Soft Skills",
+    "descricao": "Comunicação, liderança e trabalho em equipe.",
+    "inicio": "2025-12-03T09:00",
+    "fim": "2025-12-03T11:00",
+    "local": "Sala de Treinamento",
+    "status": "planejado",
+    "dimensao": [5],
+    "link": ""
+  }
+]
